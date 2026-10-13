@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paulo · Corrida</title>
+<meta name="description" content="Treinos, recordes e o caminho até a maratona sub-3, direto do Strava.">
+<meta name="theme-color" content="#0b0d10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./"><span class="brand-mark"></span><span id="brand-name">Corrida</span></a>
+  <nav>
+    <a href="#recordes">Recordes</a>
+    <a href="#sub3">Sub-3</a>
+    <a href="#volume">Volume</a>
+    <a href="#atividades">Treinos</a>
+    <a href="blog.html">Blog</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow" id="updated">Carregando dados…</p>
+      <h1 id="name">&nbsp;</h1>
+      <p class="tagline" id="tagline"></p>
+      <div class="links" id="links"></div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat big"><span class="num" id="ytd-km">–</span><span class="lbl">km em <span id="year"></span></span></div>
+      <div class="stat"><span class="num" id="ytd-runs">–</span><span class="lbl">corridas no ano</span></div>
+      <div class="stat"><span class="num" id="ytd-hours">–</span><span class="lbl">horas correndo</span></div>
+      <div class="stat"><span class="num" id="week-km">–</span><span class="lbl">km nesta semana</span></div>
+    </div>
+  </section>
+
+  <section id="recordes" class="block">
+    <h2><span class="idx">01</span>Recordes pessoais</h2>
+    <div class="pr-grid" id="prs"></div>
+  </section>
+
+  <section id="sub3" class="block">
+    <h2><span class="idx">02</span>Rumo à sub-3</h2>
+    <div class="sub3">
+      <div class="sub3-main">
+        <p class="eyebrow" id="race-name">Maratona</p>
+        <div class="countdown" id="countdown"></div>
+        <div class="gauge" id="gauge"></div>
+      </div>
+      <div class="sub3-metrics" id="sub3-metrics"></div>
+    </div>
+  </section>
+
+  <section id="volume" class="block">
+    <h2><span class="idx">03</span>Volume de treino</h2>
+    <div class="chart-head">
+      <div class="seg" role="tablist">
+        <button class="on" data-view="weekly" role="tab" aria-selected="true">Semanal<span class="opt"> · 16 sem</span></button>
+        <button data-view="monthly" role="tab" aria-selected="false">Mensal<span class="opt"> · 12 meses</span></button>
+      </div>
+      <p class="chart-note" id="chart-note"></p>
+    </div>
+    <div class="chart" id="chart"></div>
+    <details class="table-view"><summary>Ver como tabela</summary><div id="chart-table"></div></details>
+  </section>
+
+  <section id="atividades" class="block">
+    <h2><span class="idx">04</span>Treinos recentes</h2>
+    <div class="acts" id="acts"></div>
+  </section>
+
+  <section id="blog" class="block">
+    <h2><span class="idx">05</span>Do blog</h2>
+    <div class="posts" id="posts"></div>
+    <a class="more" href="blog.html">Todos os posts →</a>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Dados atualizados automaticamente todos os dias.</span>
+  <span class="powered">Powered by Strava</span>
+</footer>
+
+<div class="tip" id="tip" role="tooltip"></div>
+<script src="assets/app.js"></script>
+</body>
+</html>
