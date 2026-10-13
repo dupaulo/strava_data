@@ -1,46 +1,47 @@
 {
- "updated_at": "2026-10-13T15:56-03:00",
+ "updated_at": "2026-10-13T19:45+00:00",
  "athlete": {
   "name": "Paulo",
   "tagline": "Corrida, dados e disciplina. Rumo à maratona sub-3.",
   "strava_url": "https://www.strava.com/athletes/SEU_ID_AQUI",
   "instagram": "",
-  "photo": null
+  "photo": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/30463975/18052375/22/large.jpg"
  },
  "totals": {
-  "ytd_km": 3508.4,
-  "ytd_runs": 229,
-  "ytd_hours": 261.2,
-  "all_km": 4842.8,
-  "all_runs": 320,
-  "week_km": 12.0
+  "ytd_km": 2914.8,
+  "ytd_runs": 293,
+  "ytd_hours": 258.3,
+  "all_km": 18456.2,
+  "all_runs": 1754,
+  "week_km": 11.0
  },
  "prs": [
   {
    "key": "5K",
    "km": 5.0,
-   "seconds": 1052,
-   "date": "2026-08-27",
-   "activity_id": 285,
-   "activity_name": "Progressivo",
+   "seconds": 1118,
+   "date": "2026-05-30",
+   "activity_id": 18713884961,
+   "activity_name": "Meia Maratona Internacional de Porto Alegre - 2026",
    "source": "strava"
   },
   {
    "key": "10K",
    "km": 10.0,
-   "seconds": 2175,
-   "date": "2026-08-27",
-   "activity_id": 285,
-   "activity_name": "Progressivo",
+   "seconds": 2256,
+   "date": "2026-05-30",
+   "activity_id": 18713884961,
+   "activity_name": "Meia Maratona Internacional de Porto Alegre - 2026",
    "source": "strava"
   },
   {
    "key": "Half-Marathon",
    "km": 21.0975,
-   "seconds": 4846,
-   "date": "",
-   "activity_name": "Meia maratona",
-   "source": "manual"
+   "seconds": 4840,
+   "date": "2025-08-24",
+   "activity_id": 15569334440,
+   "activity_name": "RP - Meia Maratona De Buenos Aires 2025",
+   "source": "strava"
   },
   {
    "key": "Marathon",
@@ -51,293 +52,292 @@
  "weekly": [
   {
    "week": "2026-06-29",
-   "km": 92.1,
+   "km": 73.0,
    "runs": 6
   },
   {
    "week": "2026-07-06",
-   "km": 96.3,
-   "runs": 6
+   "km": 91.7,
+   "runs": 7
   },
   {
    "week": "2026-07-13",
-   "km": 80.5,
-   "runs": 5
+   "km": 69.9,
+   "runs": 4
   },
   {
    "week": "2026-07-20",
-   "km": 93.8,
-   "runs": 6
+   "km": 59.6,
+   "runs": 4
   },
   {
    "week": "2026-07-27",
-   "km": 49.9,
-   "runs": 4
+   "km": 67.0,
+   "runs": 8
   },
   {
    "week": "2026-08-03",
-   "km": 95.1,
-   "runs": 6
+   "km": 82.4,
+   "runs": 9
   },
   {
    "week": "2026-08-10",
-   "km": 88.9,
-   "runs": 6
+   "km": 81.0,
+   "runs": 12
   },
   {
    "week": "2026-08-17",
-   "km": 92.6,
-   "runs": 6
+   "km": 82.4,
+   "runs": 9
   },
   {
    "week": "2026-08-24",
-   "km": 97.4,
-   "runs": 6
+   "km": 78.3,
+   "runs": 10
   },
   {
    "week": "2026-08-31",
-   "km": 51.0,
-   "runs": 4
+   "km": 84.2,
+   "runs": 11
   },
   {
    "week": "2026-09-07",
-   "km": 89.7,
-   "runs": 6
+   "km": 91.9,
+   "runs": 11
   },
   {
    "week": "2026-09-14",
-   "km": 94.8,
-   "runs": 6
+   "km": 75.6,
+   "runs": 11
   },
   {
    "week": "2026-09-21",
-   "km": 95.4,
+   "km": 82.6,
    "runs": 6
   },
   {
    "week": "2026-09-28",
-   "km": 98.1,
+   "km": 62.3,
    "runs": 6
   },
   {
    "week": "2026-10-05",
-   "km": 57.5,
-   "runs": 3
+   "km": 55.4,
+   "runs": 9
   },
   {
    "week": "2026-10-12",
-   "km": 12.0,
+   "km": 11.0,
    "runs": 1
   }
  ],
  "monthly": [
   {
    "month": "2025-11",
-   "km": 348.1
+   "km": 220.2
   },
   {
    "month": "2025-12",
-   "km": 371.2
+   "km": 191.7
   },
   {
    "month": "2026-01",
-   "km": 374.9
+   "km": 258.8
   },
   {
    "month": "2026-02",
-   "km": 315.0
+   "km": 224.3
   },
   {
    "month": "2026-03",
-   "km": 407.6
+   "km": 373.0
   },
   {
    "month": "2026-04",
-   "km": 354.4
+   "km": 341.9
   },
   {
    "month": "2026-05",
-   "km": 408.5
+   "km": 264.1
   },
   {
    "month": "2026-06",
-   "km": 373.9
+   "km": 331.9
   },
   {
    "month": "2026-07",
-   "km": 401.4
+   "km": 302.9
   },
   {
    "month": "2026-08",
-   "km": 374.1
+   "km": 368.8
   },
   {
    "month": "2026-09",
-   "km": 358.2
+   "km": 362.3
   },
   {
    "month": "2026-10",
-   "km": 140.5
+   "km": 86.7
   }
  ],
  "recent": [
   {
-   "id": 319,
-   "name": "Fartlek",
-   "date": "2026-10-13T05:40",
-   "km": 12.03,
-   "moving_time": 2937,
-   "pace": 244,
-   "elevation": 33,
-   "hr": 139,
-   "race": false,
-   "polyline": "~ylnChjh{GsCuAwC_@uCNqC`AgCjB}BnCqBjDcB`EwAlEkApEaArE{@jEs@bEq@zDq@pDm@hDm@`Dk@~Cg@zCe@|C_@|CW~CO`DI`D?~CD~CHzCJvCJrCDpC@pCIrCQzC]bDi@pDo@bEw@rEu@hFs@xFi@hG[rGGrGLnGf@`GbAfFzAfEvB|CjCpB|C|@hDJnDe@nDqAjDwBbDuCtCeDhCmDxBkDjB}C`BiCtAkBpAmApAo@nAOvAJzA^dBl@nBr@tBr@|Bh@`CZbCFbCM~Bg@zB}@rBuAjBiBdB{BzAkCtAuCnA}CjAgDfAmDbAqD`AyDz@aEt@gEl@mE`@sEPyE@yESwEi@sE_AgEwAwDkBcD_CkCmCqByCwA{C_A{Ci@sCWiCO{BKiBSwAc@cAy@u@uAi@wBa@{C_@{D_@{Eg@qFs@aGaAgGqAaGcBoFqBuEaCqDmCcC"
-  },
-  {
-   "id": 318,
-   "name": "Longão de domingo",
-   "date": "2026-10-11T05:40",
-   "km": 32.54,
-   "moving_time": 8855,
-   "pace": 272,
-   "elevation": 54,
+   "id": 20565013771,
+   "name": "E + 8 strides · Fácil",
+   "date": "2026-10-13T05:47",
+   "km": 11.04,
+   "moving_time": 3314,
+   "pace": 300,
+   "elevation": 13,
    "hr": 150,
    "race": false,
-   "polyline": "~ylnCrt`{GmRkCqRJ_RzC_Q`HqOtKwMrN}KxP}IdRgHzRuFxRoEfRsDdQeD|OaDrNcDhMkDdLyDfKaEtJgEhJgEfJcEjJsDtJ_D|JgChKmBpKuAxKaAzKu@~Km@`Ls@bL_AjLsAvLmBjMeCdN}CfOmDnPoDxQeD`SgCbTyA|TYhUv@~TrCbTvFlR~IbP`MbMxOnIdRpEzSlA~Tu@hUqD`U{GbTsJtRmL~PkM`OmMfMoLpKyJbJmHhIsEzHsB|HSnIdAnJlCvKfEdMfFnNnFxO~EvPxDlQ`CrQz@jQStPgBvOyDlNeG|LiInKeK|IqLnHuMhGoNfFaOjEoOrDuO~C}OdCcPnBiPlAqPd@sPIuPeAqPgCePoEqO{GqNcJiMgLwKcN_JkOcHgPiFmPqDaPgCaOgBsM}AwKeByIcCuGsDyEwFeDiIaCaLqB{NqBmQiCuSoDeUiF_ViH{UsJwTyLwRyNyOqPcLyQ{G"
+   "polyline": "lnu`C|{`sG]QgDiAyAm@mDkAOIKKG@BFHFdBl@bA`@~@X`A^`AZ^PvAb@jBr@f@NrBz@J@BECEIEcCw@oDqAwBs@eBq@yBu@YOk@OWKKKEAAFDFXB\\J|B|@lA^v@Zj@PrBx@f@N`@VvAh@~Ad@f@XDA@AEGc@U}E_BUKQ?cA[aBq@a@KkBq@_@OOKYOw@Ue@YE?CFFFlBn@nCdAjBj@hBr@zBt@`DnAJBBA?IIEqEyAUKkAYkAg@wAc@qAg@oAc@e@Ww@W]WEAID?JHDpBj@fDlAhA^xDxA`@JZL`@JXPVFhAd@J?@A?EMIc@MgA_@sLcEsAk@aBi@_@UE?CHBDHFVDl@T`@JrAh@jCz@|ChAZJ\\FdBn@~Ad@RLD@@CCGo@Me@Sw@SsG_CkHgC[MWUIBAJNHn@JbC|@x@Tp@^j@P`A`@~@PHDPPr@VzAf@pBx@HDFEGMa@QyBu@i@WkA]_@OeAY_@Om@OOIkE_Bw@U_@YGDABFFbBh@|ChAj@Hz@VXNpBl@XR|@^p@Vx@T^N\\JJJG@ICq@WWUmAc@]E{@YsDsAOI_Aa@]U_DiAo@_@OD?Hv@R\\PlBp@j@NNJl@PdA`@`@L|Bz@b@LNH`@LjAb@TFRHXTL??EOImEwAoCgA{@UOIgC{@}@_@_Bg@_@YC?EAQFED?JBBJBf@Dx@X`@Ff@NtBv@x@PpDpAbAVBB?BiG{BaBg@wCgAi@UOMOCG?OJaAn@mAl@m@`@a@Rc@LCD@DBBB?XGrBiAfAs@\\OPEX?VBHCp@V`@?d@Nd@RtBr@dAb@|@Vt@ZbCz@HBBDGBoAi@_C{@BFNJ^JbAPlBp@@BA@GA}BcA_Bk@I??F@@N@`@HtG`C"
   },
   {
-   "id": 317,
-   "name": "Regenerativo",
-   "date": "2026-10-07T05:40",
-   "km": 12.06,
-   "moving_time": 3349,
-   "pace": 278,
-   "elevation": 44,
-   "hr": 159,
+   "id": 20541486525,
+   "name": "Longão 15 km · Longão",
+   "date": "2026-10-11T08:24",
+   "km": 15.02,
+   "moving_time": 4503,
+   "pace": 300,
+   "elevation": 18,
+   "hr": 154,
    "race": false,
-   "polyline": "~ylnCngh{GsDiAuDSsD^kDpAaDzBqC~CaCzDoBnEaBxEsA|EgAxE_ArEy@fEu@zDs@nDu@dDu@zCs@xCs@rCq@tCk@rCe@vC]xCSzCMzCCzCAxCBxC@tC?tCGtCQxC[~Ce@jDq@vDw@hE{@xE}@jFu@zFi@fGUnGAnGZhGx@vFvA|EvBzDtCpCjD`B~Dp@jEArEo@pE}AjE_C|DyCpDiD|CoDlCgD|BwClBaCdBaB~AaA|A_@`BAfBZpBn@|B|@hC`ArC~@zCt@`Dd@dDL`DI~Ce@vC_AlCyA`CmBvBcClBqC`B_DxAgDpAoDlAuDdA{D`A_Ez@eEr@iEh@oEZuELuEGwE_@sEu@mEoAaEiBqDaC_DuCgCcDoBoDuAqD_AqDk@gD[yCUgCUuB]}Ao@kAeAy@eBk@eCe@gDa@iEg@eFo@{F_AiGqAkGeBcGyBoFoCqE}CiDkD{B"
+   "polyline": "tgu`C`y`sGh@Hr@TdFhB~CdAFH?BCBI?eAi@_EwAa@KkFqBcBg@u@]c@K]MCGFA`Bn@nCz@t@^dBh@|An@lBl@r@`@rAd@NJD?BECGe@MuBw@}@WyBy@_AWOKUEoDsAqBq@_@YIDBFfBh@XRp@XfDhAtDvAx@RjDlAZLTVVd@t@nCDHDGCK[_AS_@Sm@Yc@_@Y}GcCu@UaBs@qBo@]GqBw@aAWGIAGBCFAzBhAtBt@dEnAtDrARJnBl@JJEHKA_Aa@{DsAw@_@gBs@a@Sa@Om@WoDkAo@[KBABBBd@HdA\\|CjAd@F~@^rBp@zDvAbBj@DHCDC@IA]Um@Y_DeAeAc@c@WaBi@eC_AgA]qAg@UQIB?DHDzBr@xAl@bJ~C`E|ADGGGmA[cC}@}@YaC}@gA]k@WwE_BYUK?ADFHt@R`A`@VFdA`@r@TTDbCt@jG|BjA\\FHEJC?mAe@m@OoAg@w@a@q@W{HoCMMyAg@WUK?CDLJlA\\xGdCdBh@zEdBfAd@D@FEGG]MsDiAqBw@k@Q]E_@QqDqAsC{@OM?GDEZRl@Th@XxDvAtBp@vIbDDABCEGoA_@gC_As@S[EiAc@mJeDIGQUIB@HB@xBr@b@JrBz@nBn@RJ`Bn@r@NdA\\fCx@JJAFE@QCu@]a@KWU[Mk@OiAe@cJ}CsAi@m@MIGAKJAh@^rAd@bAh@tBr@l@LrG|BzAl@f@NBCAEIEiAYuBy@gA]_@Sc@K_Bk@}@UOI}Bu@sAi@e@G@EDANJh@Rj@J~Bv@b@R~DrAzCjAjA`@t@RHF?DGFWIq@_@wAg@q@a@_DgAO?i@OQKoE_BgBg@GI?EFGB@f@ZbBn@v@VVBd@Lr@`@p@XxDnA`C~@hA\\JD?NKAMMm@WiA]_A_@kBo@u@]{Bs@yCiAOIcA]]GII?EDEHNzBt@tAf@x@V~Ap@hCv@fC`Ap@R|@ZHFBDABE@s@]{DqAiAe@cBi@uDwA}@W[OgAUGI?C@CJ@f@PpB|@xBr@t@ZpA`@bHjCVD^NNJ\\`@LZFZFB@IEM_@q@_@]c@W"
   },
   {
-   "id": 316,
-   "name": "Intervalado 6x800",
-   "date": "2026-10-06T05:40",
-   "km": 12.94,
-   "moving_time": 3152,
-   "pace": 244,
-   "elevation": 124,
-   "hr": 156,
+   "id": 20512632706,
+   "name": "Rodagem 7 km · Fácil",
+   "date": "2026-10-09T05:37",
+   "km": 7.03,
+   "moving_time": 2165,
+   "pace": 308,
+   "elevation": 6,
+   "hr": 148,
    "race": false,
-   "polyline": "~ylnCrug{GsIIoIr@_InBgH`DgGlEeFnF_EdG}CpG}BrGeBhGqAxFiAdFeAnEkAvDuA~CcBlCsB~BaCvBmCpBuCpByCtBwCzBqCdCeCnCwBvCgB|CwAfDkAjD_AnDy@tDu@xDu@~Dw@dE{@nE{@zE{@bFu@pFi@zFUbGDfGf@dGrA|F~BlFpDtEbFtDnGlCvH~AvIp@lJAvJm@tJ{AjJ}BtIwCzHgD|GkDzFcD|EoCbEsBpDoAfDg@dD@lDf@~DjAvEfBpFxBlG`ChH~B~HrBpIzAxI|@xIXpIM~Hs@dH{AfG_CbF}C`EwD|CiE|ByE~A_FfAeFr@eFd@cFVcFL}E@}EGyEUwEg@sE}@oEwAiEsBaEoCuDkDgDgEyC}EeCmFuBwFaBuFqAoFgA}EaAgEaAkDgAoCwAqBmByAgCgAeD{@gEy@eFcAaGuAwGqBcHqCeHyDyG_FeGeGcFeHuD}HaCoIeA"
+   "polyline": "z`u`Cvu`sG[M[UECC@AD@DHD`@H|@^~Bt@rBx@rAd@f@T|Bp@v@ZlBv@H?@AAEGEUCm@Ss@YUGYM_AYyHsCkDiAOIWSI?@HB@\\FzAd@~@^p@RVLnDlArDtAnC|@FF@DCBI?uB_AwFqBk@U[QqAg@cA[iC_ASQKAAB?DHFVF|EfBpA\\p@Td@HZJd@RVPz@\\p@Tj@LjAf@\\H@FADC@e@Qo@]UGWM_Bg@qBw@k@Q[OcCw@}B}@m@SKEY[GCK?@Hp@ZZJn@JzFtB`AXrBx@fEvAJDDJGB]IWQo@[aA]u@e@wBy@oA]kDsAsAa@_@OQOQ?OIIB@HpA^xAl@|Br@t@ZrDpAZNj@NbDnAD@DA?CGGOCoBq@mE}AYOaAYmAe@sAc@u@[sAe@e@YE@ABJJnAd@NHrC~@vAh@t@TNHt@Lx@^bBf@rBt@ZFFHADCBE@KC]OQQYQiDiASQ[MYO[GwBw@c@Gu@[i@O]QsAc@IESOEAEDABDHz@RpE~AP@p@T"
   },
   {
-   "id": 315,
-   "name": "Longão de domingo",
-   "date": "2026-10-04T05:40",
-   "km": 33.58,
-   "moving_time": 8810,
-   "pace": 262,
-   "elevation": 39,
-   "hr": 161,
+   "id": 20499697632,
+   "name": "Strides - 5x100 + 5*1minuto",
+   "date": "2026-10-08T06:17",
+   "km": 1.46,
+   "moving_time": 414,
+   "pace": 284,
+   "elevation": 3,
+   "hr": 155,
    "race": false,
-   "polyline": "~ylnCph`{G_SoCcSHqR~CqQhH_P`LgNbOiLjQiJxRoHlS}FnSuExRyDvQkDnPcDbOiDxMqDpL}DtKgE`KmEtJmErJgEvJwD`KeDjKiCtKqB~KwAdLaAhLu@jLo@nLs@nLaAxLuAdMoBxMkCtNaDxOqD~PwDjRiDtSmCzT{ArU[~Uv@vUvCxT~FbSfJrPlMpMjP|ItRvEnTpArUw@~UuDtUeHvT}JhS{LnQ{MrO{MrM}L|KeKnJyHpI{EdIwBfISxIdAxJrCbLjEpMlF~NtFfPfFhQ~DzQdCdRz@zQSfQiBdP_E|NmGjMuIxKoKfJ_MxHeNpG}NnFqOrE_PxDePbDoPjCuPpB{PpAaQf@gQIgQeAcQkCwPuEaPcHcOoJwMsLeLqNiJ}OmHwPoF}PyDqPiCqOkBaN_BeLiBcJeC_HyD_F_GkDsIeCmLsBiOuBaRmCiTuD}UoFuVqHsV}JmUgMkSiOkPaQqLiReH"
+   "polyline": "z}t`Ctu`sGRCXA^H^Nh@Jb@LxBz@vC`A`@Pv@P"
   },
   {
-   "id": 314,
-   "name": "Corrida tranquila",
-   "date": "2026-10-03T05:40",
-   "km": 12.77,
-   "moving_time": 3564,
-   "pace": 279,
-   "elevation": 149,
-   "hr": 160,
+   "id": 20499608792,
+   "name": "E (alívio) · Fácil",
+   "date": "2026-10-08T05:38",
+   "km": 7.02,
+   "moving_time": 2131,
+   "pace": 304,
+   "elevation": 7,
+   "hr": 149,
    "race": false,
-   "polyline": "~ylnCpbh{GwC}AyCe@yCNsC`AkCnBaCtCsBrDgBhEyAvEoA|EcAzE}@xEw@nEs@dEq@zDq@tDm@lDk@hDi@fDe@hD_@hDWjDMjDGlD@jDDhDLdDL~CL|CHxC@xCGzCSbD]lDi@zDq@lEw@`Fw@tFu@hGm@xG[bHKfHL`Hd@pGbAxF|AtEvBjDnCxB~CdAjDLrDe@rDsApD}BdD{CzCoDjCyD|BuDnBgDbBsCxAuBrAuApAs@rASvAH~A\\fBl@nBr@vBr@~Bh@bCZdCDdCO`Ci@zBaAtByAnBoBdBcC|AoCxA}CpAgDlAoDjAuDfA{DbAeE~@iEx@sEn@{Eb@aFTeF@gFQgFi@_F_AuEyAeEoBmDaCuCqCyB}C}A_DcAaDk@yCWmCO_CKmBSyAa@iA{@w@yAk@{Ba@aD_@eEa@eFi@}Fs@oGaAwGsAoGcB_GuBcFcC}DoCmC"
+   "polyline": "dlu`Crz`sGiBk@sBy@o@Sm@MSKu@U]UGBBHHB`@JvBv@z@VvAj@~DtAnDtAv@TZPJAGK_@QICo@GICkAe@oBm@aAa@a@Ki@Us@_@}FsBYSGDFJvFjBXN`KpD|@X`@PD@HCMIeA_@uC_AiBs@{@Sa@MkAk@iA_@uBy@o@SQOKBBFJDfGzBx@T`Ab@l@LrA`@vAj@rC|@FJAHG?gCmAc@KaAa@kBo@e@YeBm@aAa@c@Ke@UcBi@[UK?A@DHHDhCz@rCfA`Ct@bC`AxDrANHJ?@CECIEsFiBcAc@k@OcAa@_@IMIiAc@sDoA_@UE?CB@Fd@LbE|A`@Jx@Jj@XrAb@rBx@nBr@z@Tf@VDAEE[AiA[}B}@m@QqDsAc@MaAa@oAc@g@Sy@UKGUYKAAB?JJBh@NbBl@bC|@z@PxFvBjDfABB@DEJEAo@WOMy@]}Bu@s@a@uCaAcAa@sAc@YOa@E}@]]IIGAE@EF@NH"
   },
   {
-   "id": 313,
-   "name": "Corrida tranquila",
-   "date": "2026-10-02T05:40",
-   "km": 12.14,
-   "moving_time": 3424,
-   "pace": 282,
-   "elevation": 25,
-   "hr": 145,
-   "race": false,
-   "polyline": "~ylnClgh{GiDmAkDWiDXaDjAyCtBkCzC{BvDmBjE}AvEqAxEgAxE}@pEw@fEu@|Ds@pDq@hDs@~Cq@zCo@xCk@vCg@zC_@zCW|CO|CG~CA|CBzCFxCDtC@tCCtCMvCW~Cc@hDo@vDu@fEy@xE{@jFu@|Fi@jGYrGCrGTlGp@zFpAbFlB`EhCvC`DhBrDt@`EBdEm@fEyA`E}BtDyCfDiDvCoDfCkDvB{ChBeC`BeBxAgAxAe@zAEbBRhBh@tBx@~B|@hCz@pCp@tC^xCLvCKtCe@lC_AbCwAzBoBpB_CfBqC|A{CvAeDnAmDjAsDfAyD`A_E|@eEr@iEj@qE^uENyEEyEYwEq@oEiAeEcBuD{BaDmCkC}CoBgDwAkD_AkDk@aDYuCScCSqBY}Ai@iAcAw@_Bk@aCe@cD_@eEe@cFm@yFy@iGkAkG_BeGqBqFeCuEsCmDaDaC"
-  },
-  {
-   "id": 312,
-   "name": "Tempo run",
-   "date": "2026-10-01T05:40",
-   "km": 12.45,
-   "moving_time": 2966,
-   "pace": 238,
-   "elevation": 149,
-   "hr": 152,
-   "race": false,
-   "polyline": "~ylnCtdh{GcDqAgD]eDT_DfAuCtBiCzCyBvDkBjE}AxEqA|EgAzE}@tEy@lEs@`Es@tDq@lDq@fDq@`Dm@~Ci@~Cc@~C]`DUbDKdDEbDBbDD~CH|CHxCBvCAvCKzCU`Da@jDm@xDu@jEy@~E{@pFu@bGk@pG[xGE|GPtGn@fGjAjFhBhEdC~CzCnBnDz@xDF`Ek@bEwAzD_CrD{CbDmDtCsDdCoDtBaDhBkC|AmBxAkAvAk@xAI~ANfBf@pBr@xBz@dCx@jCn@pC^rCHrCMlCe@hCaA`CyAvBoBlBaCdBqC|A}CtAgDpAoDjAuDfA{DbAcE|@gEv@oEl@uE`@{EP_FA_FW_Fo@wEgAkE_B{DwBgDkCoC{CuBeDyAiD_AiDk@_D[uCQcCOqBW{Ag@kAaAw@}Am@aCc@cD_@gEc@eFm@}Fw@mGiAqG{AkGmByF_C{EqCsD{CgC"
-  },
-  {
-   "id": 311,
-   "name": "Corrida tranquila",
-   "date": "2026-09-30T05:40",
-   "km": 13.23,
-   "moving_time": 3790,
-   "pace": 286,
-   "elevation": 148,
-   "hr": 138,
-   "race": false,
-   "polyline": "~ylnClsg{GuH]uH`@gH|AuGrCyF`E{EbF{D~F{ClG}BnGgBlGuA|FiAlFeAxEgA`EmAnDwAzCaBnCkBdCsB~ByB~ByBbCuBfCoBnCcBvCwA|CkA`D_AhDu@jDm@nDk@rDk@tDq@|Du@dE}@lEaAzEeAhFaAtFw@bGg@lGOtGPtGx@lGbB~FrCfFbEhEnF|CvGpBtH~@nIHxIe@zIuArI}BbI{ChHoDlGuDpFoDpEaDzDcCdDcB|C{@vCQ|CTjDx@|DvAtEjBlFtBdGvBxGjBhHxArHz@tHZlHI`Ho@lGuArFuBvEwCxDmD|CcE`CoEhB{EtA_FdAcFv@cFj@cF`@cFTaFFaFE_FY}Eq@{EmAuEiBkEiC_EgDqDcE_DyEiCkFuBuFaBuFoAoF_A_Fw@gEw@oD{@qCkAsB_B{A}BeA{Cy@_Es@_F{@aGgAwG_BgH_CmH_DeHcEsGgFsFeGiE}GsCoHyA"
-  },
-  {
-   "id": 310,
-   "name": "Fartlek",
-   "date": "2026-09-29T05:40",
-   "km": 13.96,
-   "moving_time": 3536,
-   "pace": 253,
-   "elevation": 41,
-   "hr": 152,
-   "race": false,
-   "polyline": "~ylnCtog{GkFgAoFIiFr@}EjBoE|CyDfEcDfFmCzFwBfGeBfGuA`GkAvFeAhFaAvEaAfEcAzDcAnDgAfDgAdDeA`D_AdD{@fDq@jDe@lD]nDSpDKpDGpDGnDInDQpD[vDg@~Ds@jE}@xEgAjFiA~FgApG}@bHk@nHUvHHtHl@hHtAtGzBtFdDlEfE|CdFdB|Fl@jGMrGaAnGsBdGyCtFuD`FeEhEgErD_E~CiDjCmC`CeBxB_AxBW~BLhCl@xCdAfDtAvDxAfErApEfAzEp@|ETxEItEk@hEkAxDiBjDgCzC}ChCqDzB_ElBkEbBsEvAyEpA_FhAcF`AgFt@kFj@qFXsFDuFSuFm@qFkAgFkB{EiCiEeDqD}DyCqE_C{EcB_FiA{Eu@qEe@}Da@gDa@mCk@sBaAyA}AeA_Cu@gDm@mEk@sFs@sGaAiHsAwHoByHgCkHeDsG}DmFqE}DcFeC"
-  },
-  {
-   "id": 309,
-   "name": "Longo progressivo",
-   "date": "2026-09-27T05:40",
-   "km": 31.23,
-   "moving_time": 8516,
-   "pace": 273,
-   "elevation": 44,
-   "hr": 162,
-   "race": false,
-   "polyline": "~ylnCnx`{GkZF{YzCmXfHkVbLyShO{PxQ}MhSaK`TqH|SsFdSeEzQqDdPoDhN_ElLaFrJkGdIwH`HcJjGiK~FcL`GmLnGkL~G{KxH}JpIwIjJkHbKaGrKyEdLwDrL}C|LoCjMgCxMeCfNgC|NgCrO}BjPkBbQiAzQSjRr@pRjChRtFrQhJhPbNlNzQ~KhU~HjXvEvZbBh\\O~\\}Bv\\aFx[qH`ZmJzWmKhUqKxRyJjPeIlN_G`MeDhLcAlL^fM~BtNrEtPrG|R|HfUlInWbIjY~GtZbFj[tCf[z@jZg@vXkCrVkF|ScI|PqK|MmMzJ}NdH{OtEoPtCwP~AuPv@oPXeP?}OUqOo@iOoA_OuBwNgDkN_F}MaHiMeJqLiLoKgNmJ}OeIaQ{GwQuFuQqEaQ{DyOmDaNoD_LeEyIgFuG}G{E{IoDeLyCqN{CyPuDwRgFeTqHaUkK}TkNaToQgRoTqO_WaL}X_HaZmC"
-  },
-  {
-   "id": 308,
-   "name": "Regenerativo",
-   "date": "2026-09-26T05:40",
-   "km": 12.14,
-   "moving_time": 3424,
-   "pace": 282,
-   "elevation": 75,
+   "id": 20485980296,
+   "name": "Strides 5*100+5*100 easy pace · Fácil",
+   "date": "2026-10-07T06:30",
+   "km": 1.1,
+   "moving_time": 294,
+   "pace": 268,
+   "elevation": 0,
    "hr": 158,
    "race": false,
-   "polyline": "~ylnChih{GqCuAuCc@uCNoC`AgChB{BnCoBlDcB`EwAlEkArEaApEy@lEu@dEq@|Do@rDo@hDk@dDk@`Di@|Cc@~C]~CWbDO`DGbD?bDF~CH|CLxCJtCFpC@rCGrCSzC]dDg@pDo@dEu@tEw@jFq@zFk@jG[tGGvGJrGf@bG`AjFzAhErB`DhCpBzC~@fDLlDc@nDqAhDyB`DsCtCgDfCoDxBmDjB_D~AiCtAoBpAoAnAo@nAQtAHzA\\bBl@lBr@tBp@zBh@~BX`CF`CO|Be@xB_ArBuAhBkBbB{BzAkCtAuCnA_DhAgDfAmDdAsD~@{D|@aEt@gEl@qE`@uERyE@}EQ{Eg@sE_AiEuA{DkBeD_CmCmCsBuCwA{C_A{Ci@sCWiCMyBMiBQuAc@eAw@u@uAi@wBa@{C]{Da@{Eg@sFq@cG_AiGqAcGaBqFqBwE_CsDkCgC"
+   "polyline": "zzt`C`w`sGAFF@HAfAo@VKTC"
+  },
+  {
+   "id": 20485910169,
+   "name": "Rodagem 7 km · Fácil",
+   "date": "2026-10-07T05:51",
+   "km": 7.05,
+   "moving_time": 2127,
+   "pace": 302,
+   "elevation": 9,
+   "hr": 149,
+   "race": false,
+   "polyline": "d_u`Cpt`sGIAED@DHFrBl@tDpApBv@|@Xl@TjBn@lAf@\\LTRD@BA@ACCcC}@qDoAUE}B_AgC{@yAq@m@Qa@YCACBADDHRDhEvA^PzC`ApBv@tBr@lAf@j@PHDb@^Vf@H^B@BAQe@S_@[WwCiA}Bw@a@KwAm@cFiBmAi@i@Q_@UGCC@?HFH^Hj@Rv@T`HdCr@ZdFdB`@N\\XD@@GCAwBy@OKUKo@SqBw@o@QyAi@{@SYOw@UmAk@gA_@WSK@KD]VkAr@mCrAGH?BBDNC^QhEcCTGX@h@N~@XtChAvBr@nJjDPHXZTd@FXFF@GKW]o@QQeAa@aBg@kAg@sAe@m@]yBu@_@GoAg@QEkAi@q@Sc@Wc@JmCbB]Lu@b@QFIF?DFDTGxCiBz@a@^MX?d@LxEbBtAh@dAV`Bl@vAd@pC`Aj@`@Zb@Nd@DDBAMa@Wa@KMa@[mBs@yCcAuDuAyA]cBo@k@Y_Aa@WQC?oA|@c@Jg@X"
+  },
+  {
+   "id": 20471485400,
+   "name": "E + 8 strides · Fácil",
+   "date": "2026-10-06T06:05",
+   "km": 7.65,
+   "moving_time": 2261,
+   "pace": 296,
+   "elevation": 14,
+   "hr": 152,
+   "race": false,
+   "polyline": "r_u`Cbu`sGf@PxAh@xAd@vBv@|@V\\T\\N|GdCDAAIg@WgAY{@Yu@UsAi@w@OaBm@aAWMIu@Wi@YsAa@a@KICGKFGr@`@hAb@~Af@f@RXNnAf@t@TfBr@`AXbA`@TFZL|@Zh@f@JTHb@HDEW[m@OS_@YcBo@iA[{DyAw@WmBs@c@K_Bq@m@Qi@UEAABABBB|Bt@tJjDZHbCv@vA`@LLGFMA_@OgAi@uBw@g@OsBy@yDsAeAa@_AYo@QKKAEHE@@EBADDH\\H^TbCt@d@Vp@ZrAZxAh@nBn@fBt@dAZNHJ?AGUKy@U_@Q[Es@UaFgBaAc@]GcA]eBq@eAWKGII?EHA\\V\\JxBz@nA^fDnAND~Aj@n@N|@XhBr@FH?FA@G?KCw@[i@[w@YYSeFgB[Mw@WgBq@_Bk@MAq@@c@LiAl@aAn@y@`@KJGBC??C@A`Ac@VQxBoAPIXEN?h@JXJ\\DjAb@`AXlBt@~Bv@bA`@jA^nBt@LFHBFCCGg@QcEuAeN}EEA{@D[HMHU@SLCJIFy@l@KBACBEh@QjBgAREPA`@FJGD@^Ll@\\j@NbBn@l@Pl@Rn@P"
+  },
+  {
+   "id": 20457829328,
+   "name": "Strides - 5x100+5*100",
+   "date": "2026-10-05T07:02",
+   "km": 1.09,
+   "moving_time": 309,
+   "pace": 283,
+   "elevation": 1,
+   "hr": 150,
+   "race": false,
+   "polyline": "xau`Cnv`sGvAb@"
+  },
+  {
+   "id": 20457829563,
+   "name": "Rodagem 8 km · Fácil",
+   "date": "2026-10-05T06:11",
+   "km": 8.02,
+   "moving_time": 2736,
+   "pace": 341,
+   "elevation": 9,
+   "hr": 142,
+   "race": false,
+   "polyline": "fbu`Clv`sGjA`@hDnAz@ZZFfBr@bBj@|Bz@@DC@o@UUQUISGMMSK{Ag@q@[iBk@g@S[IsAk@}@WaA_@OIg@Mc@YEB?B^R~ChAp@P`@RlDlAbBp@xAb@nBt@XHBFG?YMc@Ww@Ys@SeAc@cAYMIu@Wi@Se@Yk@Qe@Uu@UeC{@MGUQI@ABDFnBn@\\PnGzBXFhIvC@HKAk@UKKWMmGyBaA]YO_@Io@U[O}@[q@]{@[[UM?CHFFrBj@|@`@dDdA`Ab@dBj@v@Z~Bv@p@XZHDB?FC@e@[[Kc@YuC_A{@a@u@ScBo@YIYE]MsAg@UOyAg@YUI@?BBFDB|Af@bBn@dAZzGdCfA\\bC~@^HZZTb@HR@LCDICGa@S]Y[a@U{@]WG]Uk@Qo@YeBk@]OeCy@g@U}Bw@sAi@WQE@AB@FHD~Af@~@^zAd@jBt@v@Tr@ZnEzAVLTFLHTDBDED[OQOOEQO{@]y@QcDiAq@[]Gy@_@yBu@e@W}@YWMKMKB?HBB`@Hj@RjAd@tAb@~@^xAf@`@Ld@RRDVLnDlAl@Xn@PDFGB]WcAa@MASKwCaAq@YyAe@WOw@UiFmB[ECCAC@CNBt@VLJjCv@B@NPHDf@Nj@Jb@Pf@NNFPN"
+  },
+  {
+   "id": 20446016798,
+   "name": "8km easy run - fresh legs",
+   "date": "2026-10-04T07:22",
+   "km": 8.01,
+   "moving_time": 3108,
+   "pace": 388,
+   "elevation": 13,
+   "hr": 136,
+   "race": false,
+   "polyline": "txu`C~aasG[e@SUwDwAmDmAyD_B_Bg@s@[m@Q_@WI@?FHHRHV@THhE|AhATf@Vx@VjBv@LB\\VzChAXR^d@Tn@FF@Aa@cAe@m@SOo@Uc@UqA_@o@YmBq@g@GsCgA]I_Bm@mAa@]UCAED?BFDZBv@\\lFhBTRx@ZTDfA`@VF\\Rh@LjDnARN`@h@Rp@F??KSe@S]OOg@O}@_@MEwBs@QK}Ak@o@SuAi@eBi@{@_@gBm@QIOCCG@AF@hAf@XFl@VlA`@h@VtCdAf@VpBn@NHnBp@\\XFBNABIGEsBs@ICI@sBs@g@O_Bo@g@M_@WeAc@qCaAWMg@OSOG?ADBFTL`Bf@j@TlC`Ab@Fv@Z~@T^Rf@NVLtAf@rA`@j@TBHG?aAa@]YUIoA]yAm@sAa@aBk@{D{AkA][SIAADDDVDj@Pv@ZHHrAd@XLfBd@f@Rf@LTJvEdBd@Hb@PPBLH@FCFI?c@M]Wm@UgFgBgAc@mDkA_Bq@}@QCG@EDAfDpAbA\\jAd@\\Hz@XXR\\Ln@J|CjAtA`@FB@DEFME_@QsAc@yEiB{@WcAa@QEs@YoAa@WQqAg@MEMOICAB@JFBXB`@NvFnBd@Rz@XVLd@HzHpCVPLN"
+  },
+  {
+   "id": 20405369252,
+   "name": "2x1600,4x600,5x400",
+   "date": "2026-10-01T07:18",
+   "km": 12.24,
+   "moving_time": 4046,
+   "pace": 330,
+   "elevation": 19,
+   "hr": 155,
+   "race": false,
+   "polyline": "hfu`Cdx`sGtAb@|@^z@VrAj@LJtC`AfAd@HAAGAA_A]gA]wFsBgA]oCeAaCw@c@YE?OFo@b@aBv@CJDDHAnBkA^GZ@`@JrAf@TD`@R|Ah@XD`@LlCbAhBj@dDpAJ?@CEGo@SYOmA]s@YkA_@uAk@yAe@wAi@iDkA_@OC?C@DFrBt@`Bd@p@\\rAf@x@Td@T`AXLHzAb@`C|@b@\\RZTr@HBBAAG[u@MSKISMUIYWe@SuBu@iAYqCeA{@Wq@Y}EcBUOE?GFJH~CdAn@PbC`AxHnCfBr@F?HGOK}Ag@mBw@{Bs@_DeA{@]iA]oBu@YUE@GJHLnBf@nAf@p@RJHCGuAi@o@Qe@SaAYE?GNR?PDdA\\z@RbJbDbAZnBt@|@VRLVXTd@N`@DBBAAQSg@SYSOmG}BaBi@mAe@m@SSKmDmAo@MKKDIn@^bCx@hAd@fDdAFLEFeAk@u@YwCgAiBa@OGQOUK]IQ?I@[Za@PoAr@NIA?a@Za@R@@CAx@m@|BmAXEP@rAVlEvAz@\\|Ah@bBl@j@^hDjAZTPTNZX`A[iAW[_@]wHmCQIKKwBy@MGy@Wc@IoBq@eA[c@?OB[LeAp@m@ZYRc@PYPe@RAANCl@YLKx@g@lBgATKb@EV@|@Zr@LjA`@l@XLAEKYMyDmAUMUOOCWJaCzA]LADMBaAj@?T]JRCb@UlBmAtAu@TIPC`@D~@RVJ\\JvBz@FABCEI_AYgDkA[WOAMFeBjAIHGRk@\\_@Nk@\\KDGA[NMBH?j@UxEoCVIZAj@JVJxA^lE`BF?l@R_A]a@GsCaAkCaAYEQ?WD_@PaAj@a@Ri@b@aAh@k@Le@PICEBCAD@r@O~@]tCeBdAg@TGX@ZDf@Rx@RnCbAh@LZP@?GGZPxAf@r@NbCv@RFDLIFQG[OaFgBm@[eAa@EE@?C@BBF@t@T@@E?cC_AaAS_Bk@a@I[B]LaE~BeBj@"
   }
  ],
  "sub3": {
   "target_seconds": 10799,
   "target_pace": 256,
-  "race_name": "Maratona (exemplo)",
-  "race_date": "2027-01-31",
+  "race_name": "",
+  "race_date": "",
   "prediction": {
-   "seconds": 10104,
+   "seconds": 10091,
    "basis": "Half-Marathon"
   },
-  "avg_week_km_8w": 86.1,
-  "longest_km_8w": 34.4,
-  "long_runs_30k_12w": 10
- },
- "demo": true
+  "avg_week_km_8w": 77.0,
+  "longest_km_8w": 30.0,
+  "long_runs_30k_12w": 1
+ }
 }
