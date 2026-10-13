@@ -69,10 +69,6 @@ acts.append({
 })
 
 config = json.loads((ROOT / "site.config.json").read_text(encoding="utf-8"))
-config.setdefault("goal", {})
-if not config["goal"].get("race_date"):
-    config["goal"]["race_date"] = (today + timedelta(days=110)).isoformat()
-    config["goal"]["race_name"] = "Maratona (exemplo)"
 out = sl.build_output(acts, config, None, today)
 out["demo"] = True
 (ROOT / "data" / "strava.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")

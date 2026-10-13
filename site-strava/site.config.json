@@ -4,12 +4,37 @@
   "strava_url": "https://www.strava.com/athletes/SEU_ID_AQUI",
   "instagram": "",
   "photo": "",
-  "goal": {
-    "target_seconds": 10799,
-    "race_name": "",
-    "race_date": ""
-  },
+  "races": [
+    {
+      "name": "Volta Internacional da Pampulha",
+      "city": "Belo Horizonte",
+      "date": "2026-12-06",
+      "distance_km": 18,
+      "target_seconds": null
+    },
+    {
+      "name": "Maratona de Porto Alegre",
+      "city": "Porto Alegre",
+      "date": "2027-05-30",
+      "estimated": true,
+      "date_label": "Fim de maio 2027 (data a confirmar)",
+      "distance_km": 42.195,
+      "target_seconds": 10799,
+      "main": true
+    },
+    {
+      "name": "Copenhagen Half Marathon",
+      "city": "Copenhague",
+      "date": "2027-09-19",
+      "distance_km": 21.0975,
+      "target_seconds": null
+    }
+  ],
   "manual_prs": {
-    "Half-Marathon": { "seconds": 4846, "date": "", "activity_name": "Meia maratona" }
+    "Half-Marathon": {
+      "seconds": 4846,
+      "date": "",
+      "activity_name": "Meia maratona"
+    }
   }
 }

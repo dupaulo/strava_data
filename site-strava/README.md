@@ -24,8 +24,10 @@ O site já vem com **dados de exemplo** (faixa laranja no topo) para você ver o
 - `name`, `tagline`: nome e frase do topo
 - `strava_url`: link do seu perfil (`https://www.strava.com/athletes/<seu número>`)
 - `instagram`: link completo ou deixe vazio
-- `goal.race_name` e `goal.race_date` (formato `2027-05-30`): ativam a contagem regressiva
-- `goal.target_seconds`: 10799 = 2:59:59
+- `races`: suas provas-alvo, cada uma com `name`, `city`, `date` (formato `2027-05-30`),
+  `distance_km` e, se quiser, `target_seconds` (10799 = 2:59:59). Marque a principal com `"main": true`;
+  ela alimenta o painel "Rumo à sub-3". Para data ainda não confirmada, use `"estimated": true` e um
+  `date_label` com o texto que deve aparecer.
 - `manual_prs`: recordes que talvez não estejam no Strava (já está a meia em 1:20:46 = 4846 s).
   O site sempre mostra o mais rápido entre o manual e o do Strava. Chaves aceitas: `5K`, `10K`, `Half-Marathon`, `Marathon`.
 

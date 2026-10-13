@@ -263,15 +263,36 @@ def build_output(activities: list[dict], config: dict, athlete: dict | None, tod
             "polyline": a.get("polyline"),
         })
 
+    # --- previsão para qualquer distância: usa o recorde de distância mais próxima
+    def predict(km: float):
+        known = [(abs(math.log(km / PR_DIST_KM[n])), n) for n in PR_DIST_KM if n in prs]
+        if not known:
+            return None
+        basis = min(known)[1]
+        return {"seconds": round(riegel(prs[basis]["seconds"], PR_DIST_KM[basis], km)), "basis": basis}
+
+    # --- provas-alvo (lista no site.config.json)
+    races = []
+    for r in config.get("races") or []:
+        km = float(r.get("distance_km") or MARATHON_KM)
+        races.append({
+            "name": r.get("name", "Prova"),
+            "date": r.get("date", ""),
+            "date_label": r.get("date_label", ""),
+            "city": r.get("city", ""),
+            "distance_km": km,
+            "target_seconds": r.get("target_seconds"),
+            "main": bool(r.get("main")),
+            "estimated": bool(r.get("estimated")),
+            "prediction": predict(km),
+        })
+    races.sort(key=lambda r: r["date"] or "9999")
+
     # --- rumo à sub-3
     goal = config.get("goal") or {}
-    target = goal.get("target_seconds", 10799)
-    prediction = None
-    for basis in ("Half-Marathon", "10K", "5K"):
-        p = prs.get(basis)
-        if p:
-            prediction = {"seconds": round(riegel(p["seconds"], PR_DIST_KM[basis])), "basis": basis}
-            break
+    main = next((r for r in races if r["main"]), None) or next((r for r in races if r["distance_km"] == MARATHON_KM), None)
+    target = (main or {}).get("target_seconds") or goal.get("target_seconds", 10799)
+    prediction = predict(MARATHON_KM)
     last8 = today - timedelta(weeks=8)
     last12 = today - timedelta(weeks=12)
     recent8 = [a for a in runs if _dt(a).date() >= last8]
@@ -279,8 +300,9 @@ def build_output(activities: list[dict], config: dict, athlete: dict | None, tod
     sub3 = {
         "target_seconds": target,
         "target_pace": round(target / MARATHON_KM),
-        "race_name": goal.get("race_name") or "",
-        "race_date": goal.get("race_date") or "",
+        "race_name": (main or {}).get("name") or goal.get("race_name") or "",
+        "race_date": (main or {}).get("date") or goal.get("race_date") or "",
+        "race_date_label": (main or {}).get("date_label", ""),
         "prediction": prediction,
         "avg_week_km_8w": round(sum(a["distance"] for a in recent8) / 1000 / 8, 1),
         "longest_km_8w": round(max((a["distance"] for a in recent8), default=0) / 1000, 1),
@@ -303,4 +325,5 @@ def build_output(activities: list[dict], config: dict, athlete: dict | None, tod
         "monthly": monthly,
         "recent": recent,
         "sub3": sub3,
+        "races": races,
     }

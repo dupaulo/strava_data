@@ -109,13 +109,44 @@
     }).join("");
   }
 
+  const daysTo = (iso) => Math.ceil((new Date(iso + "T07:00:00") - new Date()) / 864e5);
+  const fmtKm = (km) => (km === 21.0975 ? "Meia maratona · 21,1 km" : km === 42.195 ? "Maratona · 42,2 km" : `${nf1.format(km).replace(",0", "")} km`);
+
+  function renderRaces(races) {
+    const box = $("#races");
+    if (!races || !races.length) { box.closest("section").hidden = true; return; }
+    box.innerHTML = races.map((r) => {
+      const days = r.date ? daysTo(r.date) : null;
+      const past = days != null && days < 0;
+      const when = r.date_label || (r.date ? fmtDate(r.date) : "Data a definir");
+      const count = days == null ? "" : past
+        ? `<div class="race-count"><span class="lbl">Prova realizada</span></div>`
+        : `<div class="race-count"><span class="num">${r.estimated ? "≈" : ""}${days}</span><span class="lbl">dias</span></div>`;
+      const rows = [];
+      if (r.target_seconds) rows.push(`<div>Meta<b>${fmtTime(r.target_seconds)}</b></div><div>Pace da meta<b>${fmtPace(r.target_seconds / r.distance_km)}</b></div>`);
+      if (r.prediction) {
+        const same = { "5K": 5, "10K": 10, "Half-Marathon": 21.0975, "Marathon": 42.195 }[r.prediction.basis] === r.distance_km;
+        rows.push(`<div>${same ? "Recorde atual" : "Previsão hoje"}<b>${fmtTime(r.prediction.seconds)}</b></div>`);
+      }
+      return `<article class="race${r.main ? " main" : ""}${past ? " past" : ""}">
+        ${r.main ? '<span class="race-badge">PRINCIPAL</span>' : ""}
+        <span class="race-dist">${fmtKm(r.distance_km)}</span>
+        <h3 class="race-name">${esc(r.name)}</h3>
+        <span class="race-place">${[r.city, when].filter(Boolean).map(esc).join(" · ")}</span>
+        ${count}
+        ${rows.length ? `<div class="race-rows">${rows.join("")}</div>` : ""}
+      </article>`;
+    }).join("");
+  }
+
   function renderSub3(s) {
     $("#race-name").textContent = s.race_name || "Maratona sub-3";
     const cd = $("#countdown");
     if (s.race_date) {
-      const days = Math.ceil((new Date(s.race_date + "T07:00:00") - new Date()) / 864e5);
+      const days = daysTo(s.race_date);
+      const when = s.race_date_label || fmtDate(s.race_date);
       cd.innerHTML = days >= 0
-        ? `<span class="num">${days}</span><span class="lbl">dias para a largada · ${fmtDate(s.race_date)}</span>`
+        ? `<span class="num">${s.race_date_label ? "≈" : ""}${days}</span><span class="lbl">dias para a largada · ${esc(when)}</span>`
         : `<span class="lbl">Prova realizada em ${fmtDate(s.race_date)}</span>`;
     } else {
       cd.innerHTML = `<span class="lbl">Data da prova a definir</span>`;
@@ -225,7 +256,7 @@
   async function home() {
     try {
       const data = await getJSON("data/strava.json");
-      renderHero(data); renderPRs(data.prs); renderSub3(data.sub3); renderActs(data.recent);
+      renderHero(data); renderPRs(data.prs); renderRaces(data.races); renderSub3(data.sub3); renderActs(data.recent);
       let view = "weekly";
       renderChart(data, view);
       let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => renderChart(data, view), 150); });
