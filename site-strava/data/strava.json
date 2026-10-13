@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-13T19:45+00:00",
+ "updated_at": "2026-10-13T20:10+00:00",
  "athlete": {
   "name": "Paulo",
   "tagline": "Corrida, dados e disciplina. Rumo à maratona sub-3.",
@@ -330,8 +330,9 @@
  "sub3": {
   "target_seconds": 10799,
   "target_pace": 256,
-  "race_name": "",
-  "race_date": "",
+  "race_name": "Maratona de Porto Alegre",
+  "race_date": "2027-05-30",
+  "race_date_label": "Fim de maio 2027 (data a confirmar)",
   "prediction": {
    "seconds": 10091,
    "basis": "Half-Marathon"
@@ -339,5 +340,49 @@
   "avg_week_km_8w": 77.0,
   "longest_km_8w": 30.0,
   "long_runs_30k_12w": 1
- }
+ },
+ "races": [
+  {
+   "name": "Volta Internacional da Pampulha",
+   "date": "2026-12-06",
+   "date_label": "",
+   "city": "Belo Horizonte",
+   "distance_km": 18.0,
+   "target_seconds": null,
+   "main": false,
+   "estimated": false,
+   "prediction": {
+    "seconds": 4090,
+    "basis": "Half-Marathon"
+   }
+  },
+  {
+   "name": "Maratona de Porto Alegre",
+   "date": "2027-05-30",
+   "date_label": "Fim de maio 2027 (data a confirmar)",
+   "city": "Porto Alegre",
+   "distance_km": 42.195,
+   "target_seconds": 10799,
+   "main": true,
+   "estimated": true,
+   "prediction": {
+    "seconds": 10091,
+    "basis": "Half-Marathon"
+   }
+  },
+  {
+   "name": "Copenhagen Half Marathon",
+   "date": "2027-09-19",
+   "date_label": "",
+   "city": "Copenhague",
+   "distance_km": 21.0975,
+   "target_seconds": null,
+   "main": false,
+   "estimated": false,
+   "prediction": {
+    "seconds": 4840,
+    "basis": "Half-Marathon"
+   }
+  }
+ ]
 }
