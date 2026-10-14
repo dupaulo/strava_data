@@ -1,19 +1,19 @@
 {
- "updated_at": "2026-10-13T20:12+00:00",
+ "updated_at": "2026-10-14T14:31+00:00",
  "athlete": {
   "name": "Paulo",
   "tagline": "Corrida, dados e disciplina. Rumo à maratona sub-3.",
-  "strava_url": "https://www.strava.com/athletes/130225",
+  "strava_url": "https://www.strava.com/athletes/30463975",
   "instagram": "",
   "photo": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/30463975/18052375/22/large.jpg"
  },
  "totals": {
-  "ytd_km": 2914.8,
-  "ytd_runs": 293,
-  "ytd_hours": 258.3,
-  "all_km": 18456.2,
-  "all_runs": 1754,
-  "week_km": 11.0
+  "ytd_km": 2924.8,
+  "ytd_runs": 294,
+  "ytd_hours": 259.1,
+  "all_km": 18466.2,
+  "all_runs": 1755,
+  "week_km": 21.1
  },
  "prs": [
   {
@@ -127,8 +127,8 @@
   },
   {
    "week": "2026-10-12",
-   "km": 11.0,
-   "runs": 1
+   "km": 21.1,
+   "runs": 2
   }
  ],
  "monthly": [
@@ -178,10 +178,22 @@
   },
   {
    "month": "2026-10",
-   "km": 86.7
+   "km": 96.8
   }
  ],
  "recent": [
+  {
+   "id": 20578973913,
+   "name": "Rodagem 10 km · Fácil",
+   "date": "2026-10-14T05:32",
+   "km": 10.06,
+   "moving_time": 3044,
+   "pace": 303,
+   "elevation": 17,
+   "hr": 150,
+   "race": false,
+   "polyline": "tru`C|}`sGu@Wi@USEmAg@cEuAOIwDqAy@CeB~@gBhAoAj@SDEAFGZEd@QrBqA`By@RGf@Ah@HvAd@`A`@bIpC|@^v@VLHf@Lt@ZJACI}Ai@c@UaASYO}DuAc@Ky@[YQuBo@{@]UE_@@e@DmAn@e@\\yBlA_@NG@GC@An@O~A{@~@i@LWj@c@`@WHAD?nBz@d@Ld@Rx@TfAh@zAj@ZHVLfBp@ZDTFxBt@^R?HI?IC]OyBw@gAq@aA_@k@IOI[Ig@WiA]qBu@yBs@W@c@HkAl@k@`@iBdAw@XIABE\\CVI|EqC^Mb@?v@Nf@Pp@Xd@J~An@lDjAlFpBdA\\ZRTZTn@GHGEWo@a@e@SO]KYUk@SYSe@OsAg@_AYqAg@qA[mCaAYQa@Qs@UYSO@a@RaAn@qCxACBCJBBB?PG|BwAt@_@l@Q^Cn@L~@XrAh@ZHxCdAxAl@hFfBf@TJ@BACGWCa@MoE{A}@]c@YQAkAc@i@M}D{Ay@UWCEI@GFCJJVJbA`@hIrCxFtBr@RZTB?BAIImDgA_@Q_A[]SWEw@[oA_@}@_@y@Wy@]i@O{@[OAOIK@ODw@h@QH}BpAa@NGH?FH@h@S^Uj@c@h@U|@m@^I^@|A`@nBp@dFjBxBt@jDnAZN`@b@HNTp@B?BCAKQc@Wa@SO[KMOYO[KcFgBwAk@o@SQA{@SgFkBWBk@TmEjC{@XICDCTC\\Kr@_@p@e@|BkAVGX?j@JZLp@JnC`Ab@Tp@Pp@Z`Bf@xAj@`@J"
+  },
   {
    "id": 20565013771,
    "name": "E + 8 strides · Fácil",
@@ -313,18 +325,6 @@
    "hr": 136,
    "race": false,
    "polyline": "txu`C~aasG[e@SUwDwAmDmAyD_B_Bg@s@[m@Q_@WI@?FHHRHV@THhE|AhATf@Vx@VjBv@LB\\VzChAXR^d@Tn@FF@Aa@cAe@m@SOo@Uc@UqA_@o@YmBq@g@GsCgA]I_Bm@mAa@]UCAED?BFDZBv@\\lFhBTRx@ZTDfA`@VF\\Rh@LjDnARN`@h@Rp@F??KSe@S]OOg@O}@_@MEwBs@QK}Ak@o@SuAi@eBi@{@_@gBm@QIOCCG@AF@hAf@XFl@VlA`@h@VtCdAf@VpBn@NHnBp@\\XFBNABIGEsBs@ICI@sBs@g@O_Bo@g@M_@WeAc@qCaAWMg@OSOG?ADBFTL`Bf@j@TlC`Ab@Fv@Z~@T^Rf@NVLtAf@rA`@j@TBHG?aAa@]YUIoA]yAm@sAa@aBk@{D{AkA][SIAADDDVDj@Pv@ZHHrAd@XLfBd@f@Rf@LTJvEdBd@Hb@PPBLH@FCFI?c@M]Wm@UgFgBgAc@mDkA_Bq@}@QCG@EDAfDpAbA\\jAd@\\Hz@XXR\\Ln@J|CjAtA`@FB@DEFME_@QsAc@yEiB{@WcAa@QEs@YoAa@WQqAg@MEMOICAB@JFBXB`@NvFnBd@Rz@XVLd@HzHpCVPLN"
-  },
-  {
-   "id": 20405369252,
-   "name": "2x1600,4x600,5x400",
-   "date": "2026-10-01T07:18",
-   "km": 12.24,
-   "moving_time": 4046,
-   "pace": 330,
-   "elevation": 19,
-   "hr": 155,
-   "race": false,
-   "polyline": "hfu`Cdx`sGtAb@|@^z@VrAj@LJtC`AfAd@HAAGAA_A]gA]wFsBgA]oCeAaCw@c@YE?OFo@b@aBv@CJDDHAnBkA^GZ@`@JrAf@TD`@R|Ah@XD`@LlCbAhBj@dDpAJ?@CEGo@SYOmA]s@YkA_@uAk@yAe@wAi@iDkA_@OC?C@DFrBt@`Bd@p@\\rAf@x@Td@T`AXLHzAb@`C|@b@\\RZTr@HBBAAG[u@MSKISMUIYWe@SuBu@iAYqCeA{@Wq@Y}EcBUOE?GFJH~CdAn@PbC`AxHnCfBr@F?HGOK}Ag@mBw@{Bs@_DeA{@]iA]oBu@YUE@GJHLnBf@nAf@p@RJHCGuAi@o@Qe@SaAYE?GNR?PDdA\\z@RbJbDbAZnBt@|@VRLVXTd@N`@DBBAAQSg@SYSOmG}BaBi@mAe@m@SSKmDmAo@MKKDIn@^bCx@hAd@fDdAFLEFeAk@u@YwCgAiBa@OGQOUK]IQ?I@[Za@PoAr@NIA?a@Za@R@@CAx@m@|BmAXEP@rAVlEvAz@\\|Ah@bBl@j@^hDjAZTPTNZX`A[iAW[_@]wHmCQIKKwBy@MGy@Wc@IoBq@eA[c@?OB[LeAp@m@ZYRc@PYPe@RAANCl@YLKx@g@lBgATKb@EV@|@Zr@LjA`@l@XLAEKYMyDmAUMUOOCWJaCzA]LADMBaAj@?T]JRCb@UlBmAtAu@TIPC`@D~@RVJ\\JvBz@FABCEI_AYgDkA[WOAMFeBjAIHGRk@\\_@Nk@\\KDGA[NMBH?j@UxEoCVIZAj@JVJxA^lE`BF?l@R_A]a@GsCaAkCaAYEQ?WD_@PaAj@a@Ri@b@aAh@k@Le@PICEBCAD@r@O~@]tCeBdAg@TGX@ZDf@Rx@RnCbAh@LZP@?GGZPxAf@r@NbCv@RFDLIFQG[OaFgBm@[eAa@EE@?C@BBF@t@T@@E?cC_AaAS_Bk@a@I[B]LaE~BeBj@"
   }
  ],
  "sub3": {
@@ -337,7 +337,7 @@
    "seconds": 10091,
    "basis": "Half-Marathon"
   },
-  "avg_week_km_8w": 77.0,
+  "avg_week_km_8w": 76.0,
   "longest_km_8w": 30.0,
   "long_runs_30k_12w": 1
  },
