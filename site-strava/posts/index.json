@@ -1,5 +1,12 @@
 [
  {
+  "slug": "porques",
+  "title": "Os porquês que nos levam mais longe",
+  "date": "2026-10-15",
+  "summary": "Vale a leitura.",
+  "minutes": 1
+ },
+ {
   "slug": "bem-vindo",
   "title": "Por que criei este site",
   "date": "2026-10-13",
