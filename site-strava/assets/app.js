@@ -369,16 +369,15 @@
     document.body.appendChild(sheet); document.body.style.overflow = "hidden";
   }
 
-  async function shareActivity(a, btn) {
+  async function shareImage(makeBlob, fname, title, btn) {
     const label = btn.querySelector("span"), old = label.textContent;
     label.textContent = "Gerando…"; btn.disabled = true;
     try {
-      const blob = await storyImage(a);
-      const fname = `treino-${a.date.slice(0, 10)}.png`;
+      const blob = await makeBlob();
       const file = new File([blob], fname, { type: "image/png" });
       let done = false;
       if (!IN_APP && navigator.canShare && navigator.canShare({ files: [file] })) {
-        try { await navigator.share({ files: [file], title: a.name }); done = true; }
+        try { await navigator.share({ files: [file], title }); done = true; }
         catch (e) { done = e && e.name === "AbortError"; } // cancelado pelo usuário = ok
       }
       if (!done) {
@@ -395,6 +394,85 @@
       }
     } catch (e) { console.error(e); }
     label.textContent = old; btn.disabled = false;
+  }
+  const shareActivity = (a, btn) => shareImage(() => storyImage(a), `treino-${a.date.slice(0, 10)}.png`, a.name, btn);
+
+  // ---------- imagem de post do blog para Stories
+  async function postStoryImage(meta, excerpt, isQuote) {
+    const W = 1080, H = 1920, P = 90;
+    const C = { bg: "#0b0d10", text: "#eef1f4", text2: "#c9d0d8", muted: "#7d8794", line: "#262b33", accent: "#c6f24e" };
+    const D = '"Barlow Condensed", "Arial Narrow", sans-serif', B = '"Barlow", system-ui, sans-serif';
+    try {
+      await Promise.all([...["800", "700", "600"].map((w) => document.fonts.load(`${w} 100px "Barlow Condensed"`)),
+        document.fonts.load('500 40px "Barlow"'), document.fonts.load('italic 500 40px "Barlow"')]);
+    } catch {}
+    const cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+    const g = cv.getContext("2d");
+    const font = (w, px, fam = D) => (g.font = `${w} ${px}px ${fam}`);
+    const spaced = (txt, x, y, sp) => {
+      if ("letterSpacing" in g) { g.letterSpacing = `${sp}px`; g.fillText(txt, x, y); g.letterSpacing = "0px"; return; }
+      for (const ch of txt) { g.fillText(ch, x, y); x += g.measureText(ch).width + sp; }
+    };
+    const wrap = (text, maxW, maxLines) => {
+      const words = text.split(/\s+/).filter(Boolean), out = [];
+      let cur = "";
+      for (const w of words) {
+        const t = cur ? `${cur} ${w}` : w;
+        if (g.measureText(t).width > maxW && cur) { out.push(cur); cur = w; if (out.length === maxLines) break; } else cur = t;
+      }
+      if (out.length < maxLines && cur) out.push(cur);
+      const used = out.join(" ").split(/\s+/).length;
+      if (used < words.length) out[out.length - 1] = out[out.length - 1].replace(/[\s,.;:!?—-]*\S*$/, "") + "…";
+      return out;
+    };
+
+    g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
+    const glow = g.createRadialGradient(W - 40, 220, 0, W - 40, 220, 760);
+    glow.addColorStop(0, "rgba(198,242,78,.14)"); glow.addColorStop(1, "rgba(198,242,78,0)");
+    g.fillStyle = glow; g.fillRect(0, 0, W, H);
+
+    // marca + nome
+    const name = (document.querySelector(".brand span:last-child")?.textContent || "").trim();
+    g.fillStyle = C.accent; g.beginPath(); g.moveTo(P + 10, 112); g.lineTo(P + 40, 112); g.lineTo(P + 30, 142); g.lineTo(P, 142); g.fill();
+    g.fillStyle = C.text; font(700, 46); g.textBaseline = "middle"; spaced(name.toUpperCase(), P + 58, 128, 3);
+    g.textBaseline = "alphabetic";
+
+    // selo "do blog" + data
+    font(700, 34); const tag = "DO BLOG"; const tw = g.measureText(tag).width + tag.length * 4 + 40;
+    g.fillStyle = C.accent; g.beginPath(); g.roundRect(P, 250, tw, 60, 10); g.fill();
+    g.fillStyle = C.bg; spaced(tag, P + 20, 293, 4);
+    g.fillStyle = C.muted;
+    const info = `${fmtDate(meta.date)} · ${meta.minutes} MIN DE LEITURA`.toUpperCase();
+    let ipx = 38; font(600, ipx);
+    while (g.measureText(info).width + info.length * 4 > W - P * 2 - tw - 28 && ipx > 24) font(600, (ipx -= 2));
+    spaced(info, P + tw + 28, 293, 4);
+
+    // título
+    let tpx = 150; font(800, tpx);
+    const tWords = meta.title.toUpperCase().split(/\s+/);
+    while (Math.max(...tWords.map((w) => g.measureText(w).width)) > W - P * 2 && tpx > 90) font(800, (tpx -= 10));
+    let tl = wrap(meta.title.toUpperCase(), W - P * 2, 4);
+    if (tl.length >= 4 && tpx > 120) { font(800, (tpx = 120)); tl = wrap(meta.title.toUpperCase(), W - P * 2, 4); }
+    let y = 330;
+    g.fillStyle = C.text; tl.forEach((l) => { y += tpx * 0.92; g.fillText(l, P - 4, y); });
+
+    // trecho
+    y += 110;
+    const exTop = y;
+    let epx = isQuote ? 56 : 48; font(isQuote ? "italic 500" : "500", epx, B);
+    const lh = epx * 1.45, maxLines = Math.max(3, Math.floor((1600 - exTop) / lh));
+    const ex = wrap(isQuote ? `“${excerpt}”` : excerpt, W - P * 2 - 50, maxLines);
+    const ey = exTop + Math.max(0, (1620 - exTop - ex.length * lh) / 2); // centraliza no espaço livre
+    g.fillStyle = C.text2;
+    ex.forEach((l, i) => g.fillText(l, P + 50, ey + epx + i * lh));
+    g.fillStyle = C.accent; g.fillRect(P, ey + 8, 8, ex.length * lh);
+
+    // chamada
+    g.fillStyle = C.line; g.fillRect(P, 1690, W - P * 2, 2);
+    font(700, 52); g.fillStyle = C.accent; spaced("LEIA O TEXTO COMPLETO →", P, 1780, 2);
+    font(500, 34, B); g.fillStyle = C.muted; g.fillText(`${location.host}/blog`, P, 1840);
+
+    return new Promise((res) => cv.toBlob(res, "image/png"));
   }
 
   const postCard = (p) => `<a class="post-card" href="posts/${encodeURIComponent(p.slug)}.html">
@@ -446,10 +524,12 @@
       <span class="share-lbl">Compartilhar</span>
       <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" rel="noopener">${ICON.fb}Facebook</a>
       <a class="share-btn" href="https://wa.me/?text=${text}" target="_blank" rel="noopener">${ICON.wa}WhatsApp</a>
+      <button class="share-btn" type="button" data-story>${ICON.share}<span>Stories</span></button>
       <button class="share-btn" type="button" data-copy>${ICON.link}<span>Copiar link</span></button>
       ${navigator.share ? `<button class="share-btn" type="button" data-native>${ICON.share}Mais…</button>` : ""}
     </div>`;
   }
+  const p_in_quote = (t, prose) => [...prose.querySelectorAll("blockquote p")].some((q) => q.textContent.trim() === t);
   function wireShare(meta) {
     const url = postURL(meta.slug);
     const copy = document.querySelector("[data-copy]");
@@ -457,6 +537,15 @@
       try { await navigator.clipboard.writeText(url); copy.querySelector("span").textContent = "Link copiado!"; }
       catch { prompt("Copie o link:", url); }
       setTimeout(() => (copy.querySelector("span").textContent = "Copiar link"), 2000);
+    });
+    const story = document.querySelector("[data-story]");
+    story?.addEventListener("click", () => {
+      const prose = document.querySelector(".prose");
+      const quote = prose?.querySelector("blockquote")?.textContent.trim();
+      const firstText = [...(prose?.querySelectorAll("p") || [])].map((p) => p.textContent.trim())
+        .filter((t) => t && !p_in_quote(t, prose)).join(" ");
+      const excerpt = quote || firstText || meta.summary || "";
+      shareImage(() => postStoryImage(meta, excerpt.replace(/\s+/g, " "), !!quote), `post-${meta.slug}.png`, meta.title, story);
     });
     document.querySelector("[data-native]")?.addEventListener("click", () =>
       navigator.share({ title: meta.title, text: meta.summary || meta.title, url }).catch(() => {}));
