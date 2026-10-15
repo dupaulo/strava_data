@@ -181,6 +181,18 @@ h2 { display: flex; align-items: baseline; gap: 14px; margin: 0 0 24px;
 .race-tag { display: inline-block; margin-left: 8px; padding: 2px 7px; border-radius: 4px; background: var(--hot); color: #fff;
   font: 700 11px var(--display); letter-spacing: .1em; vertical-align: 1px; }
 
+.img-sheet { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center;
+  padding: 16px; background: rgba(0,0,0,.82); backdrop-filter: blur(6px); overflow-y: auto; }
+.img-sheet-box { position: relative; width: min(100%, 420px); display: flex; flex-direction: column; align-items: center; gap: 14px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 18px 20px; }
+.img-sheet-box img { width: 100%; max-width: 300px; border-radius: 10px; border: 1px solid var(--line);
+  -webkit-touch-callout: default; user-select: auto; }
+.img-sheet-tip, .img-sheet-note { margin: 0; padding-right: 30px; color: var(--text-2); font-size: 15px; line-height: 1.45; align-self: stretch; }
+.img-sheet-note { padding-right: 0; color: var(--muted); font-size: 13px; }
+.img-sheet-tip b, .img-sheet-note b { color: var(--text); }
+.img-sheet-close { position: absolute; top: 10px; right: 10px; width: 36px; height: 36px; border: 0; border-radius: 50%;
+  background: var(--surface-2); color: var(--text); font-size: 24px; line-height: 1; cursor: pointer; }
+
 /* ---------- blog */
 .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .post-card { display: flex; flex-direction: column; gap: 8px; background: var(--surface); border: 1px solid var(--line);

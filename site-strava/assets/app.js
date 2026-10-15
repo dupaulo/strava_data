@@ -346,6 +346,29 @@
     return new Promise((res) => cv.toBlob(res, "image/png"));
   }
 
+  // navegadores internos de apps (Instagram, Facebook...) bloqueiam compartilhar e baixar arquivos
+  const IN_APP = /Instagram|FBAN|FBAV|FB_IAB|FB4A|Line\/|TikTok|musical_ly|Snapchat/i.test(navigator.userAgent);
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const toDataURL = (blob) => new Promise((res) => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(blob); });
+
+  async function showImageSheet(blob, fname) {
+    const src = await toDataURL(blob);
+    const ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const sheet = document.createElement("div");
+    sheet.className = "img-sheet";
+    sheet.innerHTML = `<div class="img-sheet-box" role="dialog" aria-modal="true" aria-label="Imagem para Stories">
+        <button class="img-sheet-close" type="button" aria-label="Fechar">×</button>
+        <p class="img-sheet-tip"><b>Toque e segure a imagem</b> e escolha <b>${ios ? "Salvar em Fotos" : "Baixar imagem"}</b>. Depois é só postar nos Stories.</p>
+        <img src="${src}" alt="Imagem do treino para Stories">
+        ${IN_APP ? `<p class="img-sheet-note">Se a opção de salvar não aparecer, abra o site no navegador: toque em <b>⋯</b> no canto da tela e escolha <b>Abrir no navegador</b>. Lá o botão abre direto o Instagram.</p>` : ""}
+        <a class="share-btn" href="${src}" download="${fname}">Baixar imagem</a>
+      </div>`;
+    const close = () => { sheet.remove(); document.body.style.overflow = ""; };
+    sheet.addEventListener("click", (e) => { if (e.target === sheet || e.target.closest(".img-sheet-close")) close(); });
+    document.addEventListener("keydown", function esc(e) { if (e.key === "Escape") { close(); document.removeEventListener("keydown", esc); } });
+    document.body.appendChild(sheet); document.body.style.overflow = "hidden";
+  }
+
   async function shareActivity(a, btn) {
     const label = btn.querySelector("span"), old = label.textContent;
     label.textContent = "Gerando…"; btn.disabled = true;
@@ -353,15 +376,22 @@
       const blob = await storyImage(a);
       const fname = `treino-${a.date.slice(0, 10)}.png`;
       const file = new File([blob], fname, { type: "image/png" });
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({ files: [file], title: a.name }).catch(() => {});
-      } else {
-        const url = URL.createObjectURL(blob);
-        const link = Object.assign(document.createElement("a"), { href: url, download: fname });
-        document.body.appendChild(link); link.click(); link.remove();
-        setTimeout(() => URL.revokeObjectURL(url), 4000);
-        label.textContent = "Imagem salva!";
-        await new Promise((r) => setTimeout(r, 1800));
+      let done = false;
+      if (!IN_APP && navigator.canShare && navigator.canShare({ files: [file] })) {
+        try { await navigator.share({ files: [file], title: a.name }); done = true; }
+        catch (e) { done = e && e.name === "AbortError"; } // cancelado pelo usuário = ok
+      }
+      if (!done) {
+        if (IN_APP || isMobile) {
+          await showImageSheet(blob, fname); // mostra a imagem na tela para salvar
+        } else {
+          const url = URL.createObjectURL(blob);
+          const link = Object.assign(document.createElement("a"), { href: url, download: fname });
+          document.body.appendChild(link); link.click(); link.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 4000);
+          label.textContent = "Imagem salva!";
+          await new Promise((r) => setTimeout(r, 1800));
+        }
       }
     } catch (e) { console.error(e); }
     label.textContent = old; btn.disabled = false;
