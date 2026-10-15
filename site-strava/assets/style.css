@@ -202,6 +202,13 @@ h2 { display: flex; align-items: baseline; gap: 14px; margin: 0 0 24px;
 .prose img { border-radius: 10px; }
 .prose table { border-collapse: collapse; width: 100%; }
 .prose td, .prose th { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; }
+.share { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
+.share-lbl { width: 100%; color: var(--muted); font: 600 13px var(--display); letter-spacing: .14em; text-transform: uppercase; }
+.share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); color: var(--text); text-decoration: none; cursor: pointer;
+  font: 600 14px var(--display); letter-spacing: .08em; text-transform: uppercase; }
+.share-btn svg { width: 18px; height: 18px; fill: currentColor; }
+.share-btn:hover { border-color: var(--accent); color: var(--accent); }
 .back { display: inline-block; margin-bottom: 28px; color: var(--muted); text-decoration: none;
   font: 600 14px var(--display); letter-spacing: .1em; text-transform: uppercase; }
 .back:hover { color: var(--accent); }

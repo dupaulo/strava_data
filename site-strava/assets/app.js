@@ -248,7 +248,7 @@
       </a>`).join("") || `<p class="empty-note">Nenhum treino ainda.</p>`;
   }
 
-  const postCard = (p) => `<a class="post-card" href="post.html?p=${encodeURIComponent(p.slug)}">
+  const postCard = (p) => `<a class="post-card" href="posts/${encodeURIComponent(p.slug)}.html">
       <p class="act-date">${fmtDate(p.date)} · ${p.minutes} min de leitura</p>
       <h3>${esc(p.title)}</h3>${p.summary ? `<p>${esc(p.summary)}</p>` : ""}</a>`;
 
@@ -282,8 +282,39 @@
     $("#post-list").innerHTML = posts.map(postCard).join("") || `<p class="empty-note">Nenhum post ainda.</p>`;
   }
 
+  // ---------- compartilhar post
+  const postURL = (slug) => new URL(`posts/${slug}.html`, document.baseURI).href;
+  const ICON = {
+    fb: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v9h4v-9H17l.6-4h-4.1V8.8c0-.5.3-.8.5-.8z"/></svg>',
+    wa: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.2-.7-2.7-1.1-4.4-3.8-4.5-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z"/></svg>',
+    link: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.6 13.4a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1.1 1.1 1.4 1.4 1.1-1.1a2 2 0 0 1 2.9 2.9l-3 3a2 2 0 0 1-2.9 0zm2.8-2.8a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1.1-1.1-1.4-1.4-1.1 1.1a2 2 0 0 1-2.9-2.9l3-3a2 2 0 0 1 2.9 0z"/></svg>',
+    share: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l4 4-1.4 1.4L13 6.8V15h-2V6.8L9.4 8.4 8 7zM5 12h2v7h10v-7h2v9H5z"/></svg>',
+  };
+  function shareBar(meta) {
+    const url = encodeURIComponent(postURL(meta.slug));
+    const text = encodeURIComponent(`${meta.title} — ${postURL(meta.slug)}`);
+    return `<div class="share">
+      <span class="share-lbl">Compartilhar</span>
+      <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" rel="noopener">${ICON.fb}Facebook</a>
+      <a class="share-btn" href="https://wa.me/?text=${text}" target="_blank" rel="noopener">${ICON.wa}WhatsApp</a>
+      <button class="share-btn" type="button" data-copy>${ICON.link}<span>Copiar link</span></button>
+      ${navigator.share ? `<button class="share-btn" type="button" data-native>${ICON.share}Mais…</button>` : ""}
+    </div>`;
+  }
+  function wireShare(meta) {
+    const url = postURL(meta.slug);
+    const copy = document.querySelector("[data-copy]");
+    copy?.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(url); copy.querySelector("span").textContent = "Link copiado!"; }
+      catch { prompt("Copie o link:", url); }
+      setTimeout(() => (copy.querySelector("span").textContent = "Copiar link"), 2000);
+    });
+    document.querySelector("[data-native]")?.addEventListener("click", () =>
+      navigator.share({ title: meta.title, text: meta.summary || meta.title, url }).catch(() => {}));
+  }
+
   async function postPage() {
-    const slug = new URLSearchParams(location.search).get("p") || "";
+    const slug = document.body.dataset.slug || new URLSearchParams(location.search).get("p") || "";
     const box = $("#article");
     if (!/^[\w-]+$/.test(slug)) { box.innerHTML = "<p>Post não encontrado.</p>"; return; }
     try {
@@ -296,7 +327,9 @@
       document.title = `${meta.title} · Blog`;
       box.innerHTML = `<h1>${esc(meta.title)}</h1>
         <p class="meta">${fmtDate(meta.date)} · ${meta.minutes} min de leitura</p>
-        <div class="prose">${window.marked ? marked.parse(body) : esc(body)}</div>`;
+        <div class="prose">${window.marked ? marked.parse(body) : esc(body)}</div>
+        ${shareBar(meta)}`;
+      wireShare(meta);
     } catch { box.innerHTML = "<h1>Ops.</h1><p>Post não encontrado.</p>"; }
   }
 
