@@ -232,11 +232,12 @@
   }
 
   function renderActs(acts) {
-    $("#acts").innerHTML = acts.slice(0, 9).map((a) => `
-      <a class="act" href="https://www.strava.com/activities/${a.id}" target="_blank" rel="noopener">
+    const list = acts.slice(0, 9);
+    $("#acts").innerHTML = list.map((a, i) => `
+      <article class="act">
         <div>
           <div class="act-date">${fmtDate(a.date)}${a.race ? '<span class="race-tag">PROVA</span>' : ""}</div>
-          <div class="act-name">${esc(a.name)}</div>
+          <a class="act-name act-link" href="https://www.strava.com/activities/${a.id}" target="_blank" rel="noopener">${esc(a.name)}</a>
           <div class="act-stats">
             <div><b>${nf1.format(a.km)}</b><small>km</small></div>
             <div><b>${fmtTime(a.pace)}</b><small>pace</small></div>
@@ -245,7 +246,125 @@
           </div>
         </div>
         ${routeSVG(a.polyline)}
-      </a>`).join("") || `<p class="empty-note">Nenhum treino ainda.</p>`;
+        <button class="act-share" type="button" data-i="${i}" aria-label="Compartilhar ${esc(a.name)} nos Stories">${ICON.share}<span>Stories</span></button>
+      </article>`).join("") || `<p class="empty-note">Nenhum treino ainda.</p>`;
+    $("#acts").querySelectorAll(".act-share").forEach((b) =>
+      b.addEventListener("click", () => shareActivity(list[b.dataset.i], b)));
+  }
+
+  // ---------- imagem para Stories (1080×1920)
+  const DIAS = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+  async function storyImage(a) {
+    const W = 1080, H = 1920, P = 90;
+    const C = { bg: "#0b0d10", text: "#eef1f4", text2: "#b4bcc6", muted: "#7d8794", line: "#262b33", accent: "#c6f24e", hot: "#ff6a3d" };
+    const D = '"Barlow Condensed", "Arial Narrow", sans-serif', B = '"Barlow", system-ui, sans-serif';
+    try { await Promise.all(["800 100px", "700 100px", "600 100px"].map((w) => document.fonts.load(`${w} "Barlow Condensed"`))); } catch {}
+    const cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+    const g = cv.getContext("2d");
+    const font = (w, px, fam = D) => (g.font = `${w} ${px}px ${fam}`);
+    const spaced = (txt, x, y, sp) => { // texto com espaçamento entre letras
+      if ("letterSpacing" in g) { g.letterSpacing = `${sp}px`; g.fillText(txt, x, y); g.letterSpacing = "0px"; return; }
+      for (const ch of txt) { g.fillText(ch, x, y); x += g.measureText(ch).width + sp; }
+    };
+
+    g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
+    const glow = g.createRadialGradient(W - 60, H - 120, 0, W - 60, H - 120, 760);
+    glow.addColorStop(0, "rgba(198,242,78,.16)"); glow.addColorStop(1, "rgba(198,242,78,0)");
+    g.fillStyle = glow; g.fillRect(0, 0, W, H);
+
+    // marca + nome
+    const name = ($("#brand-name")?.textContent || "").trim();
+    g.fillStyle = C.accent; g.beginPath(); g.moveTo(P + 10, 112); g.lineTo(P + 40, 112); g.lineTo(P + 30, 142); g.lineTo(P, 142); g.fill();
+    g.fillStyle = C.text; font(700, 46); g.textBaseline = "middle"; spaced(name.toUpperCase(), P + 58, 128, 3);
+
+    // data
+    const [y, m, d] = a.date.slice(0, 10).split("-").map(Number);
+    const when = `${DIAS[new Date(y, m - 1, d).getDay()]} · ${d} ${MESES[m - 1]} ${y}`.toUpperCase();
+    g.textBaseline = "alphabetic"; g.fillStyle = C.muted; font(600, 40); spaced(when, P, 290, 5);
+    if (a.race) {
+      const wx = P + g.measureText(when).width + when.length * 5 + 24;
+      g.fillStyle = C.hot; g.beginPath(); g.roundRect(wx, 252, 150, 50, 8); g.fill();
+      g.fillStyle = "#fff"; font(700, 32); spaced("PROVA", wx + 24, 289, 3);
+    }
+
+    // título (até 3 linhas)
+    font(800, 150); g.fillStyle = C.text;
+    const words = a.name.toUpperCase().split(/\s+/), lines = [];
+    let tpx = 150; // diminui se alguma palavra sozinha não couber na largura
+    while (Math.max(...words.map((w) => g.measureText(w).width)) > W - P * 2 && tpx > 90) font(800, (tpx -= 10));
+    let cur = "";
+    for (const w of words) {
+      const t = cur ? `${cur} ${w}` : w;
+      if (g.measureText(t).width > W - P * 2 && cur) { lines.push(cur); cur = w; } else cur = t;
+    }
+    if (cur) lines.push(cur);
+    if (lines.length > 3) { lines.length = 3; lines[2] = lines[2].replace(/\s*\S*$/, "…"); }
+    let ty = 300;
+    lines.forEach((l) => { ty += tpx * 0.92; g.fillText(l, P - 4, ty); });
+
+    // trajeto
+    const top = ty + 70, bottom = 1290;
+    if (a.polyline) {
+      const pts = decodePolyline(a.polyline);
+      const k = Math.cos((pts[0][0] * Math.PI) / 180);
+      const xs = pts.map((p) => p[1] * k), ys = pts.map((p) => -p[0]);
+      const mnx = Math.min(...xs), mxx = Math.max(...xs), mny = Math.min(...ys), mxy = Math.max(...ys);
+      const bw = W - P * 2 - 80, bh = bottom - top;
+      const s = Math.min(bw / (mxx - mnx || 1), bh / (mxy - mny || 1));
+      const ox = (W - (mxx - mnx) * s) / 2, oy = top + (bh - (mxy - mny) * s) / 2;
+      g.strokeStyle = C.accent; g.lineWidth = 9; g.lineJoin = g.lineCap = "round";
+      g.beginPath(); xs.forEach((x, i) => g[i ? "lineTo" : "moveTo"](ox + (x - mnx) * s, oy + (ys[i] - mny) * s)); g.stroke();
+    }
+
+    // distância
+    const kmTxt = nf1.format(a.km);
+    let kpx = 300; font(800, kpx);
+    while (g.measureText(kmTxt).width > W - P * 2 - 160 && kpx > 160) font(800, (kpx -= 10));
+    g.fillStyle = C.accent; g.fillText(kmTxt, P - 8, 1570);
+    const kw = g.measureText(kmTxt).width;
+    font(700, 76); g.fillStyle = C.text2; g.fillText("km", P + kw + 10, 1570);
+
+    // linha + números
+    g.fillStyle = C.line; g.fillRect(P, 1615, W - P * 2, 2);
+    const stats = [[fmtTime(a.pace), "PACE /KM"], [fmtTime(a.moving_time), "TEMPO"],
+      a.hr ? [String(a.hr), "BPM MÉDIO"] : [`${a.elevation} m`, "ELEVAÇÃO"]];
+    const colW = (W - P * 2) / 3;
+    stats.forEach(([v, l], i) => {
+      const x = P + i * colW;
+      let px = 92; font(700, px);
+      while (g.measureText(v).width > colW - 24 && px > 50) font(700, (px -= 4));
+      g.fillStyle = C.text; g.fillText(v, x, 1730);
+      font(600, 30); g.fillStyle = C.muted; spaced(l, x, 1782, 4);
+    });
+
+    // rodapé
+    font(500, 32, B); g.fillStyle = C.muted; g.fillText(location.host, P, 1858);
+    font(700, 34); const tag = "RUMO À SUB-3"; const tw = g.measureText(tag).width + tag.length * 2 + 44;
+    g.fillStyle = C.accent; g.beginPath(); g.roundRect(W - P - tw, 1814, tw, 64, 10); g.fill();
+    g.fillStyle = C.bg; spaced(tag, W - P - tw + 22, 1858, 2);
+
+    return new Promise((res) => cv.toBlob(res, "image/png"));
+  }
+
+  async function shareActivity(a, btn) {
+    const label = btn.querySelector("span"), old = label.textContent;
+    label.textContent = "Gerando…"; btn.disabled = true;
+    try {
+      const blob = await storyImage(a);
+      const fname = `treino-${a.date.slice(0, 10)}.png`;
+      const file = new File([blob], fname, { type: "image/png" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: a.name }).catch(() => {});
+      } else {
+        const url = URL.createObjectURL(blob);
+        const link = Object.assign(document.createElement("a"), { href: url, download: fname });
+        document.body.appendChild(link); link.click(); link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+        label.textContent = "Imagem salva!";
+        await new Promise((r) => setTimeout(r, 1800));
+      }
+    } catch (e) { console.error(e); }
+    label.textContent = old; btn.disabled = false;
   }
 
   const postCard = (p) => `<a class="post-card" href="posts/${encodeURIComponent(p.slug)}.html">
