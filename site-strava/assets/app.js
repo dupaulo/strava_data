@@ -607,7 +607,7 @@
     renderPreface();
     try {
       const data = await getJSON("data/strava.json");
-      renderHero(data); renderAbout(data); renderPatterns(data.patterns); renderPRs(data.prs); renderRaces(data.races); renderSub3(data.sub3); renderActs(data.recent);
+      renderHero(data); renderPatterns(data.patterns); renderPRs(data.prs); renderRaces(data.races); renderSub3(data.sub3); renderActs(data.recent);
       let view = "weekly";
       renderChart(data, view);
       let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => renderChart(data, view), 150); });
