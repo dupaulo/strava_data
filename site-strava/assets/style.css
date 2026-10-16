@@ -83,7 +83,10 @@ h2 { display: flex; align-items: baseline; gap: 14px; margin: 0 0 24px;
 .pr::after { content: ""; position: absolute; inset: auto 0 0 0; height: 3px; background: var(--accent);
   transform: scaleX(0); transform-origin: left; transition: transform .4s; }
 .pr:hover::after { transform: scaleX(1); }
-.pr-dist { font: 700 18px var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--text-2); }
+.pr-trophy { position: absolute; top: 16px; right: 16px; width: 34px; height: 34px; display: grid; place-items: center;
+  border-radius: 50%; background: rgba(198, 242, 78, .12); }
+.pr-trophy svg { width: 18px; height: 18px; fill: var(--accent); }
+.pr-dist { padding-right: 40px; font: 700 18px var(--display); letter-spacing: .1em; text-transform: uppercase; color: var(--text-2); }
 .pr-time { margin: 10px 0 6px; font: 700 clamp(40px, 5vw, 54px)/1 var(--display); font-variant-numeric: tabular-nums; }
 .pr-pace { color: var(--accent); font: 600 16px var(--display); letter-spacing: .04em; }
 .pr-meta { margin-top: 12px; color: var(--muted); font-size: 13px; line-height: 1.4; }
@@ -251,6 +254,9 @@ h2 { display: flex; align-items: baseline; gap: 14px; margin: 0 0 24px;
   .topbar nav a:not([href="blog.html"]) { display: none; }
   .acts, .posts, .races { grid-template-columns: 1fr; }
   .pr { padding: 16px; }
+  .pr-trophy { top: 12px; right: 12px; width: 26px; height: 26px; }
+  .pr-trophy svg { width: 14px; height: 14px; }
+  .pr-dist { padding-right: 30px; font-size: 16px; letter-spacing: .06em; }
   .seg .opt { display: none; }
   .hero-stats { grid-template-columns: repeat(3, 1fr); }
   .stat { padding: 14px 12px; }

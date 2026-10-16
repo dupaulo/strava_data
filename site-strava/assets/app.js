@@ -93,6 +93,7 @@
       `<div class="demo-banner">Dados de exemplo — o site passa a mostrar seus treinos reais após a primeira sincronização com o Strava.</div>`);
   }
 
+  const TROPHY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v2h3a1 1 0 0 1 1 1v2a5 5 0 0 1-4.6 5A5 5 0 0 1 13 15.9V18h3v3H8v-3h3v-2.1A5 5 0 0 1 7.6 13 5 5 0 0 1 3 8V6a1 1 0 0 1 1-1h3zm0 4H5v1a3 3 0 0 0 2 2.8zm10 0v3.8A3 3 0 0 0 19 8V7z"/></svg>';
   function renderPRs(prs) {
     $("#prs").innerHTML = prs.map((p) => {
       if (p.seconds == null) {
@@ -102,7 +103,8 @@
       }
       const meta = [p.activity_name, fmtDate(p.date)].filter(Boolean).map(esc).join(" · ");
       const link = p.activity_id && p.source === "strava" ? `https://www.strava.com/activities/${p.activity_id}` : null;
-      return `<article class="pr"><div class="pr-dist">${PR_LABEL[p.key]}</div>
+      return `<article class="pr"><span class="pr-trophy" title="Recorde pessoal" aria-label="Recorde pessoal">${TROPHY}</span>
+        <div class="pr-dist">${PR_LABEL[p.key]}</div>
         <div class="pr-time">${fmtTime(p.seconds)}</div>
         <div class="pr-pace">${fmtPace(p.seconds / p.km)}</div>
         <div class="pr-meta">${link ? `<a href="${link}" target="_blank" rel="noopener">${meta}</a>` : meta}</div></article>`;
