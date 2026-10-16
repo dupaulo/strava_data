@@ -48,7 +48,7 @@ while d <= today:
         pace = {"easy": 290, "tempo": 245, "int": 255, "long": 275}[plan] - 8 * progress + random.uniform(-6, 6)
         acts.append({
             "id": aid, "name": random.choice(names[plan]), "sport_type": "Run",
-            "start_date_local": datetime(d.year, d.month, d.day, 5, 40).isoformat() + "Z",
+            "start_date_local": datetime(d.year, d.month, d.day, *random.choice([(5, 10), (5, 40), (5, 50), (6, 5), (6, 30), (18, 20), (19, 0)] if wd != 6 else [(6, 0), (6, 30), (7, 0)])).isoformat() + "Z",
             "distance": km * 1000, "moving_time": int(km * pace), "elapsed_time": int(km * pace) + 60,
             "total_elevation_gain": random.uniform(20, 160), "average_heartrate": random.uniform(138, 162),
             "workout_type": None, "private": False, "polyline": loop(km),

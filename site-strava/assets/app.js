@@ -480,15 +480,134 @@
     return new Promise((res) => cv.toBlob(res, "image/png"));
   }
 
+  // ---------- prefácio (texto em prefacio.md) e "sobre os dados"
+  const miniMd = (md) => md.trim().split(/\n\s*\n/).map((para) => `<p>${esc(para.trim())
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/\[(.+?)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/\n/g, " ")}</p>`).join("");
+
+  async function renderPreface() {
+    const box = $("#preface-text");
+    if (!box) return;
+    try {
+      const r = await fetch("prefacio.md", { cache: "no-cache" });
+      if (!r.ok) throw 0;
+      box.innerHTML = miniMd(await r.text());
+    } catch { box.closest("section").hidden = true; }
+  }
+
+  function renderAbout(data) {
+    const box = $("#about-data");
+    if (!box) return;
+    const t = data.totals, a = data.athlete;
+    const since = t.since ? (() => { const [y, m] = t.since.split("-").map(Number); return `${MESES[m - 1]} de ${y}`; })() : "";
+    const up = new Date(data.updated_at);
+    const upTxt = isNaN(up) ? "" : `${up.toLocaleDateString("pt-BR", { day: "numeric", month: "short" })}, ${up.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}`;
+    const strava = a.strava_url && !a.strava_url.includes("SEU_ID")
+      ? `<a href="${esc(a.strava_url)}" target="_blank" rel="noopener">Strava</a>` : "Strava";
+    const row = (k, v) => `<div class="about-row"><dt>${k}</dt><dd>${v}</dd></div>`;
+    box.innerHTML = `<p class="about-title">Sobre os dados</p><dl>
+      ${row("Fonte", `${strava}, via API oficial`)}
+      ${row("Histórico", `${nf0.format(t.all_runs)} corridas · ${nf0.format(t.all_km)} km${t.all_hours ? ` · ${nf0.format(t.all_hours)} h` : ""}${since ? `<br><span class="muted">desde ${since}</span>` : ""}`)}
+      ${row("Atualização", `todo dia às 6h15${upTxt ? `<br><span class="muted">última: ${upTxt}</span>` : ""}`)}
+      ${row("Privacidade", "atividades “só eu” ficam de fora; o início e o fim de cada trajeto são ocultados")}
+    </dl>`;
+  }
+
+  // ---------- padrões: gráficos de radar
+  const DIAS_CURTO = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+  const DIAS_LONGO = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
+  const niceMax = (v, step) => Math.max(step, Math.ceil(v / step) * step);
+
+  function radarSVG({ values, labels, max, rings, ringFmt, tips, labelEvery = 1, sub = [] }) {
+    const S = 400, C = S / 2, R = 128, n = values.length;
+    const ang = (i) => (-90 + (360 / n) * i) * Math.PI / 180;
+    const pt = (i, r) => [C + r * Math.cos(ang(i)), C + r * Math.sin(ang(i))];
+    let g = "";
+    rings.forEach((rv) => {
+      const r = (rv / max) * R;
+      g += n > 12 ? `<circle cx="${C}" cy="${C}" r="${r.toFixed(1)}" class="r-grid"/>`
+        : `<polygon class="r-grid" points="${values.map((_, i) => pt(i, r).map((x) => x.toFixed(1)).join(",")).join(" ")}"/>`;
+    });
+    values.forEach((_, i) => { const [x, y] = pt(i, R); g += `<line class="r-spoke" x1="${C}" y1="${C}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`; });
+    // valores dos anéis ao longo do primeiro raio, levemente deslocados
+    rings.forEach((rv) => { const r = (rv / max) * R; g += `<text class="r-ring" x="${C + 5}" y="${(C - r + 12).toFixed(1)}">${ringFmt(rv)}</text>`; });
+    const poly = values.map((v, i) => pt(i, (Math.min(v, max) / max) * R).map((x) => x.toFixed(1)).join(",")).join(" ");
+    g += `<polygon class="r-area" points="${poly}"/>`;
+    let lab = "", hits = "";
+    values.forEach((v, i) => {
+      const [x, y] = pt(i, (Math.min(v, max) / max) * R);
+      if (v > 0) g += `<circle class="r-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5"/>`;
+      if (i % labelEvery === 0) {
+        const [lx, ly] = pt(i, R + 26);
+        lab += `<text class="r-label" x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${labels[i]}</text>`;
+        if (sub[i]) lab += `<text class="r-sublabel" x="${lx.toFixed(1)}" y="${(ly + 15).toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${sub[i]}</text>`;
+      }
+      const [hx, hy] = pt(i, R * 0.72);
+      hits += `<circle class="r-hit" data-i="${i}" cx="${hx.toFixed(1)}" cy="${hy.toFixed(1)}" r="${n > 12 ? 22 : 40}"/>`;
+    });
+    return `<svg viewBox="0 0 ${S} ${S}" role="img">${g}${lab}${hits}</svg>`;
+  }
+
+  function wireRadarTips(box, tips) {
+    box.querySelectorAll(".r-hit").forEach((h) => {
+      const html = tips[h.dataset.i];
+      h.addEventListener("mousemove", (e) => showTip(html, e.clientX, e.clientY));
+      h.addEventListener("mouseleave", hideTip);
+      h.addEventListener("touchstart", (e) => { const t = e.touches[0]; showTip(html, t.clientX, t.clientY); }, { passive: true });
+    });
+  }
+
+  function renderPatterns(p) {
+    const sec = $("#padroes");
+    if (!sec) return;
+    if (!p || !p.runs) { sec.hidden = true; return; }
+    const hh = (h) => `${String(h).padStart(2, "0")}h`;
+
+    // por horário (relógio de 24h, 0h no topo)
+    const hv = p.by_hour, hmax = niceMax(Math.max(...hv), 10);
+    const hRings = [1, 2, 3, 4].map((k) => (hmax * k) / 4);
+    const hBox = $("#radar-hour");
+    hBox.innerHTML = radarSVG({
+      values: hv, labels: hv.map((_, h) => hh(h)), labelEvery: 3, max: hmax, rings: hRings,
+      ringFmt: (v) => `${Math.round(v)}%`,
+    });
+    hBox.querySelector("svg").setAttribute("aria-label", `Corridas por horário de início; pico às ${hh(p.peak_hour)}`);
+    const hTips = hv.map((v, h) => `${hh(h)}–${hh((h + 1) % 24)}<br><b>${nf1.format(v)}%</b> das corridas`);
+    wireRadarTips(hBox, hTips);
+    $("#hour-sub").textContent = `pico às ${hh(p.peak_hour)} · últimos 12 meses`;
+
+    // por dia da semana (segunda no topo)
+    const wv = p.by_weekday.map((d) => d.avg_km), wmax = niceMax(Math.max(...wv), 5);
+    const step = wmax <= 20 ? 5 : 10, wRings = [];
+    for (let v = step; v <= wmax; v += step) wRings.push(v);
+    const wBox = $("#radar-wd");
+    wBox.innerHTML = radarSVG({
+      values: wv, labels: DIAS_CURTO, max: wmax, rings: wRings, ringFmt: (v) => `${v}`,
+      sub: wv.map((v) => (v ? `${nf1.format(v).replace(",0", "")} km` : "—")),
+    });
+    const best = wv.indexOf(Math.max(...wv));
+    wBox.querySelector("svg").setAttribute("aria-label", `Distância média por corrida em cada dia da semana; maior média no ${DIAS_LONGO[best].toLowerCase()}`);
+    const wTips = p.by_weekday.map((d, i) => `${DIAS_LONGO[i]}<br><b>${nf1.format(d.avg_km)} km</b> em média · ${d.runs} corrida${d.runs === 1 ? "" : "s"}`);
+    wireRadarTips(wBox, wTips);
+    $("#wd-sub").textContent = best === 6 ? "domingo é dia de longão" : `maior média: ${DIAS_LONGO[best].toLowerCase()}`;
+
+    $("#patterns-table").innerHTML = `<div class="tables">
+      <table><tr><th>Horário</th><th>% das corridas</th></tr>${hv.map((v, h) => v ? `<tr><td>${hh(h)}–${hh((h + 1) % 24)}</td><td>${nf1.format(v)}%</td></tr>` : "").join("")}</table>
+      <table><tr><th>Dia</th><th>Média (km)</th></tr>${p.by_weekday.map((d, i) => `<tr><td>${DIAS_LONGO[i]}</td><td>${nf1.format(d.avg_km)}</td></tr>`).join("")}</table></div>`;
+  }
+
   const postCard = (p) => `<a class="post-card" href="posts/${encodeURIComponent(p.slug)}.html">
       <p class="act-date">${fmtDate(p.date)} · ${p.minutes} min de leitura</p>
       <h3>${esc(p.title)}</h3>${p.summary ? `<p>${esc(p.summary)}</p>` : ""}</a>`;
 
   // ---------- páginas
   async function home() {
+    renderPreface();
     try {
       const data = await getJSON("data/strava.json");
-      renderHero(data); renderPRs(data.prs); renderRaces(data.races); renderSub3(data.sub3); renderActs(data.recent);
+      renderHero(data); renderAbout(data); renderPatterns(data.patterns); renderPRs(data.prs); renderRaces(data.races); renderSub3(data.sub3); renderActs(data.recent);
       let view = "weekly";
       renderChart(data, view);
       let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => renderChart(data, view), 150); });

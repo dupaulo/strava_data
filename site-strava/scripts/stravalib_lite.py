@@ -243,7 +243,28 @@ def build_output(activities: list[dict], config: dict, athlete: dict | None, tod
         "ytd_hours": round(sum(a["moving_time"] for a in ytd) / 3600, 1),
         "all_km": round(sum(a["distance"] for a in runs) / 1000, 1),
         "all_runs": len(runs),
+        "all_hours": round(sum(a["moving_time"] for a in runs) / 3600),
+        "since": min((a["start_date_local"][:10] for a in runs), default=""),
         "week_km": weekly[-1]["km"],
+    }
+
+    # --- padrões (últimos 12 meses): horário das corridas e distância média por dia da semana
+    year_ago = today - timedelta(days=365)
+    last_year = [a for a in runs if _dt(a).date() >= year_ago]
+    hours = [0] * 24
+    wd_km = [0.0] * 7
+    wd_n = [0] * 7
+    for a in last_year:
+        d = _dt(a)
+        hours[d.hour] += 1
+        wd_km[d.weekday()] += a["distance"] / 1000
+        wd_n[d.weekday()] += 1
+    n = len(last_year) or 1
+    patterns = {
+        "runs": len(last_year),
+        "by_hour": [round(h * 100 / n, 1) for h in hours],
+        "peak_hour": max(range(24), key=lambda h: hours[h]) if last_year else None,
+        "by_weekday": [{"avg_km": round(wd_km[i] / wd_n[i], 1) if wd_n[i] else 0, "runs": wd_n[i]} for i in range(7)],
     }
 
     # --- atividades recentes
@@ -326,4 +347,5 @@ def build_output(activities: list[dict], config: dict, athlete: dict | None, tod
         "recent": recent,
         "sub3": sub3,
         "races": races,
+        "patterns": patterns,
     }

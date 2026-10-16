@@ -16,10 +16,12 @@
 <header class="topbar">
   <a class="brand" href="./"><span class="brand-mark"></span><span id="brand-name">Corrida</span></a>
   <nav>
+    <a href="#prefacio">Prefácio</a>
     <a href="#recordes">Recordes</a>
     <a href="#provas">Provas</a>
     <a href="#sub3">Sub-3</a>
     <a href="#volume">Volume</a>
+    <a href="#padroes">Padrões</a>
     <a href="#atividades">Treinos</a>
     <a href="blog.html">Blog</a>
   </nav>
@@ -38,6 +40,14 @@
       <div class="stat"><span class="num" id="ytd-runs">–</span><span class="lbl">corridas no ano</span></div>
       <div class="stat"><span class="num" id="ytd-hours">–</span><span class="lbl">horas correndo</span></div>
       <div class="stat"><span class="num" id="week-km">–</span><span class="lbl">km nesta semana</span></div>
+    </div>
+  </section>
+
+  <section id="prefacio" class="block">
+    <h2><span class="idx">00</span>Prefácio</h2>
+    <div class="preface">
+      <div class="preface-text prose" id="preface-text"></div>
+      <aside class="about-data" id="about-data" aria-label="Sobre os dados"></aside>
     </div>
   </section>
 
@@ -76,13 +86,28 @@
     <details class="table-view"><summary>Ver como tabela</summary><div id="chart-table"></div></details>
   </section>
 
+  <section id="padroes" class="block">
+    <h2><span class="idx">05</span>Padrões</h2>
+    <div class="patterns">
+      <figure class="radar-card">
+        <figcaption><span class="radar-title">Quando eu corro</span><span class="radar-sub" id="hour-sub"></span></figcaption>
+        <div class="radar" id="radar-hour"></div>
+      </figure>
+      <figure class="radar-card">
+        <figcaption><span class="radar-title">Distância média por dia</span><span class="radar-sub" id="wd-sub"></span></figcaption>
+        <div class="radar" id="radar-wd"></div>
+      </figure>
+    </div>
+    <details class="table-view"><summary>Ver como tabela</summary><div id="patterns-table"></div></details>
+  </section>
+
   <section id="atividades" class="block">
-    <h2><span class="idx">05</span>Treinos recentes</h2>
+    <h2><span class="idx">06</span>Treinos recentes</h2>
     <div class="acts" id="acts"></div>
   </section>
 
   <section id="blog" class="block">
-    <h2><span class="idx">06</span>Do blog</h2>
+    <h2><span class="idx">07</span>Do blog</h2>
     <div class="posts" id="posts"></div>
     <a class="more" href="blog.html">Todos os posts →</a>
   </section>
