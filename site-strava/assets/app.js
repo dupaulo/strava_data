@@ -350,34 +350,60 @@
     // voltas (quando houver) ou trajeto
     const top = ty + 70, bottom = 1290;
     const laps = (a.laps || []).filter((l) => l.d > 0 && l.t > 0);
-    if (laps.length >= 2 && laps.length <= 24) {
+    const lapPaces = laps.map((l) => l.t / (l.d / 1000));
+    const ps = [...lapPaces].sort((x, y) => x - y);
+    const lapMixed = laps.length >= 3 && ps[0] < ps[Math.floor(ps.length / 2)] * 0.9;   // tiros + trotes
+    const isRec = (i) => lapMixed && lapPaces[i] > ps[0] * 1.25;   // mais de 25% mais lenta que o melhor tiro
+    let rows = laps.map((l, i) => i), lapMode = null, header = "";
+    if (laps.length >= 2) {
       const allKm = laps.every((l, i) => Math.abs(l.d - 1000) < 30 || i === laps.length - 1);
-      g.textBaseline = "alphabetic"; g.fillStyle = C.muted; font(700, 30);
-      spaced(allKm ? `PARCIAIS POR KM · ${laps.length}` : `VOLTAS · ${laps.length}`, P, top + 24, 6);
-      const y0 = top + 60, rowH = Math.min(52, (bottom - y0) / laps.length);
-      const fpx = Math.max(18, Math.min(34, rowH * 0.66));
-      const paces = laps.map((l) => l.t / (l.d / 1000));
-      const sorted = [...paces].sort((x, y) => x - y), median = sorted[Math.floor(sorted.length / 2)];
-      const mixed = sorted[0] < median * 0.9;                 // treino com tiros e trotes
-      const speeds = laps.map((l) => l.d / l.t);
+      if (laps.length <= 18) { lapMode = "rows"; header = allKm ? `PARCIAIS POR KM · ${laps.length}` : `VOLTAS · ${laps.length}`; }
+      else if (lapMixed && laps.filter((l, i) => !isRec(i)).length <= 18) {
+        rows = rows.filter((i) => !isRec(i)); lapMode = "rows"; header = `VOLTAS FORTES · ${rows.length} DE ${laps.length}`;
+      } else if (laps.length <= 60) { lapMode = "cols"; header = allKm ? `PARCIAIS POR KM · ${laps.length}` : `VOLTAS · ${laps.length}`; }
+    }
+    const lapDist = (d) => d >= 1000 ? `${(d / 1000).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} km` : `${Math.round(d / 10) * 10} m`;
+
+    if (lapMode === "rows") {
+      g.textBaseline = "alphabetic"; g.fillStyle = C.muted; font(700, 30); spaced(header, P, top + 24, 6);
+      const y0 = top + 60, rowH = Math.min(52, (bottom - y0) / rows.length);
+      const fpx = Math.max(20, Math.min(34, rowH * 0.66));
+      const speeds = rows.map((i) => laps[i].d / laps[i].t);
       const vmax = Math.max(...speeds), vmin = Math.min(...speeds) * 0.9;
       const xBar = P + 250, barMax = W - P - 150 - xBar;
-      laps.forEach((l, i) => {
-        const cy = y0 + rowH * i + rowH / 2;
-        const rec = mixed && paces[i] > sorted[0] + (sorted[sorted.length - 1] - sorted[0]) * 0.5; // trote/aquecimento
-        const dl = l.d >= 1000 ? `${(l.d / 1000).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} km` : `${Math.round(l.d / 10) * 10} m`;
+      rows.forEach((li, r) => {
+        const l = laps[li], cy = y0 + rowH * r + rowH / 2, rec = isRec(li);
         g.textBaseline = "middle";
-        font(600, fpx * 0.8); g.fillStyle = C.muted; g.fillText(String(i + 1).padStart(2, "0"), P, cy);
-        font(600, fpx); g.fillStyle = rec ? C.muted : C.text2; g.fillText(dl, P + 60, cy);
-        const len = Math.max(8, ((speeds[i] - vmin) / (vmax - vmin || 1)) * barMax);
+        font(600, fpx * 0.8); g.fillStyle = C.muted; g.fillText(String(li + 1).padStart(2, "0"), P, cy);
+        font(600, fpx); g.fillStyle = rec ? C.muted : C.text2; g.fillText(lapDist(l.d), P + 60, cy);
+        const len = Math.max(8, ((speeds[r] - vmin) / (vmax - vmin || 1)) * barMax);
         const bh = Math.max(8, rowH * 0.46);
         g.fillStyle = rec ? "#3a414c" : C.accent;
         g.beginPath(); g.roundRect(xBar, cy - bh / 2, len, bh, Math.min(6, bh / 2)); g.fill();
         g.textAlign = "right"; font(700, fpx); g.fillStyle = rec ? C.muted : C.text;
-        g.fillText(fmtTime(Math.round(paces[i])), W - P, cy);
+        g.fillText(fmtTime(Math.round(lapPaces[li])), W - P, cy);
         g.textAlign = "left";
       });
       g.textBaseline = "alphabetic";
+    } else if (lapMode === "cols") {
+      g.textBaseline = "alphabetic"; g.fillStyle = C.muted; font(700, 30); spaced(header, P, top + 24, 6);
+      const best = lapPaces.indexOf(ps[0]);
+      g.textAlign = "right"; font(700, 30); g.fillStyle = C.text;
+      g.fillText(`melhor ${fmtTime(Math.round(ps[0]))}/km`, W - P, top + 24); g.textAlign = "left";
+      const y0 = top + 70, y1 = bottom - 40, n = laps.length;
+      const slot = (W - P * 2) / n, bw = Math.max(4, slot * 0.72);
+      const speeds = laps.map((l) => l.d / l.t);
+      const vmax = Math.max(...speeds), vmin = Math.min(...speeds) * 0.92;
+      laps.forEach((l, i) => {
+        const h = Math.max(10, ((speeds[i] - vmin) / (vmax - vmin || 1)) * (y1 - y0));
+        const x = P + slot * i + (slot - bw) / 2;
+        g.fillStyle = isRec(i) ? "#3a414c" : (i === best ? C.accent : "rgba(198,242,78,.55)");
+        g.beginPath(); g.roundRect(x, y1 - h, bw, h, [Math.min(6, bw / 2), Math.min(6, bw / 2), 0, 0]); g.fill();
+        if ((i + 1) % 5 === 0 || i === 0) {
+          g.textAlign = "center"; g.textBaseline = "top"; font(600, 24); g.fillStyle = C.muted;
+          g.fillText(String(i + 1), x + bw / 2, y1 + 10); g.textAlign = "left"; g.textBaseline = "alphabetic";
+        }
+      });
     } else if (a.polyline) {
       const pts = decodePolyline(a.polyline);
       const k = Math.cos((pts[0][0] * Math.PI) / 180);
