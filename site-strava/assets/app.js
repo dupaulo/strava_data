@@ -5,6 +5,8 @@
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+  const MOTTO_HTML = (cls) => `<p class="${cls}" lang="la" title="Epicteto"><span class="motto-la">Sustine et abstine</span><span class="motto-pt" lang="pt-BR">suporta e abstém-te</span></p>`;
+
   // ---------- formatação
   const fmtTime = (sec) => {
     if (sec == null) return "—";
@@ -76,6 +78,7 @@
     $("#brand-name").textContent = a.name;
     $("#name").innerHTML = `${esc(a.name)}<span class="dot">.</span>`;
     $("#tagline").textContent = a.tagline || "";
+    if (!$(".motto")) $("#tagline").insertAdjacentHTML("afterend", MOTTO_HTML("motto"));
     const links = [];
     if (a.strava_url && !a.strava_url.includes("SEU_ID")) links.push(`<a href="${esc(a.strava_url)}" target="_blank" rel="noopener">Strava</a>`);
     if (a.instagram) links.push(`<a href="${esc(a.instagram)}" target="_blank" rel="noopener">Instagram</a>`);
@@ -572,6 +575,9 @@
       wireShare(meta);
     } catch { box.innerHTML = "<h1>Ops.</h1><p>Post não encontrado.</p>"; }
   }
+
+  // lema no rodapé de todas as páginas
+  document.querySelector(".foot")?.insertAdjacentHTML("afterbegin", MOTTO_HTML("foot-motto"));
 
   const page = document.body.dataset.page || "home";
   ({ home, blog: blogList, post: postPage })[page]?.();

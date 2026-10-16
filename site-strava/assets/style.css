@@ -56,6 +56,13 @@ main { max-width: 1180px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); }
 h1 { margin: 0; font: 800 clamp(56px, 11vw, 132px)/.86 var(--display);
   text-transform: uppercase; letter-spacing: -.01em; }
 h1 .dot { color: var(--accent); }
+.motto, .foot-motto { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; margin: 0; }
+.motto { margin-top: 16px; }
+.motto::before { content: ""; align-self: center; width: 28px; height: 2px; background: var(--accent); }
+.motto-la { color: var(--text); font: 700 15px var(--display); letter-spacing: .32em; text-transform: uppercase; }
+.motto-pt { color: var(--muted); font-size: 14px; font-style: italic; }
+.foot-motto .motto-la { font-size: 13px; letter-spacing: .28em; color: var(--accent); }
+.foot-motto .motto-pt { font-size: 13px; }
 .tagline { margin: 18px 0 0; max-width: 32ch; color: var(--text-2); font-size: clamp(17px, 2vw, 20px); }
 .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .links a { padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none;
