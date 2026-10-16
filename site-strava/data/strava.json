@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-15T14:12+00:00",
+ "updated_at": "2026-10-16T13:59+00:00",
  "athlete": {
   "name": "Paulo",
   "tagline": "Corrida, dados e disciplina. Rumo à maratona sub-3.",
@@ -8,12 +8,12 @@
   "photo": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/30463975/18052375/22/large.jpg"
  },
  "totals": {
-  "ytd_km": 2935.9,
-  "ytd_runs": 295,
-  "ytd_hours": 260.0,
-  "all_km": 18477.2,
-  "all_runs": 1756,
-  "week_km": 32.1
+  "ytd_km": 2946.4,
+  "ytd_runs": 296,
+  "ytd_hours": 260.9,
+  "all_km": 18487.8,
+  "all_runs": 1757,
+  "week_km": 42.6
  },
  "prs": [
   {
@@ -127,8 +127,8 @@
   },
   {
    "week": "2026-10-12",
-   "km": 32.1,
-   "runs": 3
+   "km": 42.6,
+   "runs": 4
   }
  ],
  "monthly": [
@@ -178,10 +178,22 @@
   },
   {
    "month": "2026-10",
-   "km": 107.8
+   "km": 118.3
   }
  ],
  "recent": [
+  {
+   "id": 20605988379,
+   "name": "Rodagem 10 km · Fácil",
+   "date": "2026-10-16T05:29",
+   "km": 10.51,
+   "moving_time": 3217,
+   "pace": 306,
+   "elevation": 15,
+   "hr": 150,
+   "race": false,
+   "polyline": "hmu`Cr{`sGq@Y{@Wg@Uu@SqAk@aBm@s@UQASIK@OFuAz@cAh@o@b@UFEH@FB@HAzA{@dCqA^Gf@?p@P~@^fAZrAh@tDnA|@^dBj@\\PrAd@XRNPNXNd@BBD??IM[_@i@QO_Bo@qBm@e@U{CcAqCkA}Ag@iAg@k@QYQe@NyBrAc@Rg@Z[JGHADBDD?JCX_@\\WdAi@ZKdAo@HCP?dFbBNHzHpCXFl@V|Bx@ZNVZLRNj@BDB?BCCKYm@OUUOwAg@u@OaA_@MCs@a@}@[g@[iBm@cAc@_AYy@Yy@a@e@a@KCIF?DFFxC`AfI`DpEzAfAb@b@^LTTp@JB?GQg@U_@QOmC}@MMeAc@e@McAa@uC_Ai@UOKg@WcDiAc@]GAID@DJF`AZXRfA`@bMlEpBt@TJH?AGsGwBiBs@i@UoA_@}@]YQoBs@_@SOSI?C@?HFF~DtAvAl@rBn@^NfFhBxA^HHADEFg@UcA]SOkAe@}@WaAa@m@QeBm@u@]y@Uc@WwAk@WQIBDHNFbAZnAh@|@RTHf@Zd@P^N\\B`A`@\\T`GrBRJ\\^\\~@DBB?@CAQMWY_@]WoAa@[UoAa@_@Qa@KOI]E[K_@W[Is@a@k@SgAe@m@OwAi@k@UWUEAGFFHJFvBr@VLx@XNDr@\\fA^XNxHlCVPh@X`@Z\\~@F@@IACQc@OS[_@aAYiE_BkC}@g@U_@W[GyAi@o@[wAk@UOEAIBBFn@VpDjAbC`Ab@JrAp@vDnAhAf@J@BA?EIGaBi@[Eg@O]Uq@S}Am@oBo@iAq@u@SgC_AIG?OCAAB?JDDVRtBz@rA`@`@Vv@P"
+  },
   {
    "id": 20593025720,
    "name": "E + 8 strides · Fácil",
@@ -313,18 +325,6 @@
    "hr": 150,
    "race": false,
    "polyline": "xau`Cnv`sGvAb@"
-  },
-  {
-   "id": 20457829563,
-   "name": "Rodagem 8 km · Fácil",
-   "date": "2026-10-05T06:11",
-   "km": 8.02,
-   "moving_time": 2736,
-   "pace": 341,
-   "elevation": 9,
-   "hr": 142,
-   "race": false,
-   "polyline": "fbu`Clv`sGjA`@hDnAz@ZZFfBr@bBj@|Bz@@DC@o@UUQUISGMMSK{Ag@q@[iBk@g@S[IsAk@}@WaA_@OIg@Mc@YEB?B^R~ChAp@P`@RlDlAbBp@xAb@nBt@XHBFG?YMc@Ww@Ys@SeAc@cAYMIu@Wi@Se@Yk@Qe@Uu@UeC{@MGUQI@ABDFnBn@\\PnGzBXFhIvC@HKAk@UKKWMmGyBaA]YO_@Io@U[O}@[q@]{@[[UM?CHFFrBj@|@`@dDdA`Ab@dBj@v@Z~Bv@p@XZHDB?FC@e@[[Kc@YuC_A{@a@u@ScBo@YIYE]MsAg@UOyAg@YUI@?BBFDB|Af@bBn@dAZzGdCfA\\bC~@^HZZTb@HR@LCDICGa@S]Y[a@U{@]WG]Uk@Qo@YeBk@]OeCy@g@U}Bw@sAi@WQE@AB@FHD~Af@~@^zAd@jBt@v@Tr@ZnEzAVLTFLHTDBDED[OQOOEQO{@]y@QcDiAq@[]Gy@_@yBu@e@W}@YWMKMKB?HBB`@Hj@RjAd@tAb@~@^xAf@`@Ld@RRDVLnDlAl@Xn@PDFGB]WcAa@MASKwCaAq@YyAe@WOw@UiFmB[ECCAC@CNBt@VLJjCv@B@NPHDf@Nj@Jb@Pf@NNFPN"
   }
  ],
  "sub3": {
@@ -337,7 +337,7 @@
    "seconds": 10091,
    "basis": "Half-Marathon"
   },
-  "avg_week_km_8w": 77.4,
+  "avg_week_km_8w": 77.0,
   "longest_km_8w": 30.0,
   "long_runs_30k_12w": 1
  },
