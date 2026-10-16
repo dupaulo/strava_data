@@ -86,8 +86,9 @@ h2 { display: flex; align-items: baseline; gap: 14px; margin: 0 0 24px;
 /* ---------- prefácio */
 .preface { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
 .preface-text { padding-left: 24px; border-left: 3px solid var(--accent); }
-.preface-text p { margin: 0 0 10px; max-width: 46ch; font-size: clamp(20px, 2.4vw, 28px); line-height: 1.45; color: var(--text); }
-.preface-text p:last-child { margin-bottom: 0; color: var(--text-2); }
+.preface-text p { margin: 0 0 16px; max-width: 62ch; font-size: clamp(17px, 1.6vw, 19px); line-height: 1.65; color: var(--text-2); }
+.preface-text p:first-child { max-width: 40ch; font-size: clamp(21px, 2.4vw, 28px); line-height: 1.4; color: var(--text); }
+.preface-text p:last-child { margin: 22px 0 0; max-width: none; font: 700 clamp(17px, 1.8vw, 21px)/1.35 var(--display); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
 .preface-text strong { color: var(--text); }
 .preface-text a { color: var(--accent); }
 .about-data { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
