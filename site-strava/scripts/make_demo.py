@@ -30,6 +30,23 @@ def loop(km: float) -> str:
     return sl.encode_polyline(pts)
 
 
+def demo_laps(plan, km, pace):
+    if plan == "int":  # 2 km aquecimento, 6x800 com 400 de trote, desaquecimento
+        laps = [{"d": 2000, "t": int(2 * 300), "hr": 135}]
+        for _ in range(6):
+            laps.append({"d": 800, "t": int(0.8 * random.uniform(222, 230)), "hr": random.randint(168, 176)})
+            laps.append({"d": 400, "t": int(0.4 * random.uniform(330, 360)), "hr": random.randint(145, 152)})
+        rest = km * 1000 - 2000 - 6 * 1200
+        if rest > 200:
+            laps.append({"d": int(rest), "t": int(rest / 1000 * 305), "hr": 140})
+        return laps
+    n = int(km)
+    laps = [{"d": 1000, "t": int(pace + random.uniform(-8, 8)), "hr": random.randint(140, 158)} for _ in range(n)]
+    if km - n > 0.05:
+        laps.append({"d": int((km - n) * 1000), "t": int((km - n) * pace), "hr": 150})
+    return laps
+
+
 names = {
     "easy": ["Regenerativo", "Rodagem leve", "Trote pela manhã", "Corrida tranquila"],
     "tempo": ["Tempo run", "Ritmo de maratona", "Progressivo"],
@@ -54,6 +71,7 @@ while d <= today:
             "workout_type": None, "private": False, "polyline": loop(km),
             "best_efforts": [{"name": "5K", "elapsed_time": int(5 * (pace - 22))},
                              {"name": "10K", "elapsed_time": int(10 * (pace - 15))}],
+            "laps": demo_laps(plan, km, pace),
         })
         aid += 1
     d += timedelta(days=1)

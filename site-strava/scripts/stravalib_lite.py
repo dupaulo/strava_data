@@ -165,6 +165,25 @@ def slim_activity(a: dict, trim_m: float) -> dict:
     }
 
 
+def slim_laps(detail: dict) -> list[dict]:
+    """Voltas marcadas no relógio; se houver só uma, usa as parciais por km."""
+    def pack(items):
+        out = []
+        for x in items or []:
+            d, t = x.get("distance") or 0, x.get("moving_time") or x.get("elapsed_time") or 0
+            if d < 20 or t <= 0:
+                continue
+            item = {"d": round(d), "t": int(t)}
+            if x.get("average_heartrate"):
+                item["hr"] = round(x["average_heartrate"])
+            out.append(item)
+        return out
+    laps = pack(detail.get("laps"))
+    if len(laps) >= 2:
+        return laps
+    return pack(detail.get("splits_metric"))
+
+
 def slim_efforts(detail: dict) -> list[dict]:
     return [
         {"name": e["name"], "elapsed_time": e["elapsed_time"]}
@@ -282,6 +301,7 @@ def build_output(activities: list[dict], config: dict, athlete: dict | None, tod
             "hr": round(a["average_heartrate"]) if a.get("average_heartrate") else None,
             "race": a.get("workout_type") == 1,
             "polyline": a.get("polyline"),
+            "laps": a.get("laps"),
         })
 
     # --- previsão para qualquer distância: usa o recorde de distância mais próxima

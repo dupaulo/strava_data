@@ -62,16 +62,21 @@ def main() -> int:
         slim = sl.slim_activity(a, trim_m)
         if old:
             slim["best_efforts"] = old.get("best_efforts")
+            if "laps" in old:
+                slim["laps"] = old["laps"]
         else:
             new += 1
         cache[key] = slim
     print(f"{new} atividades novas, {len(cache)} no total.")
 
-    # detalha corridas sem best_efforts: provas primeiro, depois as mais recentes
-    pending = [a for a in cache.values()
-               if a["sport_type"] in sl.RUN_TYPES and a["best_efforts"] is None and not a["private"]]
-    pending.sort(key=lambda a: a["start_date_local"], reverse=True)
+    # detalha corridas: as 12 mais recentes sem voltas primeiro (aparecem no site),
+    # depois as sem best_efforts (provas na frente, depois as mais recentes)
+    runs = sorted((a for a in cache.values() if a["sport_type"] in sl.RUN_TYPES and not a["private"]),
+                  key=lambda a: a["start_date_local"], reverse=True)
+    recent_ids = {a["id"] for a in runs[:12]}
+    pending = [a for a in runs if a["best_efforts"] is None or (a["id"] in recent_ids and "laps" not in a)]
     pending.sort(key=lambda a: a.get("workout_type") != 1)  # sort estável: provas na frente
+    pending.sort(key=lambda a: a["id"] not in recent_ids)   # recentes na frente de tudo
     done = 0
     for a in pending[:max_details]:
         try:
@@ -80,6 +85,7 @@ def main() -> int:
             print("Limite de requisições do Strava atingido; continuo na próxima execução.")
             break
         a["best_efforts"] = sl.slim_efforts(detail)
+        a["laps"] = sl.slim_laps(detail)
         done += 1
     left = len(pending) - done
     print(f"{done} corridas detalhadas" + (f", faltam {left} (completa nos próximos dias)." if left else "."))

@@ -347,9 +347,38 @@
     let ty = 300;
     lines.forEach((l) => { ty += tpx * 0.92; g.fillText(l, P - 4, ty); });
 
-    // trajeto
+    // voltas (quando houver) ou trajeto
     const top = ty + 70, bottom = 1290;
-    if (a.polyline) {
+    const laps = (a.laps || []).filter((l) => l.d > 0 && l.t > 0);
+    if (laps.length >= 2 && laps.length <= 24) {
+      const allKm = laps.every((l, i) => Math.abs(l.d - 1000) < 30 || i === laps.length - 1);
+      g.textBaseline = "alphabetic"; g.fillStyle = C.muted; font(700, 30);
+      spaced(allKm ? `PARCIAIS POR KM · ${laps.length}` : `VOLTAS · ${laps.length}`, P, top + 24, 6);
+      const y0 = top + 60, rowH = Math.min(52, (bottom - y0) / laps.length);
+      const fpx = Math.max(18, Math.min(34, rowH * 0.66));
+      const paces = laps.map((l) => l.t / (l.d / 1000));
+      const sorted = [...paces].sort((x, y) => x - y), median = sorted[Math.floor(sorted.length / 2)];
+      const mixed = sorted[0] < median * 0.9;                 // treino com tiros e trotes
+      const speeds = laps.map((l) => l.d / l.t);
+      const vmax = Math.max(...speeds), vmin = Math.min(...speeds) * 0.9;
+      const xBar = P + 250, barMax = W - P - 150 - xBar;
+      laps.forEach((l, i) => {
+        const cy = y0 + rowH * i + rowH / 2;
+        const rec = mixed && paces[i] > sorted[0] + (sorted[sorted.length - 1] - sorted[0]) * 0.5; // trote/aquecimento
+        const dl = l.d >= 1000 ? `${(l.d / 1000).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} km` : `${Math.round(l.d / 10) * 10} m`;
+        g.textBaseline = "middle";
+        font(600, fpx * 0.8); g.fillStyle = C.muted; g.fillText(String(i + 1).padStart(2, "0"), P, cy);
+        font(600, fpx); g.fillStyle = rec ? C.muted : C.text2; g.fillText(dl, P + 60, cy);
+        const len = Math.max(8, ((speeds[i] - vmin) / (vmax - vmin || 1)) * barMax);
+        const bh = Math.max(8, rowH * 0.46);
+        g.fillStyle = rec ? "#3a414c" : C.accent;
+        g.beginPath(); g.roundRect(xBar, cy - bh / 2, len, bh, Math.min(6, bh / 2)); g.fill();
+        g.textAlign = "right"; font(700, fpx); g.fillStyle = rec ? C.muted : C.text;
+        g.fillText(fmtTime(Math.round(paces[i])), W - P, cy);
+        g.textAlign = "left";
+      });
+      g.textBaseline = "alphabetic";
+    } else if (a.polyline) {
       const pts = decodePolyline(a.polyline);
       const k = Math.cos((pts[0][0] * Math.PI) / 180);
       const xs = pts.map((p) => p[1] * k), ys = pts.map((p) => -p[0]);
