@@ -259,11 +259,53 @@
 
   // ---------- imagem para Stories (1080×1920)
   const DIAS = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+  // ---------- marca Stoa Run Club nos cards
+  async function loadCinzel() {
+    if (!document.querySelector("link[data-cinzel]")) {
+      const l = Object.assign(document.createElement("link"), {
+        rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" });
+      l.dataset.cinzel = "1";
+      const ready = new Promise((r) => { l.onload = r; l.onerror = r; setTimeout(r, 2500); });
+      document.head.appendChild(l);
+      await ready;
+    }
+    try { await document.fonts.load('700 48px "Cinzel"'); } catch {}
+  }
+  function drawPortico(g, x, y, size, color) {
+    const k = size / 200;
+    g.save(); g.translate(x, y); g.scale(k, k); g.fillStyle = color;
+    g.beginPath(); g.moveTo(16, 72); g.lineTo(100, 26); g.lineTo(184, 72); g.closePath(); g.fill();
+    [[16, 78, 168, 12], [30, 98, 20, 62], [68, 98, 20, 62], [112, 98, 20, 62], [150, 98, 20, 62], [16, 168, 168, 12]]
+      .forEach(([a, b, c, d]) => g.fillRect(a, b, c, d));
+    g.restore();
+  }
+  // pórtico + STOA RUN CLUB à esquerda, nome do atleta à direita
+  function drawBrand(g, W, P, C, spaced) {
+    drawPortico(g, P - 6, 78, 92, C.accent);
+    g.textBaseline = "alphabetic";
+    g.fillStyle = C.text; g.font = '700 50px "Cinzel", Georgia, serif';
+    spaced("STOA", P + 100, 150, 4);
+    const sw = g.measureText("STOA").width + 4 * 4;
+    g.fillStyle = C.accent; g.font = '700 34px "Barlow Condensed", "Arial Narrow", sans-serif';
+    spaced("RUN CLUB", P + 100 + sw + 16, 149, 7);
+    const name = ($("#brand-name")?.textContent || document.querySelector(".brand span:last-child")?.textContent || "").trim().toUpperCase();
+    if (name) {
+      g.fillStyle = C.muted; g.font = '700 30px "Barlow Condensed", "Arial Narrow", sans-serif';
+      const nw = g.measureText(name).width + name.length * 4;
+      spaced(name, W - P - nw, 148, 4);
+    }
+  }
+  function drawMotto(g, x, y, C, spaced, size = 34) {
+    g.fillStyle = C.accent; g.font = `700 ${size}px "Barlow Condensed", "Arial Narrow", sans-serif`;
+    spaced("SUSTINE ET ABSTINE", x, y, 8);
+  }
+
   async function storyImage(a) {
     const W = 1080, H = 1920, P = 90;
     const C = { bg: "#0b0d10", text: "#eef1f4", text2: "#b4bcc6", muted: "#7d8794", line: "#262b33", accent: "#c6f24e", hot: "#ff6a3d" };
     const D = '"Barlow Condensed", "Arial Narrow", sans-serif', B = '"Barlow", system-ui, sans-serif';
     try { await Promise.all(["800 100px", "700 100px", "600 100px"].map((w) => document.fonts.load(`${w} "Barlow Condensed"`))); } catch {}
+    await loadCinzel();
     const cv = document.createElement("canvas"); cv.width = W; cv.height = H;
     const g = cv.getContext("2d");
     const font = (w, px, fam = D) => (g.font = `${w} ${px}px ${fam}`);
@@ -277,10 +319,8 @@
     glow.addColorStop(0, "rgba(198,242,78,.16)"); glow.addColorStop(1, "rgba(198,242,78,0)");
     g.fillStyle = glow; g.fillRect(0, 0, W, H);
 
-    // marca + nome
-    const name = ($("#brand-name")?.textContent || "").trim();
-    g.fillStyle = C.accent; g.beginPath(); g.moveTo(P + 10, 112); g.lineTo(P + 40, 112); g.lineTo(P + 30, 142); g.lineTo(P, 142); g.fill();
-    g.fillStyle = C.text; font(700, 46); g.textBaseline = "middle"; spaced(name.toUpperCase(), P + 58, 128, 3);
+    // marca
+    drawBrand(g, W, P, C, spaced);
 
     // data
     const [y, m, d] = a.date.slice(0, 10).split("-").map(Number);
@@ -343,7 +383,7 @@
     });
 
     // rodapé
-    font(500, 32, B); g.fillStyle = C.muted; g.fillText(location.host, P, 1858);
+    drawMotto(g, P, 1858, C, spaced);
     font(700, 34); const tag = "RUMO À SUB-3"; const tw = g.measureText(tag).width + tag.length * 2 + 44;
     g.fillStyle = C.accent; g.beginPath(); g.roundRect(W - P - tw, 1814, tw, 64, 10); g.fill();
     g.fillStyle = C.bg; spaced(tag, W - P - tw + 22, 1858, 2);
@@ -411,6 +451,7 @@
       await Promise.all([...["800", "700", "600"].map((w) => document.fonts.load(`${w} 100px "Barlow Condensed"`)),
         document.fonts.load('500 40px "Barlow"'), document.fonts.load('italic 500 40px "Barlow"')]);
     } catch {}
+    await loadCinzel();
     const cv = document.createElement("canvas"); cv.width = W; cv.height = H;
     const g = cv.getContext("2d");
     const font = (w, px, fam = D) => (g.font = `${w} ${px}px ${fam}`);
@@ -436,11 +477,8 @@
     glow.addColorStop(0, "rgba(198,242,78,.14)"); glow.addColorStop(1, "rgba(198,242,78,0)");
     g.fillStyle = glow; g.fillRect(0, 0, W, H);
 
-    // marca + nome
-    const name = (document.querySelector(".brand span:last-child")?.textContent || "").trim();
-    g.fillStyle = C.accent; g.beginPath(); g.moveTo(P + 10, 112); g.lineTo(P + 40, 112); g.lineTo(P + 30, 142); g.lineTo(P, 142); g.fill();
-    g.fillStyle = C.text; font(700, 46); g.textBaseline = "middle"; spaced(name.toUpperCase(), P + 58, 128, 3);
-    g.textBaseline = "alphabetic";
+    // marca
+    drawBrand(g, W, P, C, spaced);
 
     // selo "do blog" + data
     font(700, 34); const tag = "DO BLOG"; const tw = g.measureText(tag).width + tag.length * 4 + 40;
@@ -475,7 +513,10 @@
     // chamada
     g.fillStyle = C.line; g.fillRect(P, 1690, W - P * 2, 2);
     font(700, 52); g.fillStyle = C.accent; spaced("LEIA O TEXTO COMPLETO →", P, 1780, 2);
-    font(500, 34, B); g.fillStyle = C.muted; g.fillText(`${location.host}/blog`, P, 1840);
+    font(500, 32, B); g.fillStyle = C.muted; g.fillText(`${location.host}/blog`, P, 1840);
+    g.font = '700 30px "Barlow Condensed", "Arial Narrow", sans-serif';
+    const mw = g.measureText("SUSTINE ET ABSTINE").width + 18 * 8;
+    drawMotto(g, W - P - mw, 1840, C, spaced, 30);
 
     return new Promise((res) => cv.toBlob(res, "image/png"));
   }
