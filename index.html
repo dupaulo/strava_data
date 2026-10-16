@@ -16,9 +16,12 @@
 <header class="topbar">
   <a class="brand" href="./"><span class="brand-mark"></span><span id="brand-name">Corrida</span></a>
   <nav>
+    <a href="#prefacio">Prefácio</a>
     <a href="#recordes">Recordes</a>
+    <a href="#provas">Provas</a>
     <a href="#sub3">Sub-3</a>
     <a href="#volume">Volume</a>
+    <a href="#padroes">Padrões</a>
     <a href="#atividades">Treinos</a>
     <a href="blog.html">Blog</a>
   </nav>
@@ -40,13 +43,23 @@
     </div>
   </section>
 
+  <section id="prefacio" class="block">
+    <h2><span class="idx">00</span>Prefácio</h2>
+    <div class="preface-text" id="preface-text"></div>
+  </section>
+
   <section id="recordes" class="block">
     <h2><span class="idx">01</span>Recordes pessoais</h2>
     <div class="pr-grid" id="prs"></div>
   </section>
 
+  <section id="provas" class="block">
+    <h2><span class="idx">02</span>Provas-alvo</h2>
+    <div class="races" id="races"></div>
+  </section>
+
   <section id="sub3" class="block">
-    <h2><span class="idx">02</span>Rumo à sub-3</h2>
+    <h2><span class="idx">03</span>Rumo à sub-3</h2>
     <div class="sub3">
       <div class="sub3-main">
         <p class="eyebrow" id="race-name">Maratona</p>
@@ -58,7 +71,7 @@
   </section>
 
   <section id="volume" class="block">
-    <h2><span class="idx">03</span>Volume de treino</h2>
+    <h2><span class="idx">04</span>Volume de treino</h2>
     <div class="chart-head">
       <div class="seg" role="tablist">
         <button class="on" data-view="weekly" role="tab" aria-selected="true">Semanal<span class="opt"> · 16 sem</span></button>
@@ -70,13 +83,28 @@
     <details class="table-view"><summary>Ver como tabela</summary><div id="chart-table"></div></details>
   </section>
 
+  <section id="padroes" class="block">
+    <h2><span class="idx">05</span>Padrões</h2>
+    <div class="patterns">
+      <figure class="radar-card">
+        <figcaption><span class="radar-title">Quando eu corro</span><span class="radar-sub" id="hour-sub"></span></figcaption>
+        <div class="radar" id="radar-hour"></div>
+      </figure>
+      <figure class="radar-card">
+        <figcaption><span class="radar-title">Distância média por dia</span><span class="radar-sub" id="wd-sub"></span></figcaption>
+        <div class="radar" id="radar-wd"></div>
+      </figure>
+    </div>
+    <details class="table-view"><summary>Ver como tabela</summary><div id="patterns-table"></div></details>
+  </section>
+
   <section id="atividades" class="block">
-    <h2><span class="idx">04</span>Treinos recentes</h2>
+    <h2><span class="idx">06</span>Treinos recentes</h2>
     <div class="acts" id="acts"></div>
   </section>
 
   <section id="blog" class="block">
-    <h2><span class="idx">05</span>Do blog</h2>
+    <h2><span class="idx">07</span>Do blog</h2>
     <div class="posts" id="posts"></div>
     <a class="more" href="blog.html">Todos os posts →</a>
   </section>
