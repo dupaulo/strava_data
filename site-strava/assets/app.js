@@ -251,10 +251,13 @@
           </div>
         </div>
         ${routeSVG(a.polyline)}
-        <button class="act-share" type="button" data-i="${i}" aria-label="Compartilhar ${esc(a.name)} nos Stories">${ICON.share}<span>Stories</span></button>
+        <div class="act-shares">
+          <button class="act-share" type="button" data-i="${i}" data-fmt="story" aria-label="Imagem de ${esc(a.name)} para Stories">${ICON.share}<span>Stories</span></button>
+          <button class="act-share" type="button" data-i="${i}" data-fmt="clear" aria-label="Imagem de ${esc(a.name)} com fundo transparente">${ICON.share}<span>Transparente</span></button>
+        </div>
       </article>`).join("") || `<p class="empty-note">Nenhum treino ainda.</p>`;
     $("#acts").querySelectorAll(".act-share").forEach((b) =>
-      b.addEventListener("click", () => shareActivity(list[b.dataset.i], b)));
+      b.addEventListener("click", () => shareActivity(list[b.dataset.i], b, b.dataset.fmt)));
   }
 
   // ---------- imagem para Stories (1080×1920)
@@ -300,9 +303,12 @@
     spaced("SUSTINE ET ABSTINE", x, y, 8);
   }
 
-  async function storyImage(a) {
-    const W = 1080, H = 1920, P = 90;
-    const C = { bg: "#0b0d10", text: "#eef1f4", text2: "#b4bcc6", muted: "#7d8794", line: "#262b33", accent: "#c6f24e", hot: "#ff6a3d" };
+  async function storyImage(a, fmt = "story") {
+    const W = 1080, H = fmt === "feed" ? 1350 : 1920, P = 90, off = H - 1920, feed = fmt === "feed";
+    const clear = fmt === "clear";   // fundo transparente, para usar sobre uma foto
+    const C = clear
+      ? { bg: "#0b0d10", text: "#ffffff", text2: "#ffffff", muted: "rgba(255,255,255,.88)", line: "rgba(255,255,255,.6)", accent: "#c6f24e", hot: "#ff6a3d", rec: "rgba(255,255,255,.45)" }
+      : { bg: "#0b0d10", text: "#eef1f4", text2: "#b4bcc6", muted: "#7d8794", line: "#262b33", accent: "#c6f24e", hot: "#ff6a3d", rec: "#3a414c" };
     const D = '"Barlow Condensed", "Arial Narrow", sans-serif', B = '"Barlow", system-ui, sans-serif';
     try { await Promise.all(["800 100px", "700 100px", "600 100px"].map((w) => document.fonts.load(`${w} "Barlow Condensed"`))); } catch {}
     await loadCinzel();
@@ -314,10 +320,15 @@
       for (const ch of txt) { g.fillText(ch, x, y); x += g.measureText(ch).width + sp; }
     };
 
-    g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
-    const glow = g.createRadialGradient(W - 60, H - 120, 0, W - 60, H - 120, 760);
-    glow.addColorStop(0, "rgba(198,242,78,.16)"); glow.addColorStop(1, "rgba(198,242,78,0)");
-    g.fillStyle = glow; g.fillRect(0, 0, W, H);
+    if (clear) {
+      // sem fundo: sombra suave em tudo para ler bem sobre qualquer foto
+      g.shadowColor = "rgba(0,0,0,.55)"; g.shadowBlur = 14; g.shadowOffsetY = 2;
+    } else {
+      g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
+      const glow = g.createRadialGradient(W - 60, H - 120, 0, W - 60, H - 120, 760);
+      glow.addColorStop(0, "rgba(198,242,78,.16)"); glow.addColorStop(1, "rgba(198,242,78,0)");
+      g.fillStyle = glow; g.fillRect(0, 0, W, H);
+    }
 
     // marca
     drawBrand(g, W, P, C, spaced);
@@ -335,7 +346,7 @@
     // título (até 3 linhas)
     font(800, 150); g.fillStyle = C.text;
     const words = a.name.toUpperCase().split(/\s+/), lines = [];
-    let tpx = 150; // diminui se alguma palavra sozinha não couber na largura
+    let tpx = feed ? 120 : 150; // diminui se alguma palavra sozinha não couber na largura
     while (Math.max(...words.map((w) => g.measureText(w).width)) > W - P * 2 && tpx > 90) font(800, (tpx -= 10));
     let cur = "";
     for (const w of words) {
@@ -343,12 +354,13 @@
       if (g.measureText(t).width > W - P * 2 && cur) { lines.push(cur); cur = w; } else cur = t;
     }
     if (cur) lines.push(cur);
-    if (lines.length > 3) { lines.length = 3; lines[2] = lines[2].replace(/\s*\S*$/, "…"); }
-    let ty = 300;
+    const maxL = feed ? 2 : 3;
+    if (lines.length > maxL) { lines.length = maxL; lines[maxL - 1] = lines[maxL - 1].replace(/\s*\S*$/, "…"); }
+    let ty = feed ? 312 : 300;
     lines.forEach((l) => { ty += tpx * 0.92; g.fillText(l, P - 4, ty); });
 
     // voltas (quando houver) ou trajeto
-    const top = ty + 70, bottom = 1290;
+    const top = ty + (feed ? 50 : 70), bottom = feed ? 1040 : 1290 + off;
     const laps = (a.laps || []).filter((l) => l.d > 0 && l.t > 0);
     const lapPaces = laps.map((l) => l.t / (l.d / 1000));
     const ps = [...lapPaces].sort((x, y) => x - y);
@@ -378,7 +390,7 @@
         font(600, fpx); g.fillStyle = rec ? C.muted : C.text2; g.fillText(lapDist(l.d), P + 60, cy);
         const len = Math.max(8, ((speeds[r] - vmin) / (vmax - vmin || 1)) * barMax);
         const bh = Math.max(8, rowH * 0.46);
-        g.fillStyle = rec ? "#3a414c" : C.accent;
+        g.fillStyle = rec ? C.rec : C.accent;
         g.beginPath(); g.roundRect(xBar, cy - bh / 2, len, bh, Math.min(6, bh / 2)); g.fill();
         g.textAlign = "right"; font(700, fpx); g.fillStyle = rec ? C.muted : C.text;
         g.fillText(fmtTime(Math.round(lapPaces[li])), W - P, cy);
@@ -397,7 +409,7 @@
       laps.forEach((l, i) => {
         const h = Math.max(10, ((speeds[i] - vmin) / (vmax - vmin || 1)) * (y1 - y0));
         const x = P + slot * i + (slot - bw) / 2;
-        g.fillStyle = isRec(i) ? "#3a414c" : (i === best ? C.accent : "rgba(198,242,78,.55)");
+        g.fillStyle = isRec(i) ? C.rec : (i === best ? C.accent : "rgba(198,242,78,.55)");
         g.beginPath(); g.roundRect(x, y1 - h, bw, h, [Math.min(6, bw / 2), Math.min(6, bw / 2), 0, 0]); g.fill();
         if ((i + 1) % 5 === 0 || i === 0) {
           g.textAlign = "center"; g.textBaseline = "top"; font(600, 24); g.fillStyle = C.muted;
@@ -416,32 +428,36 @@
       g.beginPath(); xs.forEach((x, i) => g[i ? "lineTo" : "moveTo"](ox + (x - mnx) * s, oy + (ys[i] - mny) * s)); g.stroke();
     }
 
-    // distância
+    // distância (no feed ela entra na linha de números para sobrar espaço às voltas)
     const kmTxt = nf1.format(a.km);
-    let kpx = 300; font(800, kpx);
-    while (g.measureText(kmTxt).width > W - P * 2 - 160 && kpx > 160) font(800, (kpx -= 10));
-    g.fillStyle = C.accent; g.fillText(kmTxt, P - 8, 1570);
-    const kw = g.measureText(kmTxt).width;
-    font(700, 76); g.fillStyle = C.text2; g.fillText("km", P + kw + 10, 1570);
+    if (!feed) {
+      let kpx = 300; font(800, kpx);
+      while (g.measureText(kmTxt).width > W - P * 2 - 160 && kpx > 160) font(800, (kpx -= 10));
+      g.fillStyle = C.accent; g.fillText(kmTxt, P - 8, 1570 + off);
+      const kw = g.measureText(kmTxt).width;
+      font(700, 76); g.fillStyle = C.text2; g.fillText("km", P + kw + 10, 1570 + off);
+    }
 
     // linha + números
-    g.fillStyle = C.line; g.fillRect(P, 1615, W - P * 2, 2);
+    const lineY = feed ? 1086 : 1615 + off, valY = feed ? 1186 : 1730 + off, lblY = feed ? 1232 : 1782 + off;
+    g.fillStyle = C.line; g.fillRect(P, lineY, W - P * 2, 2);
     const stats = [[fmtTime(a.pace), "PACE /KM"], [fmtTime(a.moving_time), "TEMPO"],
       a.hr ? [String(a.hr), "BPM MÉDIO"] : [`${a.elevation} m`, "ELEVAÇÃO"]];
-    const colW = (W - P * 2) / 3;
+    if (feed) stats.unshift([kmTxt, "KM"]);
+    const colW = (W - P * 2) / stats.length;
     stats.forEach(([v, l], i) => {
       const x = P + i * colW;
-      let px = 92; font(700, px);
-      while (g.measureText(v).width > colW - 24 && px > 50) font(700, (px -= 4));
-      g.fillStyle = C.text; g.fillText(v, x, 1730);
-      font(600, 30); g.fillStyle = C.muted; spaced(l, x, 1782, 4);
+      let px = feed ? 84 : 92; font(700, px);
+      while (g.measureText(v).width > colW - 20 && px > 44) font(700, (px -= 4));
+      g.fillStyle = feed && i === 0 ? C.accent : C.text; g.fillText(v, x, valY);
+      font(600, feed ? 26 : 30); g.fillStyle = C.muted; spaced(l, x, lblY, 4);
     });
 
     // rodapé
-    drawMotto(g, P, 1858, C, spaced);
+    drawMotto(g, P, 1858 + off, C, spaced);
     font(700, 34); const tag = "RUMO À SUB-3"; const tw = g.measureText(tag).width + tag.length * 2 + 44;
-    g.fillStyle = C.accent; g.beginPath(); g.roundRect(W - P - tw, 1814, tw, 64, 10); g.fill();
-    g.fillStyle = C.bg; spaced(tag, W - P - tw + 22, 1858, 2);
+    g.fillStyle = C.accent; g.beginPath(); g.roundRect(W - P - tw, 1814 + off, tw, 64, 10); g.fill();
+    g.fillStyle = C.bg; spaced(tag, W - P - tw + 22, 1858 + off, 2);
 
     return new Promise((res) => cv.toBlob(res, "image/png"));
   }
@@ -458,7 +474,7 @@
     sheet.className = "img-sheet";
     sheet.innerHTML = `<div class="img-sheet-box" role="dialog" aria-modal="true" aria-label="Imagem para Stories">
         <button class="img-sheet-close" type="button" aria-label="Fechar">×</button>
-        <p class="img-sheet-tip"><b>Toque e segure a imagem</b> e escolha <b>${ios ? "Salvar em Fotos" : "Baixar imagem"}</b>. Depois é só postar nos Stories.</p>
+        <p class="img-sheet-tip"><b>Toque e segure a imagem</b> e escolha <b>${ios ? "Salvar em Fotos" : "Baixar imagem"}</b>. Depois é só postar no Instagram.</p>
         <img src="${src}" alt="Imagem do treino para Stories">
         ${IN_APP ? `<p class="img-sheet-note">Se a opção de salvar não aparecer, abra o site no navegador: toque em <b>⋯</b> no canto da tela e escolha <b>Abrir no navegador</b>. Lá o botão abre direto o Instagram.</p>` : ""}
         <a class="share-btn" href="${src}" download="${fname}">Baixar imagem</a>
@@ -495,11 +511,12 @@
     } catch (e) { console.error(e); }
     label.textContent = old; btn.disabled = false;
   }
-  const shareActivity = (a, btn) => shareImage(() => storyImage(a), `treino-${a.date.slice(0, 10)}.png`, a.name, btn);
+  const shareActivity = (a, btn, fmt = "story") =>
+    shareImage(() => storyImage(a, fmt), `treino-${a.date.slice(0, 10)}${fmt === "clear" ? "-transparente" : fmt === "feed" ? "-feed" : ""}.png`, a.name, btn);
 
   // ---------- imagem de post do blog para Stories
-  async function postStoryImage(meta, excerpt, isQuote) {
-    const W = 1080, H = 1920, P = 90;
+  async function postStoryImage(meta, excerpt, isQuote, fmt = "story") {
+    const W = 1080, H = fmt === "feed" ? 1350 : 1920, P = 90, off = H - 1920, feed = fmt === "feed";
     const C = { bg: "#0b0d10", text: "#eef1f4", text2: "#c9d0d8", muted: "#7d8794", line: "#262b33", accent: "#c6f24e" };
     const D = '"Barlow Condensed", "Arial Narrow", sans-serif', B = '"Barlow", system-ui, sans-serif';
     try {
@@ -546,32 +563,32 @@
     spaced(info, P + tw + 28, 293, 4);
 
     // título
-    let tpx = 150; font(800, tpx);
+    let tpx = feed ? 120 : 150; font(800, tpx);
     const tWords = meta.title.toUpperCase().split(/\s+/);
     while (Math.max(...tWords.map((w) => g.measureText(w).width)) > W - P * 2 && tpx > 90) font(800, (tpx -= 10));
-    let tl = wrap(meta.title.toUpperCase(), W - P * 2, 4);
-    if (tl.length >= 4 && tpx > 120) { font(800, (tpx = 120)); tl = wrap(meta.title.toUpperCase(), W - P * 2, 4); }
+    let tl = wrap(meta.title.toUpperCase(), W - P * 2, feed ? 3 : 4);
+    if (!feed && tl.length >= 4 && tpx > 120) { font(800, (tpx = 120)); tl = wrap(meta.title.toUpperCase(), W - P * 2, 4); }
     let y = 330;
     g.fillStyle = C.text; tl.forEach((l) => { y += tpx * 0.92; g.fillText(l, P - 4, y); });
 
     // trecho
-    y += 110;
+    y += feed ? 70 : 110;
     const exTop = y;
-    let epx = isQuote ? 56 : 48; font(isQuote ? "italic 500" : "500", epx, B);
-    const lh = epx * 1.45, maxLines = Math.max(3, Math.floor((1600 - exTop) / lh));
+    let epx = feed ? (isQuote ? 44 : 38) : (isQuote ? 56 : 48); font(isQuote ? "italic 500" : "500", epx, B);
+    const lh = epx * 1.45, maxLines = Math.max(3, Math.floor((1600 + off - exTop) / lh));
     const ex = wrap(isQuote ? `“${excerpt}”` : excerpt, W - P * 2 - 50, maxLines);
-    const ey = exTop + Math.max(0, (1620 - exTop - ex.length * lh) / 2); // centraliza no espaço livre
+    const ey = exTop + Math.max(0, (1620 + off - exTop - ex.length * lh) / 2); // centraliza no espaço livre
     g.fillStyle = C.text2;
     ex.forEach((l, i) => g.fillText(l, P + 50, ey + epx + i * lh));
     g.fillStyle = C.accent; g.fillRect(P, ey + 8, 8, ex.length * lh);
 
     // chamada
-    g.fillStyle = C.line; g.fillRect(P, 1690, W - P * 2, 2);
-    font(700, 52); g.fillStyle = C.accent; spaced("LEIA O TEXTO COMPLETO →", P, 1780, 2);
-    font(500, 32, B); g.fillStyle = C.muted; g.fillText(`${location.host}/blog`, P, 1840);
+    g.fillStyle = C.line; g.fillRect(P, 1690 + off, W - P * 2, 2);
+    font(700, 52); g.fillStyle = C.accent; spaced("LEIA O TEXTO COMPLETO →", P, 1780 + off, 2);
+    font(500, 32, B); g.fillStyle = C.muted; g.fillText(`${location.host}/blog`, P, 1840 + off);
     g.font = '700 30px "Barlow Condensed", "Arial Narrow", sans-serif';
     const mw = g.measureText("SUSTINE ET ABSTINE").width + 18 * 8;
-    drawMotto(g, W - P - mw, 1840, C, spaced, 30);
+    drawMotto(g, W - P - mw, 1840 + off, C, spaced, 30);
 
     return new Promise((res) => cv.toBlob(res, "image/png"));
   }
@@ -744,7 +761,7 @@
       <span class="share-lbl">Compartilhar</span>
       <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" rel="noopener">${ICON.fb}Facebook</a>
       <a class="share-btn" href="https://wa.me/?text=${text}" target="_blank" rel="noopener">${ICON.wa}WhatsApp</a>
-      <button class="share-btn" type="button" data-story>${ICON.share}<span>Stories</span></button>
+      <button class="share-btn" type="button" data-story data-fmt="story">${ICON.share}<span>Stories</span></button>
       <button class="share-btn" type="button" data-copy>${ICON.link}<span>Copiar link</span></button>
       ${navigator.share ? `<button class="share-btn" type="button" data-native>${ICON.share}Mais…</button>` : ""}
     </div>`;
@@ -758,15 +775,16 @@
       catch { prompt("Copie o link:", url); }
       setTimeout(() => (copy.querySelector("span").textContent = "Copiar link"), 2000);
     });
-    const story = document.querySelector("[data-story]");
-    story?.addEventListener("click", () => {
+    document.querySelectorAll("[data-story]").forEach((story) => story.addEventListener("click", () => {
       const prose = document.querySelector(".prose");
       const quote = prose?.querySelector("blockquote")?.textContent.trim();
       const firstText = [...(prose?.querySelectorAll("p") || [])].map((p) => p.textContent.trim())
         .filter((t) => t && !p_in_quote(t, prose)).join(" ");
       const excerpt = quote || firstText || meta.summary || "";
-      shareImage(() => postStoryImage(meta, excerpt.replace(/\s+/g, " "), !!quote), `post-${meta.slug}.png`, meta.title, story);
-    });
+      const fmt = story.dataset.fmt;
+      shareImage(() => postStoryImage(meta, excerpt.replace(/\s+/g, " "), !!quote, fmt),
+        `post-${meta.slug}${fmt === "feed" ? "-feed" : ""}.png`, meta.title, story);
+    }));
     document.querySelector("[data-native]")?.addEventListener("click", () =>
       navigator.share({ title: meta.title, text: meta.summary || meta.title, url }).catch(() => {}));
   }
