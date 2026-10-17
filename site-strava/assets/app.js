@@ -254,6 +254,7 @@
         <div class="act-shares">
           <button class="act-share" type="button" data-i="${i}" data-fmt="story" aria-label="Imagem de ${esc(a.name)} para Stories">${ICON.share}<span>Stories</span></button>
           <button class="act-share" type="button" data-i="${i}" data-fmt="clear" aria-label="Imagem de ${esc(a.name)} com fundo transparente">${ICON.share}<span>Transparente</span></button>
+          <button class="act-share" type="button" data-i="${i}" data-fmt="photo" aria-label="Imagem de ${esc(a.name)} com a ilustração da turma ao fundo">${ICON.share}<span>Turma</span></button>
         </div>
       </article>`).join("") || `<p class="empty-note">Nenhum treino ainda.</p>`;
     $("#acts").querySelectorAll(".act-share").forEach((b) =>
@@ -306,7 +307,8 @@
   async function storyImage(a, fmt = "story") {
     const W = 1080, H = fmt === "feed" ? 1350 : 1920, P = 90, off = H - 1920, feed = fmt === "feed";
     const clear = fmt === "clear";   // fundo transparente, para usar sobre uma foto
-    const C = clear
+    const photo = fmt === "photo";   // ilustração da turma ao fundo
+    const C = (clear || photo)
       ? { bg: "#0b0d10", text: "#ffffff", text2: "#ffffff", muted: "rgba(255,255,255,.88)", line: "rgba(255,255,255,.6)", accent: "#c6f24e", hot: "#ff6a3d", rec: "rgba(255,255,255,.45)" }
       : { bg: "#0b0d10", text: "#eef1f4", text2: "#b4bcc6", muted: "#7d8794", line: "#262b33", accent: "#c6f24e", hot: "#ff6a3d", rec: "#3a414c" };
     const D = '"Barlow Condensed", "Arial Narrow", sans-serif', B = '"Barlow", system-ui, sans-serif';
@@ -320,7 +322,19 @@
       for (const ch of txt) { g.fillText(ch, x, y); x += g.measureText(ch).width + sp; }
     };
 
-    if (clear) {
+    if (photo) {
+      g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
+      try {
+        const img = new Image(); img.src = "assets/stoa-turma.jpg"; await img.decode();
+        const ih = W * img.naturalHeight / img.naturalWidth;
+        g.drawImage(img, 0, 0, W, ih);
+        const fade = g.createLinearGradient(0, ih - 520, 0, ih);   // dissolve no escuro embaixo
+        fade.addColorStop(0, "rgba(11,13,16,0)"); fade.addColorStop(1, "rgba(11,13,16,1)");
+        g.fillStyle = fade; g.fillRect(0, ih - 520, W, 520);
+      } catch (e) { console.warn("fundo indisponível", e); }
+      g.fillStyle = "rgba(11,13,16,.5)"; g.fillRect(0, 0, W, H);  // escurece para os números lerem bem
+      g.shadowColor = "rgba(0,0,0,.6)"; g.shadowBlur = 14; g.shadowOffsetY = 2;
+    } else if (clear) {
       // sem fundo: sombra suave em tudo para ler bem sobre qualquer foto
       g.shadowColor = "rgba(0,0,0,.55)"; g.shadowBlur = 14; g.shadowOffsetY = 2;
     } else {
@@ -512,7 +526,7 @@
     label.textContent = old; btn.disabled = false;
   }
   const shareActivity = (a, btn, fmt = "story") =>
-    shareImage(() => storyImage(a, fmt), `treino-${a.date.slice(0, 10)}${fmt === "clear" ? "-transparente" : fmt === "feed" ? "-feed" : ""}.png`, a.name, btn);
+    shareImage(() => storyImage(a, fmt), `treino-${a.date.slice(0, 10)}${{ clear: "-transparente", photo: "-turma", feed: "-feed" }[fmt] || ""}.png`, a.name, btn);
 
   // ---------- imagem de post do blog para Stories
   async function postStoryImage(meta, excerpt, isQuote, fmt = "story") {
