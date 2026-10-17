@@ -484,38 +484,17 @@
   async function showImageSheet(blob, fname) {
     const src = await toDataURL(blob);
     const ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    // link para reabrir esta página no navegador de verdade (Chrome no Android, Safari no iPhone)
-    const here = location.href.split("#")[0];
-    const browserURL = ios
-      ? "x-safari-" + here
-      : "intent://" + here.replace(/^https?:\/\//, "") + "#Intent;scheme=https;package=com.android.chrome;end";
     const sheet = document.createElement("div");
     sheet.className = "img-sheet";
     sheet.innerHTML = `<div class="img-sheet-box" role="dialog" aria-modal="true" aria-label="Imagem para Stories">
-        <div class="img-sheet-bar"><span>Sua imagem</span><button class="img-sheet-close" type="button" aria-label="Fechar">×</button></div>
+        <button class="img-sheet-close" type="button" aria-label="Fechar">×</button>
         <p class="img-sheet-tip"><b>Toque e segure a imagem</b> e escolha <b>${ios ? "Salvar em Fotos" : "Baixar imagem"}</b>. Depois é só postar no Instagram.</p>
         <img src="${src}" alt="Imagem do treino para Stories">
-        ${IN_APP
-          ? `<p class="img-sheet-note">Não apareceu a opção de salvar? O Instagram bloqueia downloads. Abra o site no navegador, onde o botão Stories funciona direto:</p>
-             <a class="share-btn img-sheet-main" href="${browserURL}">Abrir no navegador</a>
-             <button class="share-btn img-sheet-copy" type="button">Copiar link do site</button>`
-          : `<a class="share-btn img-sheet-main" href="${src}" download="${fname}">Baixar imagem</a>`}
-        <button class="img-sheet-back" type="button">← Voltar ao site</button>
+        ${IN_APP ? `<p class="img-sheet-note">Se a opção de salvar não aparecer, abra o site no navegador: toque em <b>⋯</b> no canto da tela e escolha <b>Abrir no navegador</b>. Lá o botão abre direto o Instagram.</p>` : ""}
+        <a class="share-btn" href="${src}" download="${fname}">Baixar imagem</a>
       </div>`;
-    // o "voltar" do celular fecha a janela em vez de sair do site
-    let open = true;
-    history.pushState({ imgSheet: 1 }, "");
-    const remove = () => { if (!open) return; open = false; sheet.remove(); document.body.style.overflow = ""; window.removeEventListener("popstate", remove); };
-    const close = () => { if (!open) return; remove(); if (history.state && history.state.imgSheet) history.back(); };
-    window.addEventListener("popstate", remove);
-    sheet.addEventListener("click", async (e) => {
-      if (e.target === sheet || e.target.closest(".img-sheet-close, .img-sheet-back")) close();
-      const cp = e.target.closest(".img-sheet-copy");
-      if (cp) {
-        try { await navigator.clipboard.writeText(here); cp.textContent = "Link copiado! Cole no navegador"; }
-        catch (_) { prompt("Copie o link:", here); }
-      }
-    });
+    const close = () => { sheet.remove(); document.body.style.overflow = ""; };
+    sheet.addEventListener("click", (e) => { if (e.target === sheet || e.target.closest(".img-sheet-close")) close(); });
     document.addEventListener("keydown", function esc(e) { if (e.key === "Escape") { close(); document.removeEventListener("keydown", esc); } });
     document.body.appendChild(sheet); document.body.style.overflow = "hidden";
   }
