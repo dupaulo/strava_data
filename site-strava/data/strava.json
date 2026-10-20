@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-19T16:30+00:00",
+ "updated_at": "2026-10-20T14:20+00:00",
  "athlete": {
   "name": "Paulo",
   "tagline": "Corrida, dados e disciplina. Rumo à maratona sub-3.",
@@ -8,23 +8,23 @@
   "photo": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/30463975/18052375/22/large.jpg"
  },
  "totals": {
-  "ytd_km": 2974.4,
-  "ytd_runs": 298,
-  "ytd_hours": 263.3,
-  "all_km": 18515.8,
-  "all_runs": 1759,
-  "all_hours": 1496,
+  "ytd_km": 2987.0,
+  "ytd_runs": 299,
+  "ytd_hours": 264.3,
+  "all_km": 18528.4,
+  "all_runs": 1760,
+  "all_hours": 1497,
   "since": "2018-05-05",
-  "week_km": 0.0
+  "week_km": 12.6
  },
  "prs": [
   {
    "key": "5K",
    "km": 5.0,
-   "seconds": 1118,
-   "date": "2026-05-30",
-   "activity_id": 18713884961,
-   "activity_name": "Meia Maratona Internacional de Porto Alegre - 2026",
+   "seconds": 1107,
+   "date": "2020-08-04",
+   "activity_id": 3862298314,
+   "activity_name": "Desafio 5k 《 20 minutos 🏆🥇",
    "source": "strava"
   },
   {
@@ -129,8 +129,8 @@
   },
   {
    "week": "2026-10-19",
-   "km": 0.0,
-   "runs": 0
+   "km": 12.6,
+   "runs": 1
   }
  ],
  "monthly": [
@@ -180,10 +180,239 @@
   },
   {
    "month": "2026-10",
-   "km": 146.3
+   "km": 158.9
   }
  ],
  "recent": [
+  {
+   "id": 20658469049,
+   "name": "Repetições 19×200m · Repetições",
+   "date": "2026-10-20T06:13",
+   "km": 12.61,
+   "moving_time": 3578,
+   "pace": 284,
+   "elevation": 34,
+   "hr": 159,
+   "race": false,
+   "polyline": "z_u`Cdu`sG[WIBA@DJDBlCr@p@XdA\\`@Vn@TfFhBvDxAJA?CGGg@Iu@[}@Ye@Y}@Ys@Ym@OmBs@cAi@_AYc@Kw@Ya@MSKEAC@?JfA^l@PxCfAj@P~An@|Af@ZN`@HVL~@Zn@XVFNJJ@BA@GIEm@O_C_AyBs@OIg@Oy@[y@WmAi@mDiAUKQQGACB?HTLdGtBp@ZlCz@f@TNDV@tDpAh@V^RNLBFGAKU]Ua@Q{GaC}Bu@oAm@{Bu@cAa@[IeATcDpB{@f@y@XE?ACZG`@MzA}@x@i@`Ae@XKZCR@rAZbEtAZPjLbEVLZ\\Zr@l@xB\\x@P~@CHEKUgBcAeDYi@]WWM{Ae@eBs@SEUKk@K_@OSEYQq@[{HkCYUEAMB_B~@OL_Bz@EH?DFBHAx@m@pBgAZIR?v@LzFpBf@R\\HhAb@LBxCjA`DdAZV\\n@^rAVp@ADA?G]Qg@Mm@Oa@]m@[WcBo@_DeA}@]WG{@_@}Ag@w@[SEcBm@eAe@a@WI?ODwA`AaCpAcA`@[DEFBHH@d@I^OhC_BlAq@ZIR?XDj@R\\FbEzAr@L~@\\^VfA`@pGvBZ\\N\\`@rAPd@DT?DABC@ECWgA]gAMYSY]W_Aa@eA]cBm@m@OECCIKGwBs@eBq@oDoAi@UOKMEI@MFgBjAoBfAUJu@PGFAHJB`@InAo@fDsBPCR?t@RT?TFdBp@|Ab@PLhBr@v@T\\FtFlBd@VTRZf@JX@JGDGCk@oAOSa@UyFkBm@UQMkAg@_AS{@YmAg@w@Q}@]SC]@YH}@d@uChBc@P]HQBAAt@Oj@WfCcBbAg@ZER?RD~@Z`ATdBn@h@FxCbA|CfApAt@~@XPLXXT^~@hCBJ?DEBEGYmAg@wASWYWk@UyAc@mIaDy@Sw@_@_AYm@K{@[_@?c@FuAv@cBhAw@^g@LACd@Kf@Sv@e@f@]xBkA`@Eh@HlDjAx@\\Z?\\H",
+   "laps": [
+    {
+     "d": 1000,
+     "t": 316,
+     "hr": 140
+    },
+    {
+     "d": 1000,
+     "t": 304,
+     "hr": 150
+    },
+    {
+     "d": 1000,
+     "t": 298,
+     "hr": 153
+    },
+    {
+     "d": 200,
+     "t": 39,
+     "hr": 163
+    },
+    {
+     "d": 200,
+     "t": 70,
+     "hr": 159
+    },
+    {
+     "d": 200,
+     "t": 39,
+     "hr": 161
+    },
+    {
+     "d": 200,
+     "t": 70,
+     "hr": 160
+    },
+    {
+     "d": 200,
+     "t": 39,
+     "hr": 161
+    },
+    {
+     "d": 200,
+     "t": 69,
+     "hr": 162
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 162
+    },
+    {
+     "d": 200,
+     "t": 71,
+     "hr": 163
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 163
+    },
+    {
+     "d": 200,
+     "t": 71,
+     "hr": 162
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 164
+    },
+    {
+     "d": 200,
+     "t": 69,
+     "hr": 165
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 164
+    },
+    {
+     "d": 200,
+     "t": 69,
+     "hr": 165
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 166
+    },
+    {
+     "d": 200,
+     "t": 71,
+     "hr": 165
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 164
+    },
+    {
+     "d": 200,
+     "t": 72,
+     "hr": 163
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 165
+    },
+    {
+     "d": 200,
+     "t": 73,
+     "hr": 165
+    },
+    {
+     "d": 200,
+     "t": 37,
+     "hr": 166
+    },
+    {
+     "d": 200,
+     "t": 68,
+     "hr": 166
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 167
+    },
+    {
+     "d": 200,
+     "t": 73,
+     "hr": 166
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 165
+    },
+    {
+     "d": 200,
+     "t": 69,
+     "hr": 166
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 164
+    },
+    {
+     "d": 200,
+     "t": 73,
+     "hr": 166
+    },
+    {
+     "d": 200,
+     "t": 37,
+     "hr": 166
+    },
+    {
+     "d": 200,
+     "t": 70,
+     "hr": 166
+    },
+    {
+     "d": 200,
+     "t": 37,
+     "hr": 166
+    },
+    {
+     "d": 200,
+     "t": 68,
+     "hr": 169
+    },
+    {
+     "d": 200,
+     "t": 37,
+     "hr": 168
+    },
+    {
+     "d": 200,
+     "t": 69,
+     "hr": 167
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 167
+    },
+    {
+     "d": 200,
+     "t": 72,
+     "hr": 167
+    },
+    {
+     "d": 200,
+     "t": 38,
+     "hr": 166
+    },
+    {
+     "d": 200,
+     "t": 66,
+     "hr": 168
+    },
+    {
+     "d": 1000,
+     "t": 303,
+     "hr": 157
+    },
+    {
+     "d": 1000,
+     "t": 301,
+     "hr": 155
+    }
+   ]
+  },
   {
    "id": 20633883402,
    "name": "Longão 18 km · Longão",
@@ -1112,60 +1341,6 @@
      "hr": 170
     }
    ]
-  },
-  {
-   "id": 20485910169,
-   "name": "Rodagem 7 km · Fácil",
-   "date": "2026-10-07T05:51",
-   "km": 7.05,
-   "moving_time": 2127,
-   "pace": 302,
-   "elevation": 9,
-   "hr": 149,
-   "race": false,
-   "polyline": "d_u`Cpt`sGIAED@DHFrBl@tDpApBv@|@Xl@TjBn@lAf@\\LTRD@BA@ACCcC}@qDoAUE}B_AgC{@yAq@m@Qa@YCACBADDHRDhEvA^PzC`ApBv@tBr@lAf@j@PHDb@^Vf@H^B@BAQe@S_@[WwCiA}Bw@a@KwAm@cFiBmAi@i@Q_@UGCC@?HFH^Hj@Rv@T`HdCr@ZdFdB`@N\\XD@@GCAwBy@OKUKo@SqBw@o@QyAi@{@SYOw@UmAk@gA_@WSK@KD]VkAr@mCrAGH?BBDNC^QhEcCTGX@h@N~@XtChAvBr@nJjDPHXZTd@FXFF@GKW]o@QQeAa@aBg@kAg@sAe@m@]yBu@_@GoAg@QEkAi@q@Sc@Wc@JmCbB]Lu@b@QFIF?DFDTGxCiBz@a@^MX?d@LxEbBtAh@dAV`Bl@vAd@pC`Aj@`@Zb@Nd@DDBAMa@Wa@KMa@[mBs@yCcAuDuAyA]cBo@k@Y_Aa@WQC?oA|@c@Jg@X",
-   "laps": [
-    {
-     "d": 1000,
-     "t": 326,
-     "hr": 136
-    },
-    {
-     "d": 1000,
-     "t": 302,
-     "hr": 149
-    },
-    {
-     "d": 1000,
-     "t": 292,
-     "hr": 152
-    },
-    {
-     "d": 1000,
-     "t": 298,
-     "hr": 152
-    },
-    {
-     "d": 1000,
-     "t": 298,
-     "hr": 152
-    },
-    {
-     "d": 1000,
-     "t": 297,
-     "hr": 152
-    },
-    {
-     "d": 1000,
-     "t": 297,
-     "hr": 152
-    },
-    {
-     "d": 52,
-     "t": 16,
-     "hr": 152
-    }
-   ]
   }
  ],
  "sub3": {
@@ -1178,7 +1353,7 @@
    "seconds": 10091,
    "basis": "Half-Marathon"
   },
-  "avg_week_km_8w": 75.1,
+  "avg_week_km_8w": 76.7,
   "longest_km_8w": 30.0,
   "long_runs_30k_12w": 1
  },
@@ -1261,8 +1436,8 @@
     "runs": 63
    },
    {
-    "avg_km": 9.6,
-    "runs": 65
+    "avg_km": 9.7,
+    "runs": 66
    },
    {
     "avg_km": 8.5,
@@ -1281,8 +1456,8 @@
     "runs": 55
    },
    {
-    "avg_km": 8.9,
-    "runs": 26
+    "avg_km": 8.5,
+    "runs": 25
    }
   ]
  }
