@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-05T17:26+00:00",
+ "updated_at": "2026-11-06T16:47+00:00",
  "athlete": {
   "name": "Paulo",
   "tagline": "Corrida, dados e disciplina. Rumo à maratona sub-3.",
@@ -8,14 +8,14 @@
   "photo": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/30463975/18052375/23/large.jpg"
  },
  "totals": {
-  "ytd_km": 3170.7,
-  "ytd_runs": 313,
-  "ytd_hours": 279.4,
-  "all_km": 18712.1,
-  "all_runs": 1774,
-  "all_hours": 1512,
+  "ytd_km": 3180.8,
+  "ytd_runs": 314,
+  "ytd_hours": 280.3,
+  "all_km": 18722.2,
+  "all_runs": 1775,
+  "all_hours": 1513,
   "since": "2018-05-05",
-  "week_km": 38.8
+  "week_km": 48.9
  },
  "prs": [
   {
@@ -129,8 +129,8 @@
   },
   {
    "week": "2026-11-02",
-   "km": 38.8,
-   "runs": 3
+   "km": 48.9,
+   "runs": 4
   }
  ],
  "monthly": [
@@ -180,10 +180,129 @@
   },
   {
    "month": "2026-11",
-   "km": 58.3
+   "km": 68.4
   }
  ],
  "recent": [
+  {
+   "id": 20881034623,
+   "name": "Rodagem 10 km + 6 subidas · Fácil",
+   "date": "2026-11-06T06:56",
+   "km": 10.12,
+   "moving_time": 3324,
+   "pace": 328,
+   "elevation": 56,
+   "hr": 145,
+   "race": false,
+   "polyline": "dru`Cd~`sG[Ou@UkAe@QCkCaAcA_@k@Sg@UoBq@c@KOBa@NUD}@b@a@N{Az@uAb@e@HCBAHNDl@Mz@[b@[pC{Ah@i@\\YPGv@g@?FiAh@cAr@}@b@uAx@k@Vk@LKJDBPEp@YXUxAu@b@[p@Y^WRUx@k@B??@UPOFcAr@QF{@j@{@d@_@Ny@`@_@FCBADFBj@Sp@c@p@[`B_Af@e@^Sh@a@D?@BABYJ}BtAqBbAq@b@q@VWDABb@Mn@WjAq@\\WT@HCt@a@XMRE^@NBr@Z|@R~DvA`A`@H@AICAi@Iw@Ww@SuAk@eA[i@Yq@KIAO@UH_CnA]LeAt@q@VKA?A@AXC`@QbEaCTMZKZ?RB|Ah@`C`AL?DECIYKmBm@eBo@USOAyAbA_Bx@w@d@}@ZKJQJQH}AZo@TUR]`@uAtAm@t@SLk@h@eBnBm@j@oB~A_CtBu@bAc@Zk@p@}@p@KBEEYa@Ma@_@_AEUEIKE{@b@ODoFzByA|@_@Lo@HYF}ClAe@HeBf@UBOFaARoAN_AVK@WHSPMT_@v@]bBM^AJs@zCM^m@pCu@vCS`@Ox@Wz@UnAg@xBANWbACHEBK?kBk@KK?GDUJc@@WBMJSRu@h@kCNa@Jk@^uABUVy@TiAVcAFOd@{BDG@QHMDUTiALGb@NTJLJ^RF@PQFMVkAr@wAPM`ASj@SvAYj@QlAKbCe@hBy@`C}@hB{@lBw@LAb@ObCgAbAa@ZIBA@GG?OLk@XSEI@cA`@k@RED@HBBNAx@a@dAa@bAi@l@MDGACCAG?oCpA_A^OBYNs@X@BD?\\MxAo@^MPALKJEf@]|@_@NERIBC?CAAG@i@Z[H{CtAa@NGF?@F@HAj@[`@YjFwBTMDG]NKLoBz@cAb@a@JuAf@mBx@u@^mAd@WL_@Xk@X",
+   "laps": [
+    {
+     "d": 1000,
+     "t": 339,
+     "hr": 132
+    },
+    {
+     "d": 1000,
+     "t": 335,
+     "hr": 143
+    },
+    {
+     "d": 1000,
+     "t": 328,
+     "hr": 144
+    },
+    {
+     "d": 1000,
+     "t": 330,
+     "hr": 145
+    },
+    {
+     "d": 1000,
+     "t": 321,
+     "hr": 144
+    },
+    {
+     "d": 1000,
+     "t": 323,
+     "hr": 140
+    },
+    {
+     "d": 1000,
+     "t": 320,
+     "hr": 144
+    },
+    {
+     "d": 400,
+     "t": 139,
+     "hr": 152
+    },
+    {
+     "d": 68,
+     "t": 18,
+     "hr": 153
+    },
+    {
+     "d": 207,
+     "t": 75,
+     "hr": 154
+    },
+    {
+     "d": 80,
+     "t": 18,
+     "hr": 151
+    },
+    {
+     "d": 196,
+     "t": 75,
+     "hr": 153
+    },
+    {
+     "d": 81,
+     "t": 18,
+     "hr": 152
+    },
+    {
+     "d": 218,
+     "t": 75,
+     "hr": 154
+    },
+    {
+     "d": 87,
+     "t": 18,
+     "hr": 154
+    },
+    {
+     "d": 212,
+     "t": 75,
+     "hr": 155
+    },
+    {
+     "d": 89,
+     "t": 18,
+     "hr": 152
+    },
+    {
+     "d": 191,
+     "t": 75,
+     "hr": 156
+    },
+    {
+     "d": 92,
+     "t": 18,
+     "hr": 151
+    },
+    {
+     "d": 188,
+     "t": 75,
+     "hr": 153
+    },
+    {
+     "d": 1000,
+     "t": 328,
+     "hr": 147
+    }
+   ]
+  },
   {
    "id": 20867542762,
    "name": "Cruise intervals 5×1600m · Limiar",
@@ -1307,80 +1426,6 @@
      "hr": 168
     }
    ]
-  },
-  {
-   "id": 20699606542,
-   "name": "Rodagem 11 km · Fácil 🌧🌧🌧🌧",
-   "date": "2026-10-23T07:31",
-   "km": 11.53,
-   "moving_time": 3761,
-   "pace": 326,
-   "elevation": 103,
-   "hr": 148,
-   "race": false,
-   "polyline": "f`u`Cru`sGg@Ca@DWLaAp@cCpAi@RiAXyATy@d@_@d@[XMPe@`@KPkAlAYTo@l@i@X_BfBWPyDvD_@Xq@r@SX[Ts@t@OJK?M[OOOe@Ge@K[MYGGICODuCrAe@Nm@Xc@N{DbBq@TWP{@VEHF@\\St@YZQ`@OPMl@SZQZKZO\\Op@g@r@]p@Uv@_@XGpAi@v@]^M\\SbA[DBCFg@Ti@NuB~@[Ju@\\yFxBkAh@_@T_Bh@y@\\YFOHABFBD?`@K^M\\WrAg@xBgApAc@dCiAtD}Ad@UlAe@FG?CI?QLk@XMLOHqCdA[NkBr@a@Vk@Ve@NeAn@e@T}Al@UDSEE@_@LeBx@k@Fg@JcCz@qEr@]\\k@jA[fBSj@Ux@KXM~@I\\KLK\\u@fDWv@Kt@[hAUjA?TG\\i@fBKf@Qh@Ih@EDK@KAi@Ww@SII?KHi@Ro@\\aB^wAp@uCv@uCr@yDl@oBFa@HUBe@CIMKwAm@WQa@]gAq@SUQe@I_AA}@DUFKNKZCx@Rx@XHFDLETMV?JDJ\\HLHPDb@TRDfAp@dAZ\\PFFCZKX_A|DM\\Eb@g@`CIR[jAk@lCc@fBYtAWfAKl@[lAS`AEDI?[Gq@Se@IGG@Uf@aC\\kAl@mCrAiFPiATw@Ny@Tu@h@iCEMEEc@UUSkB_A[UUI[_@Ui@Mo@?w@Hk@JMNI\\?~A`@XVBHARMX@JJJf@R^Rr@XRJN@fAh@LDP?h@OrAWjAKdBa@RAv@WdBWv@Yv@SjBs@n@[b@Qf@Mj@Y`@Y|Aq@vAi@n@[dC}@bDyADGWNu@V[RaAb@cA^eAb@qBv@YT_FnBcA^g@ViA^s@^o@R}@PWJo@LOFu@PeALuB\\_@Xm@pA[xACTYz@w@pDUr@Q~@Ux@Ih@a@`BQf@WfAMl@[hAq@hDKLW?}Aa@GGCKB_@Po@Ls@^gAHo@n@}Bb@}B\\oABCBk@Lk@Zu@BCNA`Bf@NBFERi@",
-   "laps": [
-    {
-     "d": 1000,
-     "t": 341,
-     "hr": 134
-    },
-    {
-     "d": 1000,
-     "t": 330,
-     "hr": 143
-    },
-    {
-     "d": 1000,
-     "t": 325,
-     "hr": 153
-    },
-    {
-     "d": 1000,
-     "t": 324,
-     "hr": 150
-    },
-    {
-     "d": 1000,
-     "t": 318,
-     "hr": 146
-    },
-    {
-     "d": 1000,
-     "t": 319,
-     "hr": 148
-    },
-    {
-     "d": 1000,
-     "t": 327,
-     "hr": 151
-    },
-    {
-     "d": 1000,
-     "t": 323,
-     "hr": 150
-    },
-    {
-     "d": 1000,
-     "t": 342,
-     "hr": 154
-    },
-    {
-     "d": 1000,
-     "t": 318,
-     "hr": 146
-    },
-    {
-     "d": 1000,
-     "t": 320,
-     "hr": 147
-    },
-    {
-     "d": 526,
-     "t": 174,
-     "hr": 154
-    }
-   ]
   }
  ],
  "sub3": {
@@ -1393,7 +1438,7 @@
    "seconds": 10091,
    "basis": "Half-Marathon"
   },
-  "avg_week_km_8w": 73.8,
+  "avg_week_km_8w": 72.9,
   "longest_km_8w": 30.0,
   "long_runs_30k_12w": 1
  },
@@ -1442,7 +1487,7 @@
   }
  ],
  "patterns": {
-  "runs": 343,
+  "runs": 344,
   "by_hour": [
    0.0,
    0.0,
@@ -1450,8 +1495,8 @@
    0.0,
    0.0,
    13.1,
-   36.2,
-   26.8,
+   36.3,
+   26.7,
    10.5,
    2.3,
    0.6,
@@ -1488,8 +1533,8 @@
     "runs": 55
    },
    {
-    "avg_km": 8.7,
-    "runs": 36
+    "avg_km": 8.8,
+    "runs": 37
    },
    {
     "avg_km": 16.3,
