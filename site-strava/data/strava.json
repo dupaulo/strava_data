@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-14T15:50+00:00",
+ "updated_at": "2026-11-15T16:23+00:00",
  "athlete": {
   "name": "Paulo",
   "tagline": "Corrida, dados e disciplina. Rumo à maratona sub-3.",
@@ -8,14 +8,14 @@
   "photo": "https://dgalywyr863hv.cloudfront.net/pictures/athletes/30463975/18052375/23/large.jpg"
  },
  "totals": {
-  "ytd_km": 3237.4,
-  "ytd_runs": 318,
-  "ytd_hours": 285.3,
-  "all_km": 18778.8,
-  "all_runs": 1779,
-  "all_hours": 1518,
+  "ytd_km": 3254.5,
+  "ytd_runs": 319,
+  "ytd_hours": 286.8,
+  "all_km": 18795.8,
+  "all_runs": 1780,
+  "all_hours": 1519,
   "since": "2018-05-05",
-  "week_km": 26.9
+  "week_km": 43.9
  },
  "prs": [
   {
@@ -129,8 +129,8 @@
   },
   {
    "week": "2026-11-09",
-   "km": 26.9,
-   "runs": 2
+   "km": 43.9,
+   "runs": 3
   }
  ],
  "monthly": [
@@ -180,10 +180,109 @@
   },
   {
    "month": "2026-11",
-   "km": 125.0
+   "km": 142.1
   }
  ],
  "recent": [
+  {
+   "id": 20995145810,
+   "name": "Longão 17 km · Longão",
+   "date": "2026-11-15T06:19",
+   "km": 17.01,
+   "moving_time": 5620,
+   "pace": 330,
+   "elevation": 38,
+   "hr": 145,
+   "race": false,
+   "polyline": "dxu`Cp`asG\\d@N`@?PI?Qo@MSg@e@eBk@iDsAm@OeCaA_ImCSASHsEfCiA`@DJH@n@StC_BNM`Ae@XE`AF|DxAnDhApIzCVNX\\Xz@HFDEAKg@{@WUoFmBeBi@iCgAkBk@{@]g@GyAe@OAe@H_Bx@{BvAq@VI@CCDEN?p@QdCyANM`Ag@n@EhANpBp@~CnAvGxBlCdAj@t@\\bA\\vAFHB?BIGOm@yAMc@Wa@i@e@}Ao@wP_Gw@_@OAe@@i@HiEhC{@\\Q?|Ai@hC}Az@c@d@Er@FtLbEhBt@bDhATBFD^b@LVz@nC@FEFGGEWs@aCa@m@UQmLgEuAe@g@EmAg@qBs@k@?]JeEdCm@RYPEA?Gj@Id@UbDkB`@Y`@IZ@pA^@F~A^pC|@xB|@dDdApCfARP`@l@v@vCBDFCMe@i@gAYy@Ya@WOsK}D}@QuG_C[EYByBtAaB~@_A^GCBEf@GVKtEqCPEd@Af@Lv@Zd@FzAd@zClA`ErAjDrAH?BCGGy@Wq@IkHmCUCs@QoCaAw@_@cAW[Ac@JwBpAk@D_Af@o@NCHHHj@MpFaDd@At@LhEvAfGvB\\PvBr@rAh@\\HTR`@r@p@|B@FELEG_@sAc@qAo@q@sAi@cJ_Do@KaGwBYCe@HcEbC}@`@[FBEZEb@QnCeBdAk@NEJCZ@RFr@LTBhBj@lDrA`ErAXN|@T\\X`A^b@\\T\\x@|CFFDAe@aBOMo@iA][mDoAi@]aBi@qAi@aDeA{DyAYG[DqEhCUJy@TEH?BN@|@Yx@i@bDgBNCd@?XDlBl@hBr@dAZ~B~@vBp@vDxADE}CcAqEcByBs@uFsB_@UM??FJFvCt@bC~@fEtAnAh@bErAHLGFm@OmC_A_C_A_@IwBw@e@YkBm@yAo@aAGUBYHGENQRGfATdFnBXHd@Bx@XXDbCv@bDlAz@b@\\X`@t@FNENGCQq@q@{@yG}BsBy@kFkBUE}Ak@OOK?AFBBdCj@b@NrAf@hAj@dDfArGdC^T^h@x@zCBBDA?IQ[y@kCo@o@sE_B_@GmAa@mBu@",
+   "laps": [
+    {
+     "d": 1000,
+     "t": 338,
+     "hr": 129
+    },
+    {
+     "d": 1000,
+     "t": 335,
+     "hr": 140
+    },
+    {
+     "d": 1000,
+     "t": 328,
+     "hr": 141
+    },
+    {
+     "d": 1000,
+     "t": 328,
+     "hr": 141
+    },
+    {
+     "d": 1000,
+     "t": 334,
+     "hr": 140
+    },
+    {
+     "d": 1000,
+     "t": 332,
+     "hr": 144
+    },
+    {
+     "d": 1000,
+     "t": 324,
+     "hr": 144
+    },
+    {
+     "d": 1000,
+     "t": 329,
+     "hr": 146
+    },
+    {
+     "d": 1000,
+     "t": 329,
+     "hr": 148
+    },
+    {
+     "d": 1000,
+     "t": 329,
+     "hr": 149
+    },
+    {
+     "d": 1000,
+     "t": 328,
+     "hr": 149
+    },
+    {
+     "d": 1000,
+     "t": 328,
+     "hr": 149
+    },
+    {
+     "d": 1000,
+     "t": 333,
+     "hr": 148
+    },
+    {
+     "d": 1000,
+     "t": 330,
+     "hr": 149
+    },
+    {
+     "d": 1000,
+     "t": 330,
+     "hr": 150
+    },
+    {
+     "d": 1000,
+     "t": 331,
+     "hr": 152
+    },
+    {
+     "d": 1000,
+     "t": 332,
+     "hr": 152
+    }
+   ]
+  },
   {
    "id": 20983019422,
    "name": "Rodagem 11 km · Fácil",
@@ -1367,80 +1466,6 @@
      "hr": 153
     }
    ]
-  },
-  {
-   "id": 20776265470,
-   "name": "Tempo 20 min · Limiar",
-   "date": "2026-10-29T06:16",
-   "km": 10.45,
-   "moving_time": 2724,
-   "pace": 261,
-   "elevation": 47,
-   "hr": 160,
-   "race": false,
-   "polyline": "nlu`Czz`sG[Kq@WqA]q@Ue@Si@Qs@]u@WMKK@A@?HBBXD`@LdBl@jA^n@X`Cx@XNjDjA^PJ?BA?EGEm@Q}Ag@cAc@uBq@{FuBo@Qc@YI?CDBJB@b@DlA^VD|Ad@^NXV|An@x@VjAf@D@FGEGwAa@YOeBk@qCeA_Cw@[SO@MLADBFb@Bb@Hf@T`@JbA`@lBl@f@JZNrC~@ZNfBl@n@Xv@TTJ`@`@PXNf@R^b@pAb@fB@T?\\BNABCACIMeAS{@eA}DQ]a@[[Qs@YiFgBsB{@]Kw@OoBq@eAc@e@Q]Em@BaEfC]Pa@NuCj@WFo@Zk@n@]Z_@f@eB~Aq@x@_@Zg@j@iB|AkAlAkA`AuBvBuApAa@ZG@MGaAuCKKMEgEpBcC`AiAf@aBf@aC~@_B`@aCh@o@HeCd@e@JWH]^Uj@Ot@q@bCKt@Qf@Ml@WbAShA{@|C[dBc@`B{@zDQhAIJG@O@g@Uo@OOGEG?Qn@_Dn@iCHe@T_AZeBz@{Cj@iCL_@\\cBJ]?MGI}@m@{BkAk@e@SWKa@Gi@Au@@m@CQIMuBiB]SiBy@OES?KLS~AYvAYpBOj@m@xDWbAKbAYfBe@~BO`@qAxH]jC[tAUfBGNC?r@sEV_A`@cCRaA@OECGBIL?JEZe@tC[~AAHp@wDHu@r@oDT{Az@{EN_A`@wBRWJW^iCTkADa@Lc@Bc@Lg@^eC\\eBFg@Pk@LSPQ^GJ?^Hv@`@^HNJlAd@dAl@^PNJb@HREHGJYd@@z@G\\Gp@EjC_@`CO`AO",
-   "laps": [
-    {
-     "d": 1000,
-     "t": 314,
-     "hr": 142
-    },
-    {
-     "d": 1000,
-     "t": 305,
-     "hr": 149
-    },
-    {
-     "d": 1000,
-     "t": 307,
-     "hr": 152
-    },
-    {
-     "d": 1000,
-     "t": 224,
-     "hr": 166
-    },
-    {
-     "d": 1000,
-     "t": 221,
-     "hr": 168
-    },
-    {
-     "d": 1000,
-     "t": 222,
-     "hr": 169
-    },
-    {
-     "d": 1000,
-     "t": 222,
-     "hr": 172
-    },
-    {
-     "d": 1000,
-     "t": 214,
-     "hr": 172
-    },
-    {
-     "d": 426,
-     "t": 96,
-     "hr": 175
-    },
-    {
-     "d": 1000,
-     "t": 303,
-     "hr": 161
-    },
-    {
-     "d": 1000,
-     "t": 286,
-     "hr": 160
-    },
-    {
-     "d": 25,
-     "t": 10,
-     "hr": 154
-    }
-   ]
   }
  ],
  "sub3": {
@@ -1453,8 +1478,8 @@
    "seconds": 10091,
    "basis": "Half-Marathon"
   },
-  "avg_week_km_8w": 69.3,
-  "longest_km_8w": 20.4,
+  "avg_week_km_8w": 68.9,
+  "longest_km_8w": 19.5,
   "long_runs_30k_12w": 1
  },
  "races": [
@@ -1502,16 +1527,16 @@
   }
  ],
  "patterns": {
-  "runs": 342,
+  "runs": 343,
   "by_hour": [
    0.0,
    0.0,
    0.0,
    0.0,
    0.0,
-   12.3,
-   37.4,
-   26.9,
+   12.2,
+   37.6,
+   26.8,
    10.2,
    2.0,
    0.6,
@@ -1556,8 +1581,8 @@
     "runs": 54
    },
    {
-    "avg_km": 9.7,
-    "runs": 27
+    "avg_km": 10.0,
+    "runs": 28
    }
   ]
  }
