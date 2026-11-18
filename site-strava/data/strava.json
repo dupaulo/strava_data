@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-17T18:36+00:00",
+ "updated_at": "2026-11-18T18:06+00:00",
  "athlete": {
   "name": "Paulo",
   "tagline": "Corrida, dados e disciplina. Rumo à maratona sub-3.",
@@ -1448,7 +1448,7 @@
    "seconds": 10091,
    "basis": "Half-Marathon"
   },
-  "avg_week_km_8w": 69.5,
+  "avg_week_km_8w": 67.2,
   "longest_km_8w": 19.5,
   "long_runs_30k_12w": 1
  },
@@ -1497,7 +1497,7 @@
   }
  ],
  "patterns": {
-  "runs": 345,
+  "runs": 344,
   "by_hour": [
    0.0,
    0.0,
@@ -1505,9 +1505,9 @@
    0.0,
    0.0,
    12.2,
-   37.1,
-   27.2,
-   10.4,
+   37.2,
+   27.0,
+   10.5,
    2.0,
    0.6,
    0.0,
@@ -1517,7 +1517,7 @@
    0.0,
    0.3,
    2.3,
-   7.2,
+   7.3,
    0.0,
    0.0,
    0.0,
@@ -1527,8 +1527,8 @@
   "peak_hour": 6,
   "by_weekday": [
    {
-    "avg_km": 9.1,
-    "runs": 61
+    "avg_km": 9.0,
+    "runs": 60
    },
    {
     "avg_km": 9.9,
