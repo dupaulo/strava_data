@@ -263,7 +263,7 @@
 
   // ---------- imagem para Stories (1080×1920)
   const DIAS = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-  // ---------- marca Stoa Run Club nos cards
+  // ---------- marca Stoa Track Club nos cards
   async function loadCinzel() {
     if (!document.querySelector("link[data-cinzel]")) {
       const l = Object.assign(document.createElement("link"), {
@@ -283,7 +283,7 @@
       .forEach(([a, b, c, d]) => g.fillRect(a, b, c, d));
     g.restore();
   }
-  // pórtico + STOA RUN CLUB à esquerda, nome do atleta à direita
+  // pórtico + STOA TRACK CLUB à esquerda, nome do atleta à direita
   function drawBrand(g, W, P, C, spaced) {
     drawPortico(g, P - 6, 78, 92, C.accent);
     g.textBaseline = "alphabetic";
@@ -291,7 +291,7 @@
     spaced("STOA", P + 100, 150, 4);
     const sw = g.measureText("STOA").width + 4 * 4;
     g.fillStyle = C.accent; g.font = '700 34px "Barlow Condensed", "Arial Narrow", sans-serif';
-    spaced("RUN CLUB", P + 100 + sw + 16, 149, 7);
+    spaced("TRACK CLUB", P + 100 + sw + 16, 149, 7);
     const name = ($("#brand-name")?.textContent || document.querySelector(".brand span:last-child")?.textContent || "").trim().toUpperCase();
     if (name) {
       g.fillStyle = C.muted; g.font = '700 30px "Barlow Condensed", "Arial Narrow", sans-serif';
